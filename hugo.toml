@@ -1,0 +1,34 @@
+baseURL = 'https://quetoo.org/'
+languageCode = 'en-us'
+title = 'Quetoo'
+theme = 'quetoo'
+
+[params]
+  description = 'A free first person shooter for Mac, PC and Linux'
+  tagline = "Pwning nubz, one rail slug at a time."
+  discord = 'https://discord.gg/unb9U4b'
+  github = 'https://github.com/jdolan/quetoo'
+  releases = 'https://github.com/jdolan/quetoo/releases'
+
+[menu]
+  [[menu.main]]
+    name = 'Screenshots'
+    url = '/screenshots/'
+    weight = 1
+  [[menu.main]]
+    name = 'Downloads'
+    url = '/downloads/'
+    weight = 2
+  [[menu.main]]
+    name = 'Documentation'
+    url = '/docs/'
+    weight = 3
+  [[menu.main]]
+    name = 'Community'
+    url = '/community/'
+    weight = 4
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true

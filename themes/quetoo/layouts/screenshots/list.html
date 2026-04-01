@@ -1,0 +1,19 @@
+{{ define "main" }}
+<section class="screenshots-page">
+  <h1>Screenshots</h1>
+  <div class="gallery-grid full">
+    {{ range (slice "quetoo000" "quetoo001" "quetoo002" "quetoo003" "quetoo004" "quetoo005" "quetoo006" "quetoo007" "quetoo008" "quetoo009" "quetoo010" "quetoo011" "quetoo012" "quetoo013" "quetoo014" "quetoo015" "quetoo016" "quetoo017" "quetoo018" "quetoo019" "quetoo020" "quetoo021" "quetoo022" "quetoo023" "quetoo028" "quetoo029" "quetoo030" "quetoo031" "quetoo032" "quetoo033" "quetoo034" "quetoo036" "quetoo037" "quetoo038" "quetoo039" "quetoo041" "quetoo042" "quetoo043" "quetoo044" "quetoo045" "quetoo046" "quetoo047" "quetoo049" "quetoo050" "quetoo051" "quetoo055" "quetoo057") }}
+    <a href="/images/screenshots/{{ . }}.jpg" class="gallery-item" data-full="/images/screenshots/{{ . }}.jpg">
+      <img src="/images/screenshots/{{ . }}.jpg" alt="Quetoo screenshot" loading="lazy">
+    </a>
+    {{ end }}
+  </div>
+</section>
+
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close">&times;</button>
+  <img id="lightbox-img" src="" alt="Screenshot">
+</div>
+
+<script src="/js/main.js"></script>
+{{ end }}

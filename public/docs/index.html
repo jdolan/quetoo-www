@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Documentation — Quetoo</title>
+  <meta name="description" content="A free first person shooter for Mac, PC and Linux">
+  <link rel="icon" type="image/png" href="/images/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Coda:wght@400;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header class="site-header">
+  <nav class="nav-container">
+    <a href="/" class="logo">
+      <img src="/images/logo.png" alt="Quetoo" height="36">
+    </a>
+    <button class="nav-toggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+      
+      <li><a href="/screenshots/">Screenshots</a></li>
+      
+      <li><a href="/downloads/">Downloads</a></li>
+      
+      <li><a href="/docs/">Documentation</a></li>
+      
+      <li><a href="/community/">Community</a></li>
+      
+      <li><a href="https://discord.gg/unb9U4b" class="btn-discord">Discord</a></li>
+    </ul>
+  </nav>
+</header>
+
+  <main>
+    
+<div class="page-content container">
+  <h1>Documentation</h1>
+  <h2 id="building-from-source">Building from Source</h2>
+<p>Compiling Quetoo is recommended for developers and mappers. The engine builds on macOS, Linux, BSD, and Windows (MinGW cross-compile or Visual Studio).</p>
+<h3 id="dependencies">Dependencies</h3>
+<ul>
+<li><a href="https://github.com/jdolan/ObjectivelyMVC/">ObjectivelyMVC</a></li>
+<li><a href="https://icculus.org/physfs/">PhysicsFS</a></li>
+<li><a href="https://www.openal.org/">OpenAL</a></li>
+<li><a href="http://mega-nerd.com/libsndfile/">libsndfile</a></li>
+<li><a href="https://developer.gnome.org/glib/">glib2</a></li>
+<li><a href="https://www.gnu.org/software/ncurses/">ncurses</a></li>
+</ul>
+<h3 id="build-steps">Build Steps</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Clone the repository</span>
+</span></span><span style="display:flex;"><span>git clone https://github.com/jdolan/quetoo.git
+</span></span><span style="display:flex;"><span>cd quetoo
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Generate build system</span>
+</span></span><span style="display:flex;"><span>autoreconf -i
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Configure and build</span>
+</span></span><span style="display:flex;"><span>./configure
+</span></span><span style="display:flex;"><span>make -j<span style="color:#66d9ef">$(</span>nproc<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>sudo make install
+</span></span></code></pre></div><h3 id="installing-game-data">Installing Game Data</h3>
+<p>The engine requires game data from a separate repository:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git clone https://github.com/jdolan/quetoo-data.git
+</span></span><span style="display:flex;"><span>sudo ln -s <span style="color:#66d9ef">$(</span>pwd<span style="color:#66d9ef">)</span>/quetoo-data/target /usr/local/share/quetoo
+</span></span></code></pre></div><h2 id="level-editing">Level Editing</h2>
+<p>Quetoo supports <a href="https://trenchbroom.github.io/">TrenchBroom</a> for level editing. The map compiler (<code>quemap</code>) compiles <code>.map</code> files into the BSP format used by the engine:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>quemap -bsp mymap.map    <span style="color:#75715e"># BSP tree generation</span>
+</span></span><span style="display:flex;"><span>quemap -vis mymap.bsp    <span style="color:#75715e"># Visibility calculation</span>
+</span></span><span style="display:flex;"><span>quemap -light mymap.bsp  <span style="color:#75715e"># Lighting and voxel assignment</span>
+</span></span></code></pre></div><h2 id="licensing">Licensing</h2>
+<p>Quetoo is licensed under the <a href="https://opensource.org/licenses/GPL-2.0">GNU General Public License v2</a>. You are free to download, play, and modify the game. All source code is available on <a href="https://github.com/jdolan/quetoo">GitHub</a>.</p>
+
+</div>
+
+  </main>
+  <footer class="site-footer">
+  <div class="footer-container">
+    <div class="footer-brand">
+      <img src="/images/logo.png" alt="Quetoo" height="28">
+      <p>A free first person shooter based on id Tech 2.</p>
+    </div>
+    <div class="footer-links">
+      <h4>Links</h4>
+      <ul>
+        <li><a href="https://github.com/jdolan/quetoo">GitHub</a></li>
+        <li><a href="https://github.com/jdolan/quetoo/releases">Releases</a></li>
+        <li><a href="https://discord.gg/unb9U4b">Discord</a></li>
+      </ul>
+    </div>
+    <div class="footer-links">
+      <h4>Project</h4>
+      <ul>
+        <li><a href="/downloads/">Downloads</a></li>
+        <li><a href="/docs/">Documentation</a></li>
+        <li><a href="/community/">Community</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Quetoo contributors. Licensed under GPL v2.</p>
+  </div>
+</footer>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>

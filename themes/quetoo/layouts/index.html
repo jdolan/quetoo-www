@@ -1,0 +1,60 @@
+{{ define "main" }}
+<section class="hero">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1>Quetoo</h1>
+    <p class="tagline">{{ .Site.Params.tagline }}</p>
+    <p class="subtitle">{{ .Site.Params.description }}</p>
+    <div class="hero-actions">
+      <a href="/downloads/" class="btn btn-primary">Download Now</a>
+      <a href="{{ .Site.Params.discord }}" class="btn btn-secondary">Join Discord</a>
+    </div>
+  </div>
+</section>
+
+<section class="features">
+  <div class="container">
+    <h2>Features</h2>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <h3>Classic Deathmatch</h3>
+        <p>Deathmatch, Team DM, Capture the Flag, Instagib and Rocket Arena gameplay modes.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Legendary Maps</h3>
+        <p>High quality remakes of id Software's legendary Quake series deathmatch levels, plus many originals.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Modern Rendering</h3>
+        <p>Realtime lighting with soft shadowmapping, bump mapping with parallax occlusion, and volumetric fog.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Level Editing</h3>
+        <p>Dramatically improved artwork pipeline with in-game material editor and TrenchBroom support.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Cross Platform</h3>
+        <p>Runs on macOS, Linux, BSD and Windows. Play with friends on any platform.</p>
+      </div>
+      <div class="feature-card">
+        <h3>Free &amp; Open Source</h3>
+        <p>100% free to download, play and modify. Licensed under GPL v2.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery-preview">
+  <div class="container">
+    <h2>Screenshots</h2>
+    <div class="gallery-grid preview">
+      {{ range (slice "quetoo000" "quetoo010" "quetoo023" "quetoo039" "quetoo049" "quetoo055") }}
+      <a href="/screenshots/" class="gallery-item">
+        <img src="/images/screenshots/{{ . }}.jpg" alt="Quetoo gameplay" loading="lazy">
+      </a>
+      {{ end }}
+    </div>
+    <p class="center"><a href="/screenshots/" class="btn btn-secondary">View All Screenshots</a></p>
+  </div>
+</section>
+{{ end }}
