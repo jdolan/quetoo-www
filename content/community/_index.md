@@ -17,8 +17,13 @@ Quetoo is built by a small, passionate community of players and developers. Here
   </div>
   <div class="community-card">
     <h3>🗺️ Mapping</h3>
-    <p>Create levels with TrenchBroom and the built-in material editor.</p>
+    <p>Create levels with TrenchBroom and the built-in light editor.</p>
     <a href="/docs/" class="btn btn-secondary">Read the Docs</a>
+  </div>
+  <div class="community-card">
+    <h3>🎨 Game Data</h3>
+    <p>Contribute models, textures, music and sounds under the Creative Commons license.</p>
+    <a href="https://github.com/jdolan/quetoo-data" class="btn btn-secondary">View on GitHub</a>
   </div>
 </div>
 

@@ -8,7 +8,7 @@ Download the latest release of Quetoo for your platform. Each release includes t
   <div class="download-card">
     <div class="platform-icon">🍎</div>
     <h3>macOS</h3>
-    <p>Universal binary for Intel and Apple Silicon Macs.</p>
+    <p>Universal binary for Apple Silicon Macs.</p>
     <a href="https://github.com/jdolan/quetoo/releases" class="btn btn-primary">Download for macOS</a>
   </div>
   <div class="download-card">

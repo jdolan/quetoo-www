@@ -45,9 +45,8 @@ sudo ln -s $(pwd)/quetoo-data/target /usr/local/share/quetoo
 Quetoo supports [TrenchBroom](https://trenchbroom.github.io/) for level editing. The map compiler (`quemap`) compiles `.map` files into the BSP format used by the engine:
 
 ```bash
-quemap -bsp mymap.map    # BSP tree generation
-quemap -vis mymap.bsp    # Visibility calculation
-quemap -light mymap.bsp  # Lighting and voxel assignment
+quemap -bsp maps/mymap.map  # BSP tree generation
+quemap -zip maps/mymap.bsp  # ZIP archive generation
 ```
 
 ## Licensing
