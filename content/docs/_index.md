@@ -2,6 +2,15 @@
 title: "Documentation"
 ---
 
+## Guides
+
+- [**Playing Quetoo**](/docs/players/) — Controls, game modes, and mechanics
+- [**Server Administration**](/docs/server-admin/) — Running a dedicated server
+- [**Mapping Guide**](/docs/mapping/) — Creating and compiling levels with TrenchBroom
+- [**Modding Guide**](/docs/modding/) — Game module system, entities, and custom content
+
+---
+
 ## Building from Source
 
 Compiling Quetoo is recommended for developers and mappers. The engine builds on macOS, Linux, BSD, and Windows (MinGW cross-compile or Visual Studio).
