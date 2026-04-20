@@ -309,6 +309,10 @@ h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
 .page-content figure { margin: 1.5rem 0; }
 .page-content figure img { max-width: 100%; height: auto; border-radius: 6px; display: block; }
 
+.doc-figure { display: block; margin: 1.5rem 0; cursor: zoom-in; }
+.doc-figure img { max-width: 100%; height: auto; border-radius: 6px; display: block; transition: opacity 0.2s; }
+.doc-figure:hover img { opacity: 0.85; }
+
 /* ── Downloads ── */
 
 .download-grid {
