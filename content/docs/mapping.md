@@ -3,75 +3,30 @@ title: "Mapping Guide"
 weight: 30
 ---
 
-This page covers how to create and compile levels (maps) for Quetoo.
+## TrenchBroom
 
----
+[TrenchBroom](https://trenchbroom.github.io/) is the recommended level editor for Quetoo. Quetoo ships with full TrenchBroom support: game configuration, entity definitions, and texture collections are all included, so you can open TrenchBroom, select **Quetoo** as the game, and start building immediately — no manual setup required.
 
-## Tools
+{{< figure src="/images/editor/trenchbroom.jpg" alt="TrenchBroom with a Quetoo map" >}}
 
-| Tool | Purpose |
-|------|---------|
-| [TrenchBroom](https://trenchbroom.github.io/) | Visual level editor for authoring `.map` files |
-| `quemap` | Map compiler (ships with Quetoo) |
-| In-game editor | Live entity and material editing while the map is running |
-
----
-
-## Workflow
-
-The typical mapping workflow is:
-
-1. **Author brushwork** in TrenchBroom — build geometry, place entities, set keys
-2. **Compile** with `quemap` to produce a `.bsp`
-3. **Load and refine** using Quetoo's in-game editor — reposition lights, tweak material properties, add entities — all without leaving the game
-4. **Save** back to `.map` and re-compile when brushwork changes are needed
-
----
-
-## Compiling a Map
-
-Quetoo's BSP compilation is a single stage:
+Author your brushwork and place entities in TrenchBroom, then compile with `quemap`:
 
 ```bash
-quemap -bsp maps/mymap.map
+quemap -bsp maps/mymap.map   # fast compile for iteration
+quemap -vis maps/mymap.bsp   # visibility / PVS
+quemap -light maps/mymap.bsp # static lighting + voxel grid
 ```
 
-`quemap` accepts the Quake path of your `.map` file. The `.bsp` is written to the same directory.
-
-### Quick iteration
-
-During brushwork, `-bsp` alone is fast and produces a playable result immediately. For a final build, run the full pipeline:
-
-```bash
-quemap -bsp maps/mymap.map
-quemap -vis maps/mymap.bsp
-quemap -light maps/mymap.bsp
-```
-
-`-vis` computes the PVS (Potentially Visible Set) for culling. `-light` bakes static lighting and builds the voxel grid used by the dynamic lighting system.
-
-### Packaging
-
-Package a finished map and its custom assets for distribution:
-
-```bash
-quemap -zip maps/mymap.bsp
-```
-
----
-
-## Testing Your Map
-
-Copy (or symlink) your compiled `.bsp` to the `maps/` directory inside your Quetoo game data:
-
-```
-~/.quetoo/default/maps/mymap.bsp
-```
-
-Then load it from the console (`` ` ``):
+Load your map in Quetoo from the console (`` ` ``):
 
 ```
 map mymap
+```
+
+Package a finished map and its custom assets for release:
+
+```bash
+quemap -zip maps/mymap.bsp
 ```
 
 ---
