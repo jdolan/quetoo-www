@@ -225,6 +225,7 @@ h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
 /* ── Trailer ── */
 
 .trailer { padding: 4rem 0; background: var(--bg-dark); }
+.screenshots-trailer { padding-top: 8rem; }
 
 .trailer-embed {
   position: relative;
@@ -389,7 +390,7 @@ h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
 
 /* ── Screenshots page (full) ── */
 
-.screenshots-page { padding: 8rem 0 6rem; }
+.screenshots-page { padding: 2rem 0 6rem; }
 
 .screenshots-page h1 {
   color: var(--accent-light);
