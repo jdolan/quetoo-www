@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
     toggle.addEventListener('click', () => links.classList.toggle('open'));
   }
 
-  // Lightbox for screenshot galleries and trailer
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightbox-img');
   const lightboxVideo = document.getElementById('lightbox-video');
@@ -18,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (lightboxVideo) { lightboxVideo.src = ''; lightboxVideo.style.display = 'none'; }
   }
 
+  // Image lightbox (screenshots)
   if (lightbox) {
     document.querySelectorAll('.gallery-item[data-full]').forEach(item => {
       item.addEventListener('click', (e) => {
@@ -27,20 +27,19 @@ document.addEventListener('DOMContentLoaded', () => {
         lightbox.classList.add('active');
       });
     });
-
-    document.querySelectorAll('[data-video]').forEach(trigger => {
-      trigger.addEventListener('click', (e) => {
-        e.preventDefault();
-        if (lightboxImg) lightboxImg.style.display = 'none';
-        if (lightboxVideo) {
-          lightboxVideo.src = trigger.dataset.video + '?autoplay=1';
-          lightboxVideo.style.display = 'block';
-        }
-        lightbox.classList.add('active');
-      });
-    });
-
     lightbox.addEventListener('click', closeLightbox);
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
   }
+
+  // Video lightbox — wired independently so it works on any page
+  document.querySelectorAll('[data-video]').forEach(trigger => {
+    trigger.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (!lightbox || !lightboxVideo) return;
+      if (lightboxImg) lightboxImg.style.display = 'none';
+      lightboxVideo.src = trigger.dataset.video + '?autoplay=1';
+      lightboxVideo.style.display = 'block';
+      lightbox.classList.add('active');
+    });
+  });
 });
