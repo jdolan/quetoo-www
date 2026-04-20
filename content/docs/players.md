@@ -62,7 +62,7 @@ A variant of Deathmatch or CTF where every player has a one-shot railgun. Enable
 
 ### Arena
 
-A round-based variant. Enabled by setting `g_gameplay arena` on the server.
+Players or teams spawn with a full loadout of weapons, ammo and armor. Self-damage is disabled, so you can rocket jump and plasma climb to your heart's content. Last player or team standing wins. Enabled by setting `g_gameplay arena` on the server.
 
 ---
 
@@ -72,9 +72,9 @@ A round-based variant. Enabled by setting `g_gameplay arena` on the server.
 
 Players start with **100 health**. Health pickups restore health up to 100 (small/medium/large) or briefly boost it above 100 (mega health). Armor absorbs a portion of incoming damage:
 
-- **Jacket Armor** — light protection
-- **Combat Armor** — medium protection
-- **Body Armor** — heavy protection
+- **Jacket Armor** — Green, light protection
+- **Combat Armor** — Yellow, medium protection
+- **Body Armor** — Red, heavy protection
 
 ### Weapons
 
@@ -82,14 +82,14 @@ Quetoo features a classic Quake II-inspired arsenal:
 
 | Weapon | Notes |
 |--------|-------|
-| Blaster | Starting sidearm, infinite ammo |
+| Blaster | Starting sidearm, infinite ammo, light damage |
 | Shotgun | Close-range spread |
 | Super Shotgun | Double-barrel burst |
 | Machinegun | Rapid-fire, moderate spread |
 | Grenade Launcher | Bouncing grenades |
 | Rocket Launcher | High damage, splash radius |
 | Hyperblaster | Rapid energy bolts; also enables rocket-jumping style "hyperblaster climbing" |
-| Lightning Gun | Short-range beam |
+| Lightning Gun | Short-range but lethal hit-scan beam; careful around water with this one |
 | Railgun | Hitscan, high damage, 1.4s refire |
 | BFG10K | Area-denial super weapon |
 
@@ -101,6 +101,8 @@ Quetoo features a classic Quake II-inspired arsenal:
 
 ### Power-Ups
 
+- **Adrenaline**: Instantly boosts your health to 100 (respawns every 30 seconds by default).
+- **Megahealth**: Increases your health by 100 (respawns every 30 seconds by default).
 - **Quad Damage**: Multiplies your damage output for 30 seconds (respawns every 60 seconds by default).
 
 ---

@@ -12,10 +12,10 @@ weight: 30
 Author your brushwork and place entities in TrenchBroom, then compile with `quemap`:
 
 ```bash
-quemap -bsp maps/mymap.map   # fast compile for iteration
-quemap -vis maps/mymap.bsp   # visibility / PVS
-quemap -light maps/mymap.bsp # static lighting + voxel grid
+quemap -bsp maps/mymap.map 
 ```
+
+Quemap accepts "Quake paths", so `maps/mymap.map` will work from any host directory.
 
 Load your map in Quetoo from the console (`` ` ``):
 

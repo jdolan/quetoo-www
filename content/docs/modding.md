@@ -134,23 +134,6 @@ LDFLAGS = -shared -Wl,-soname,game.so
 
 ---
 
-## Materials System
-
-Quetoo uses a material definition system layered on top of texture files. A `.mat` file (placed alongside a texture) can specify additional maps and rendering parameters:
-
-```
-material textures/mymod/mywall
-{
-    normalmap textures/mymod/mywall_nm
-    glossmap  textures/mymod/mywall_spec
-    roughness 0.5
-}
-```
-
-See existing material files in `quetoo-data/target/default/textures/` for examples.
-
----
-
 ## Getting Help
 
 - [Discord](https://discord.gg/unb9U4b) — ask in `#development` for modding help
