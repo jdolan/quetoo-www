@@ -428,6 +428,14 @@ h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
   box-shadow: 0 8px 48px rgba(0, 0, 0, 0.6);
 }
 
+.lightbox iframe {
+  display: none;
+  width: min(92vw, 1280px);
+  height: min(calc(min(92vw, 1280px) * 9 / 16), 92vh);
+  border-radius: 8px;
+  box-shadow: 0 8px 48px rgba(0, 0, 0, 0.6);
+}
+
 .lightbox-close {
   position: absolute;
   top: 1.5rem;

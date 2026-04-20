@@ -6,24 +6,20 @@
     <p class="tagline">{{ .Site.Params.tagline }}</p>
     <p class="subtitle">{{ .Site.Params.description }}</p>
     <div class="hero-actions">
-      <a href="/downloads/" class="btn btn-primary">Download Now</a>
+      <a href="#" class="btn btn-primary" data-video="https://www.youtube.com/embed/GY2vPCj81bs">Watch Trailer</a>
+      <a href="/downloads/" class="btn btn-secondary">Download Now</a>
       <a href="{{ .Site.Params.discord }}" class="btn btn-secondary">Join Discord</a>
     </div>
   </div>
 </section>
 
-<section class="trailer">
-  <div class="container">
-    <h2>Trailer</h2>
-    <div class="trailer-embed">
-      <iframe src="https://www.youtube.com/embed/GY2vPCj81bs"
-        title="Quetoo Release Trailer"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen></iframe>
-    </div>
-  </div>
-</section>
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close">&times;</button>
+  <img id="lightbox-img" src="" alt="Screenshot">
+  <iframe id="lightbox-video" src="" title="Trailer" frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen></iframe>
+</div>
 
 <section class="features">
   <div class="container">
