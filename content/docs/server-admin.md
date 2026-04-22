@@ -143,3 +143,13 @@ The server can record demos of matches. Set `sv_demo_list` to a space-separated 
 ## Getting Help
 
 Join the [Discord](https://discord.gg/unb9U4b) `#server-admin` channel for help running a server.
+
+---
+
+## Auto-Updates
+
+Quetoo checks for updates on launch and downloads them automatically. To disable update checks and version enforcement — for example, when pinning a server to a specific build — add `+set version -1` to the command line:
+
+```
+quetoo-dedicated +set version -1 +map edge
+```

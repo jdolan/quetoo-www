@@ -122,3 +122,13 @@ The default server port is **1998**.
 ## Getting Help
 
 Join the [Discord](https://discord.gg/unb9U4b) to find games, ask questions, and connect with the community.
+
+---
+
+## Auto-Updates
+
+Quetoo checks for updates on launch and downloads them automatically. To disable update checks and version enforcement — for example, when running a custom build or testing — add `+set version -1` to the command line:
+
+```
+quetoo +set version -1
+```
