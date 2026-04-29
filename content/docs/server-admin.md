@@ -5,9 +5,90 @@ weight: 20
 
 This page covers how to set up and run a dedicated Quetoo server.
 
+## Installation
+
+Download matching `quetoo` and `quetoo-data` packages from the [Releases](https://github.com/jdolan/quetoo/releases) page and install them together:
+
+```sh
+# Debian / Ubuntu
+apt install ./quetoo_*.deb ./quetoo-data_*.deb
+
+# Fedora / RHEL
+dnf install quetoo-*.rpm quetoo-data-*.rpm
+```
+
+`quetoo-data` packages are published on the [quetoo-data Releases](https://github.com/jdolan/quetoo-data/releases) page. Use matching version numbers for both packages.
+
+---
+
+## Service Management
+
+The `quetoo` package installs an init.d service script at `/etc/init.d/quetoo-dedicated` and a default instance configuration at `/etc/quetoo-dedicated/default.cfg`.
+
+Each `.cfg` file in `/etc/quetoo-dedicated/` represents one server instance. Lines are in Quake console format — `key value` — and are translated directly to `+set key value` on the `quetoo-dedicated` command line. Blank lines and lines beginning with `//` or `#` are ignored.
+
+Edit the default instance configuration to suit your server:
+
+```
+// /etc/quetoo-dedicated/default.cfg
+set net_port 1998
+set sv_hostname "My Quetoo Server"
+set sv_public 1
+set rcon_password "secret"
+set g_frag_limit 30
+set g_time_limit 20
+```
+
+Then manage the service:
+
+```sh
+service quetoo-dedicated start
+service quetoo-dedicated stop
+service quetoo-dedicated restart
+service quetoo-dedicated status
+```
+
+### Multiple Instances
+
+To run multiple server instances on one machine, create a `.cfg` file per instance and symlink the init script:
+
+```sh
+# Create a CTF instance on port 1999
+cp /etc/quetoo-dedicated/default.cfg /etc/quetoo-dedicated/ctf.cfg
+# Edit /etc/quetoo-dedicated/ctf.cfg: set net_port 1999, g_ctf 1, etc.
+ln -s /etc/init.d/quetoo-dedicated /etc/init.d/quetoo-dedicated-ctf
+service quetoo-dedicated-ctf start
+```
+
+Each instance is managed independently. A typical three-server VPS might have `default.cfg` (FFA, port 1998), `ctf.cfg` (CTF, port 1999), and `instagib.cfg` (Instagib, port 2000).
+
+---
+
+## Auto-Updates
+
+The `quetoo-update` script checks for a new release and updates both packages. It is installed at `/usr/lib/quetoo/bin/quetoo-update`.
+
+Run it manually to update immediately (restarts the server unconditionally):
+
+```sh
+sudo quetoo-update
+```
+
+For automatic updates, add it to root's crontab with `--wait-for-empty`. The server will be updated and restarted within 15 minutes of a new release, but only once all human players have disconnected:
+
+```sh
+sudo crontab -e
+```
+
+```
+*/15 * * * * /usr/lib/quetoo/bin/quetoo-update --wait-for-empty >> /var/log/quetoo-update.log 2>&1
+```
+
+---
+
 ## Running a Dedicated Server
 
-Quetoo ships with a `quetoo-dedicated` binary for headless server operation. Launch it from the command line:
+Quetoo ships with a `quetoo-dedicated` binary for headless server operation. You can also launch it directly from the command line:
 
 ```bash
 quetoo-dedicated +set sv_hostname "My Server" +map edge
@@ -143,13 +224,3 @@ The server can record demos of matches. Set `sv_demo_list` to a space-separated 
 ## Getting Help
 
 Join the [Discord](https://discord.gg/unb9U4b) `#server-admin` channel for help running a server.
-
----
-
-## Auto-Updates
-
-Quetoo checks for updates on launch and downloads them automatically. To disable update checks and version enforcement — for example, when pinning a server to a specific build — add `+set version -1` to the command line:
-
-```
-quetoo-dedicated +set version -1 +map edge
-```
