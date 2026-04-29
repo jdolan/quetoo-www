@@ -119,6 +119,29 @@ The default server port is **1998**.
 
 ---
 
+## User Data Directory
+
+Quetoo stores your configuration, screenshots, and demos in a platform-specific directory:
+
+| Platform | Path |
+|----------|------|
+| **Windows** | `%APPDATA%\WickedOldGames\Quetoo\default\` |
+| **macOS** | `~/Library/Application Support/WickedOldGames/Quetoo/default/` |
+| **Linux** | `$XDG_DATA_HOME/WickedOldGames/Quetoo/default/` (usually `~/.local/share/WickedOldGames/Quetoo/default/`) |
+
+Within that directory:
+
+| Subdirectory / File | Contents |
+|---------------------|----------|
+| `quetoo.cfg` | Key bindings and archived console variables |
+| `autoexec.cfg` | Commands run automatically on startup |
+| `screenshots/` | Screenshots (press `F12` or type `screenshot` in the console) |
+| `demos/` | Recorded demos (`record <name>` / `stop`) |
+
+> **Migrating from an older install:** If you have an existing `~/.quetoo` directory (POSIX) or `Documents\My Games\Quetoo` (Windows), Quetoo will automatically move its contents to the new location the first time it launches.
+
+---
+
 ## Getting Help
 
 Join the [Discord](https://discord.gg/unb9U4b) to find games, ask questions, and connect with the community.

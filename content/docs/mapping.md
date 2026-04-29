@@ -31,6 +31,42 @@ quemap -zip maps/mymap.bsp
 
 ---
 
+## Custom Content Paths
+
+Quetoo looks for custom maps, textures, sounds, and models in your platform's user data directory:
+
+| Platform | Path |
+|----------|------|
+| **Windows** | `%APPDATA%\WickedOldGames\Quetoo\default\` |
+| **macOS** | `~/Library/Application Support/WickedOldGames/Quetoo/default/` |
+| **Linux** | `$XDG_DATA_HOME/WickedOldGames/Quetoo/default/` (usually `~/.local/share/WickedOldGames/Quetoo/default/`) |
+
+Drop your assets into the appropriate subdirectory and Quetoo will find them automatically:
+
+| Subdirectory | Contents |
+|--------------|----------|
+| `maps/` | Compiled map files (`.bsp`) and source maps (`.map`) |
+| `textures/` | Custom textures and `.mat` material files |
+| `sounds/` | Custom sound effects (`.ogg`, `.wav`) |
+| `models/` | Custom entity models (`.md3`, `.obj`) |
+| `music/` | Custom background music tracks |
+
+For example, to test a work-in-progress map on macOS:
+
+```bash
+cp mymap.bsp ~/Library/Application\ Support/WickedOldGames/Quetoo/default/maps/
+```
+
+Then load it from the console:
+
+```
+map mymap
+```
+
+> **Tip:** The `quemap -zip` command packages a finished map together with all its custom assets into a single `.pk3` that players can drop in their own `default/` directory.
+
+---
+
 ## The In-Game Editor
 
 Quetoo includes a built-in live editor — something not found in any other Quake-derived engine. It lets you place and modify entities and tweak material properties in real time, with instant visual feedback, without ever leaving the game.
