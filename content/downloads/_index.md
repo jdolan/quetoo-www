@@ -20,7 +20,7 @@ Download the latest release of Quetoo for your platform.
   <div class="download-card">
     <div class="platform-icon">🐧</div>
     <h3>Linux Client</h3>
-    <p>x86_64 AppImage bundle with auto-updater. No install required.</p>
+    <p>x86_64 AppImage bundle with auto-updater.</p>
     <a href="https://github.com/jdolan/quetoo/releases" class="btn btn-primary">Download for Linux</a>
   </div>
   <div class="download-card">
@@ -58,7 +58,10 @@ chmod +x quetoo-*.AppImage
 
 For dedicated server operators on Debian/Ubuntu or Fedora/RHEL, Quetoo is available as native packages. These are managed by your system's package manager and do **not** use the built-in auto-updater — updates are applied via `apt`/`dnf` in the usual way.
 
-Two packages are required: `quetoo` (the engine) and `quetoo-data` (the game data). Download both from the [Releases](https://github.com/jdolan/quetoo/releases) page and install together:
+Two packages are required: `quetoo` (the engine) and `quetoo-data` (the game data). Download both from GitHub and install together:
+
+ * [Quetoo Linux Server Releases](https://github.com/jdolan/quetoo/releases)
+ * [Quetoo Data Releases](https://github.com/jdolan/quetoo-data/releases)
 
 ```sh
 # Debian / Ubuntu
@@ -67,8 +70,6 @@ apt install ./quetoo_*.deb ./quetoo-data_*.deb
 # Fedora / RHEL
 dnf install quetoo-*.rpm quetoo-data-*.rpm
 ```
-
-The `quetoo-data` packages are published on the [quetoo-data Releases](https://github.com/jdolan/quetoo-data/releases) page. Use matching version numbers for both packages.
 
 ### Building from Source
 
