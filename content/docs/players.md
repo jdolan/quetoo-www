@@ -138,7 +138,7 @@ Within that directory:
 | `screenshots/` | Screenshots (press `F12` or type `screenshot` in the console) |
 | `demos/` | Recorded demos (`record <name>` / `stop`) |
 
-> **Migrating from an older install:** If you have an existing `~/.quetoo` directory (POSIX) or `Documents\My Games\Quetoo` (Windows), Quetoo will automatically move its contents to the new location the first time it launches.
+> **Migrating from an older install:** If you have a legacy `~/.quetoo` directory (POSIX) or `Documents\My Games\Quetoo` (Windows), simply move its contents to the new location before launching Quetoo.
 
 ---
 
