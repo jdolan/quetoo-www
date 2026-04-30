@@ -1,5 +1,6 @@
 ---
 title: "Downloads"
+description: "Download Quetoo for macOS, Windows, and Linux. Free to download, play, and modify."
 ---
 
 Download the latest release of Quetoo for your platform.

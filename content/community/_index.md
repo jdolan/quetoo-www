@@ -1,5 +1,6 @@
 ---
 title: "Community"
+description: "Join the Quetoo community on Discord, GitHub, and more. Connect with players and developers of this free, open-source arena shooter."
 ---
 
 Quetoo is built by a small, passionate community of players and developers. Here's how to get involved.

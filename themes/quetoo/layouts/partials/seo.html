@@ -1,0 +1,27 @@
+{{- $description := .Site.Params.description -}}
+{{- if .Description -}}
+  {{- $description = .Description -}}
+{{- else if and .IsPage .Summary -}}
+  {{- $description = .Summary | plainify | truncate 160 -}}
+{{- end -}}
+{{- $title := .Site.Title -}}
+{{- if not .IsHome -}}
+  {{- $title = printf "%s — %s" .Title .Site.Title -}}
+{{- end -}}
+{{- $image := absURL "images/hero.jpg" -}}
+{{- with .Params.image -}}
+  {{- $image = absURL . -}}
+{{- end -}}
+<link rel="canonical" href="{{ .Permalink }}">
+<meta name="description" content="{{ $description }}">
+<meta property="og:site_name" content="{{ .Site.Title }}">
+<meta property="og:title" content="{{ $title }}">
+<meta property="og:description" content="{{ $description }}">
+<meta property="og:type" content="website">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:image" content="{{ $image }}">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ $title }}">
+<meta name="twitter:description" content="{{ $description }}">
+<meta name="twitter:image" content="{{ $image }}">

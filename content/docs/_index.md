@@ -1,5 +1,6 @@
 ---
 title: "Documentation"
+description: "Quetoo documentation — guides for playing, server administration, mapping, modding, and compiling from source."
 ---
 
 ## Guides
