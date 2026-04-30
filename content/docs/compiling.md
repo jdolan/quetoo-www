@@ -71,10 +71,12 @@ Build and install Objectively first, then ObjectivelyMVC, then quetoo — each w
 
 ```bash
 autoreconf -i
-./configure --with-homebrew=/opt/homebrew
+./configure
 make -j$(nproc)
 sudo make install
 ```
+
+> **Intel Macs:** Homebrew installs to `/usr/local` rather than `/opt/homebrew`. Pass `--with-homebrew=/usr/local` to `./configure` on those machines.
 
 ---
 
