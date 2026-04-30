@@ -16,14 +16,14 @@ Quetoo is built by a small, passionate community of players and developers. Here
     <a href="https://github.com/jdolan/quetoo" class="btn btn-secondary">View on GitHub</a>
   </div>
   <div class="community-card">
-    <h3>🗺️ Mapping</h3>
-    <p>Create levels with TrenchBroom and the built-in light editor.</p>
-    <a href="/docs/" class="btn btn-secondary">Read the Docs</a>
+    <h3>📘 Facebook</h3>
+    <p>Follow us on Facebook for news, screenshots, and community updates.</p>
+    <a href="https://www.facebook.com/Quetoo.org" class="btn btn-secondary">Follow on Facebook</a>
   </div>
   <div class="community-card">
-    <h3>🎨 Game Data</h3>
-    <p>Contribute models, textures, music and sounds under the Creative Commons license.</p>
-    <a href="https://github.com/jdolan/quetoo-data" class="btn btn-secondary">View on GitHub</a>
+    <h3>🎮 Itch.io</h3>
+    <p>Download Quetoo and leave a rating on our Itch.io page.</p>
+    <a href="https://wickedoldgames.itch.io/quetoo" class="btn btn-secondary">View on Itch.io</a>
   </div>
 </div>
 
