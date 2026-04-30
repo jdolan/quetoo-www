@@ -123,9 +123,9 @@ Paths are relative to the game data root and omit the file extension, e.g. `text
 
 | Directive | Type | Description |
 |-----------|------|-------------|
-| `alpha_test <threshold>` | float 0–1 | Enable alpha-tested (cutout) transparency; fragments below the threshold are discarded. Also implicitly sets `surface "alpha_test"`. |
 | `contents "<flags>"` | string | Space-separated content flags that affect collision. See below. |
 | `surface "<flags>"` | string | Space-separated surface flags that affect rendering and gameplay. See below. |
+| `alpha_test <threshold>` | float 0–1 | Enable alpha-tested (cutout) transparency; fragments below the threshold are discarded. |
 | `footsteps <name>` | string | Footstep sound set to play on this surface (e.g. `metal`, `metal2`, `grass`). |
 
 #### `contents` flags
@@ -148,17 +148,13 @@ Multiple flags can be combined in a single quoted string: `contents "lava detail
 | Flag | Effect |
 |------|--------|
 | `sky` | Marks the brush face as a sky portal. |
-| `liquid` | Used together with `water`/`lava`/`slime` contents to render liquid surfaces. |
 | `slick` | Reduces friction on this surface. |
 | `blend_33` | Render at 33 % opacity. |
 | `blend_66` | Render at 66 % opacity. |
-| `blend_100` | Render at 0 % opacity (invisible, collision only). |
-| `alpha_test` | Enable alpha testing for cutout transparency. |
-| `no_draw` | Suppress rendering (invisible, collision remains). |
-| `hint` | Quemap vis hint face. |
-| `skip` | Quemap face ignored entirely. |
-| `phong` | Enable Phong (smooth) shading across this face. |
-
+| `blend_100` | Render at 100 % opacity, using the texture's alpha channel for transparency. |
+| `alpha_test` | Enable alpha testing for cutout transparency (foliage, grates, etc). |
+| `no_draw` | Suppress visible faces. Used by caulk. |
+| `material` | Suppress visible faces, but still support material stages. |
 ---
 
 ### Stage Blocks
