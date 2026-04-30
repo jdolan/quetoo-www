@@ -1,4 +1,0 @@
----
-title: "Screenshots"
-layout: "screenshots"
----

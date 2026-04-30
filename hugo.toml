@@ -12,8 +12,8 @@ theme = 'quetoo'
 
 [menu]
   [[menu.main]]
-    name = 'Screenshots'
-    url = '/screenshots/'
+    name = 'Media'
+    url = '/media/'
     weight = 1
   [[menu.main]]
     name = 'Downloads'

@@ -54,15 +54,15 @@
 
 <section class="gallery-preview">
   <div class="container">
-    <h2>Screenshots</h2>
+    <h2>Media</h2>
     <div class="gallery-grid preview">
       {{ range (slice "quetoo000" "quetoo010" "quetoo023" "quetoo039" "quetoo049" "quetoo055") }}
-      <a href="/screenshots/" class="gallery-item">
+      <a href="/media/" class="gallery-item">
         <img src="/images/screenshots/{{ . }}.jpg" alt="Quetoo gameplay" loading="lazy">
       </a>
       {{ end }}
     </div>
-    <p class="center"><a href="/screenshots/" class="btn btn-secondary">View All Screenshots</a></p>
+    <p class="center"><a href="/media/" class="btn btn-secondary">View All Media</a></p>
   </div>
 </section>
 {{ end }}

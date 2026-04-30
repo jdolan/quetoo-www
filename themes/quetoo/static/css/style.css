@@ -225,7 +225,7 @@ h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
 /* ── Trailer ── */
 
 .trailer { padding: 4rem 0; background: var(--bg-dark); }
-.screenshots-trailer { padding-top: 8rem; }
+.media-trailer { padding-top: 8rem; }
 
 .trailer-embed {
   position: relative;
@@ -388,11 +388,11 @@ h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
 .community-card h3 { color: var(--accent-light); margin-bottom: 0.5rem; }
 .community-card p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem; }
 
-/* ── Screenshots page (full) ── */
+/* ── Media page (full) ── */
 
-.screenshots-page { padding: 2rem 0 6rem; }
+.media-page { padding: 2rem 0 6rem; }
 
-.screenshots-page h1 {
+.media-page h1 {
   color: var(--accent-light);
   padding: 0 1.5rem;
   max-width: 1200px;
@@ -401,7 +401,7 @@ h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
   border-bottom: 1px solid var(--border);
 }
 
-.screenshots-page .gallery-grid {
+.media-page .gallery-grid {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1.5rem;

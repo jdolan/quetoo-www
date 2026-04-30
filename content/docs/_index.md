@@ -8,55 +8,9 @@ title: "Documentation"
 - [**Server Administration**](/docs/server-admin/) — Running a dedicated server
 - [**Mapping Guide**](/docs/mapping/) — Creating and compiling levels with TrenchBroom
 - [**Modding Guide**](/docs/modding/) — Game module system, entities, and custom content
+- [**Compiling**](/docs/compiling/) — Building the engine from source
 
 ---
-
-## Building from Source
-
-Compiling Quetoo is recommended for developers and mappers. The engine builds on macOS, Linux, BSD, and Windows (MinGW cross-compile or Visual Studio).
-
-### Dependencies
-
-- [ObjectivelyMVC](https://github.com/jdolan/ObjectivelyMVC/)
-- [PhysicsFS](https://icculus.org/physfs/)
-- [OpenAL](https://www.openal.org/)
-- [libsndfile](http://mega-nerd.com/libsndfile/)
-- [glib2](https://developer.gnome.org/glib/)
-- [ncurses](https://www.gnu.org/software/ncurses/)
-
-### Build Steps
-
-```bash
-# Clone the repository
-git clone https://github.com/jdolan/quetoo.git
-cd quetoo
-
-# Generate build system
-autoreconf -i
-
-# Configure and build
-./configure
-make -j$(nproc)
-sudo make install
-```
-
-### Installing Game Data
-
-The engine requires game data from a separate repository:
-
-```bash
-git clone https://github.com/jdolan/quetoo-data.git
-sudo ln -s $(pwd)/quetoo-data/target /usr/local/share/quetoo
-```
-
-## Level Editing
-
-Quetoo supports [TrenchBroom](https://trenchbroom.github.io/) for level editing. The map compiler (`quemap`) compiles `.map` files into the BSP format used by the engine:
-
-```bash
-quemap -bsp maps/mymap.map  # BSP tree generation
-quemap -zip maps/mymap.bsp  # ZIP archive generation
-```
 
 ## Licensing
 
