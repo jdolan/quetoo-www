@@ -96,8 +96,8 @@ Quetoo features a classic Quake II-inspired arsenal:
 ### Movement Mechanics
 
 - **Rocket jumping**: Fire a rocket at your feet while jumping to reach high areas.
-- **Strafe jumping**: Combine forward movement with strafing to build speed.
-- **Crouch sliding**: Crouch while moving at speed to slide across surfaces.
+- **Hyper climbing**: Fire the hyperblaster slightly downward along a wall to scale it and reach high areas.
+- **Strafe jumping**: Combine forward movement with strafing and jumping to build speed.
 
 ### Power-Ups
 
@@ -142,12 +142,6 @@ Within that directory:
 
 ---
 
-## Getting Help
-
-Join the [Discord](https://discord.gg/unb9U4b) to find games, ask questions, and connect with the community.
-
----
-
 ## Auto-Updates
 
 Quetoo checks for updates on launch and downloads them automatically. To disable update checks and version enforcement — for example, when running a custom build or testing — add `+set version -1` to the command line:
@@ -155,3 +149,10 @@ Quetoo checks for updates on launch and downloads them automatically. To disable
 ```
 quetoo +set version -1
 ```
+
+## Getting Help
+
+Join the [Discord](https://discord.gg/unb9U4b) to find games, ask questions, and connect with the community.
+
+---
+

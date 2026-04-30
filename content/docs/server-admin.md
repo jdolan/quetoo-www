@@ -3,7 +3,7 @@ title: "Server Administration"
 weight: 20
 ---
 
-This page covers how to set up and run a dedicated Quetoo server.
+This page covers how to set up and run a dedicated Quetoo server on Debian or Fedora Linux.
 
 ## Installation
 
@@ -42,10 +42,10 @@ set g_time_limit 20
 Then manage the service:
 
 ```sh
-service quetoo-dedicated start
-service quetoo-dedicated stop
-service quetoo-dedicated restart
-service quetoo-dedicated status
+service quetoo-dedicated start default
+service quetoo-dedicated stop default
+service quetoo-dedicated restart default
+service quetoo-dedicated status default
 ```
 
 ### Multiple Instances
@@ -56,15 +56,14 @@ To run multiple server instances on one machine, create a `.cfg` file per instan
 # Create a CTF instance on port 1999
 cp /etc/quetoo-dedicated/default.cfg /etc/quetoo-dedicated/ctf.cfg
 # Edit /etc/quetoo-dedicated/ctf.cfg: set net_port 1999, g_ctf 1, etc.
-ln -s /etc/init.d/quetoo-dedicated /etc/init.d/quetoo-dedicated-ctf
-service quetoo-dedicated-ctf start
+service quetoo-dedicated start ctf
 ```
 
 Each instance is managed independently. A typical three-server VPS might have `default.cfg` (FFA, port 1998), `ctf.cfg` (CTF, port 1999), and `instagib.cfg` (Instagib, port 2000).
 
 ---
 
-## Auto-Updates
+## Updates
 
 The `quetoo-update` script checks for a new release and updates both packages. It is installed at `/usr/lib/quetoo/bin/quetoo-update`.
 
@@ -125,7 +124,7 @@ quetoo-dedicated \
 | Cvar | Default | Description |
 |------|---------|-------------|
 | `sv_max_clients` | `64` | Maximum simultaneous players |
-| `sv_max_entities` | (engine max) | Maximum entities; rarely needs changing |
+| `sv_max_entities` | `1024` | Maximum entities; rarely needs changing |
 | `sv_timeout` | `20` | Client connection timeout in seconds |
 
 ### Security
@@ -215,12 +214,6 @@ To list your server on the public master server, set:
 
 ---
 
-## Demo Recording
-
-The server can record demos of matches. Set `sv_demo_list` to a space-separated list of demo filenames to record automatically.
-
----
-
 ## Getting Help
 
-Join the [Discord](https://discord.gg/unb9U4b) `#server-admin` channel for help running a server.
+Join the [Discord](https://discord.gg/unb9U4b) `#development` channel for help running a server.
