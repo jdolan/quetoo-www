@@ -350,10 +350,11 @@ Cobweb that is visible but does not block movement or projectiles:
 
 Quetoo includes a built-in live editor. It lets you place and modify entities and tweak material properties in real time, with instant visual feedback, without ever leaving the game.
 
-To open the editor, set the `editor` cvar from the console:
+To open the editor, set the `editor` cvar from the console and reload your map:
 
 ```
 editor 1
+map mymap
 ```
 
 The editor panel appears on the right side of the screen. It has two tabs: **Entities** and **Materials**.
@@ -423,7 +424,7 @@ Every `light` entity has two relevant keys:
 | `team` | A name that identifies the team. All lights sharing this name are in the same team. |
 | `team_master` | Set to any non-empty value on **exactly one** light in the team to make it the master. |
 
-When `quemap -light` bakes lighting, each team member inherits the master's `radius`, `color`, `intensity`, and `style` for any of those keys that the member itself leaves at their default (zero / empty). A member can **override** any inherited value by setting it explicitly — useful when most lights in a row are identical but one needs a different radius or tint.
+When `quemap` bakes lighting, each team member inherits the master's `radius`, `color`, `intensity`, and `style` for any of those keys that the member itself leaves at their default (zero / empty). A member can **override** any inherited value by setting it explicitly — useful when most lights in a row are identical but one needs a different radius or tint.
 
 #### Setting up a team in TrenchBroom
 
