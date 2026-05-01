@@ -7,25 +7,28 @@ This page covers how to set up and run a dedicated Quetoo server on Debian or Fe
 
 ## Installation
 
-Download matching `quetoo` and `quetoo-data` packages from the [Releases](https://github.com/jdolan/quetoo/releases) page and install them together:
+Download `quetoo` and `quetoo-data` packages from their respective Releases pages and install them together:
 
 ```sh
 # Debian / Ubuntu
-apt install ./quetoo_*.deb ./quetoo-data_*.deb
+sudo apt install ./quetoo-x86_64-pc-linux.deb ./quetoo-data_*.deb
 
 # Fedora / RHEL
-dnf install quetoo-*.rpm quetoo-data-*.rpm
+sudo dnf install quetoo-x86_64-pc-linux.rpm quetoo-data-*.rpm
 ```
 
-`quetoo-data` packages are published on the [quetoo-data Releases](https://github.com/jdolan/quetoo-data/releases) page. Use matching version numbers for both packages.
+- Engine packages: [github.com/jdolan/quetoo/releases](https://github.com/jdolan/quetoo/releases)
+- Data packages: [github.com/jdolan/quetoo-data/releases](https://github.com/jdolan/quetoo-data/releases)
+
+`quetoo` and `quetoo-data` have independent release cycles — install the latest of each.
 
 ---
 
 ## Service Management
 
-The `quetoo` package installs an init.d service script at `/etc/init.d/quetoo-dedicated` and a default instance configuration at `/etc/quetoo-dedicated/default.cfg`.
+The `quetoo` package installs a systemd template unit `quetoo-dedicated@.service` and a default instance configuration at `/etc/quetoo-dedicated/default.cfg`.
 
-Each `.cfg` file in `/etc/quetoo-dedicated/` represents one server instance. Lines are in Quake console format — `key value` — and are translated directly to `+set key value` on the `quetoo-dedicated` command line. Blank lines and lines beginning with `//` or `#` are ignored.
+Each `.cfg` file in `/etc/quetoo-dedicated/` represents one server instance. Lines are in Quake console format and are passed directly as `+set key value` arguments to `quetoo-dedicated`. Blank lines and lines beginning with `//` or `#` are ignored.
 
 Edit the default instance configuration to suit your server:
 
@@ -39,48 +42,65 @@ set g_frag_limit 30
 set g_time_limit 20
 ```
 
-Then manage the service:
+Enable and start the default instance:
 
 ```sh
-service quetoo-dedicated start default
-service quetoo-dedicated stop default
-service quetoo-dedicated restart default
-service quetoo-dedicated status default
+sudo systemctl enable --now quetoo-dedicated@default
+```
+
+Manage the service:
+
+```sh
+sudo systemctl start   quetoo-dedicated@default
+sudo systemctl stop    quetoo-dedicated@default
+sudo systemctl restart quetoo-dedicated@default
+sudo systemctl status  quetoo-dedicated@default
 ```
 
 ### Multiple Instances
 
-To run multiple server instances on one machine, create a `.cfg` file per instance and symlink the init script:
+To run multiple server instances, create a `.cfg` file per instance and enable each one:
 
 ```sh
 # Create a CTF instance on port 1999
-cp /etc/quetoo-dedicated/default.cfg /etc/quetoo-dedicated/ctf.cfg
+sudo cp /etc/quetoo-dedicated/default.cfg /etc/quetoo-dedicated/ctf.cfg
 # Edit /etc/quetoo-dedicated/ctf.cfg: set net_port 1999, g_ctf 1, etc.
-service quetoo-dedicated start ctf
+sudo systemctl enable --now quetoo-dedicated@ctf
 ```
 
 Each instance is managed independently. A typical three-server VPS might have `default.cfg` (FFA, port 1998), `ctf.cfg` (CTF, port 1999), and `instagib.cfg` (Instagib, port 2000).
+
+### Attaching to the Console
+
+Each dedicated server instance runs inside a named `screen` session. The `quetoo-attach` command lets any `sudo`-capable user attach to the live server console:
+
+```sh
+quetoo-attach           # attaches to the "default" instance
+quetoo-attach ctf       # attaches to the "ctf" instance
+```
+
+Detach with **Ctrl-A D** without stopping the server.
 
 ---
 
 ## Updates
 
-The `quetoo-update` script checks for a new release and updates both packages. It is installed at `/usr/lib/quetoo/bin/quetoo-update`.
+`quetoo-update` fetches the latest release versions of `quetoo` and `quetoo-data` from GitHub independently, installs any that are out of date, and restarts all running instances.
 
-Run it manually to update immediately (restarts the server unconditionally):
+Run it manually to update immediately:
 
 ```sh
 sudo quetoo-update
 ```
 
-For automatic updates, add it to root's crontab with `--wait-for-empty`. The server will be updated and restarted within 15 minutes of a new release, but only once all human players have disconnected:
+For automatic updates, add it to root's crontab with `--wait-for-empty`. The server will update within 15 minutes of a new release, but only once all human players have disconnected:
 
 ```sh
 sudo crontab -e
 ```
 
 ```
-*/15 * * * * /usr/lib/quetoo/bin/quetoo-update --wait-for-empty >> /var/log/quetoo-update.log 2>&1
+*/15 * * * * /usr/bin/quetoo-update --wait-for-empty >> /var/log/quetoo-update.log 2>&1
 ```
 
 ---
