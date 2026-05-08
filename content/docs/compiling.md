@@ -20,7 +20,8 @@ Most dependencies are fetched automatically by the build system. The following a
 | [libsndfile](http://mega-nerd.com/libsndfile/) | Audio format loading |
 | [glib2](https://developer.gnome.org/glib/) | Utility library |
 | [ncurses](https://www.gnu.org/software/ncurses/) | Server console |
-| [SDL2](https://libsdl.org/) | Window, input, and GL context |
+| [SDL3](https://libsdl.org/) | Window, input, and GL context |
+| [libcheck](https://libcheck.github.io/check/) | Unit testing |
 
 ---
 
@@ -54,8 +55,8 @@ make check
 Install [Homebrew](https://brew.sh), then install dependencies:
 
 ```bash
-brew install autoconf automake libtool pkg-config \
-     glib physfs libsndfile openal-soft sdl2
+brew install autoconf automake check libtool pkg-config \
+     glib physfs libsndfile openal-soft sdl3
 ```
 
 Clone and build Objectively and ObjectivelyMVC as siblings of the quetoo repository:
@@ -93,7 +94,7 @@ Xcode is the recommended development environment on macOS. Objectively, Objectiv
 
 Open `quetoo/Quetoo.xcworkspace` — this workspace includes all three projects and manages their dependencies automatically. Select the **Quetoo** scheme and press **⌘B** to build.
 
-> **Note:** Homebrew dependencies (glib, PhysFS, SDL2, etc.) must still be installed via `brew install` as described above. The Xcode workspace does not install them.
+> **Note:** Homebrew dependencies (glib, PhysFS, SDL3, etc.) must still be installed via `brew install` as described above. The Xcode workspace does not install them.
 
 ---
 
@@ -132,7 +133,7 @@ Run `Quetoo.vs15\MAKE_DATA_JUNCTION.ps1` to create a directory junction from `%Q
 
 Open `Quetoo.vs15\quetoo_all.sln` in Visual Studio. Select the **Release | x64** configuration and build the solution (**⌃⇧B** / **Ctrl+Shift+B**).
 
-After building, run `Quetoo.vs15\COPY_DEPENDENCIES.bat` to copy required DLLs (SDL2, glib, OpenAL, etc.) into the output directory:
+After building, run `Quetoo.vs15\COPY_DEPENDENCIES.bat` to copy required DLLs (SDL3, glib, OpenAL, etc.) into the output directory:
 
 ```bat
 COPY_DEPENDENCIES.bat quetoo x64 Release
