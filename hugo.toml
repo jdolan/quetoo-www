@@ -9,6 +9,7 @@ theme = 'quetoo'
   discord = 'https://discord.gg/unb9U4b'
   github = 'https://github.com/jdolan/quetoo'
   releases = 'https://github.com/jdolan/quetoo/releases'
+  sponsor = 'https://github.com/sponsors/jdolan'
 
 [menu]
   [[menu.main]]
