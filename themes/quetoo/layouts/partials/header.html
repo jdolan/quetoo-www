@@ -11,7 +11,12 @@
       <li><a href="{{ .URL }}"{{ if $.IsMenuCurrent "main" . }} class="active"{{ end }}>{{ .Name }}</a></li>
       {{ end }}
       <li><a href="{{ .Site.Params.discord }}" class="btn-discord">Discord</a></li>
-      <li><a href="{{ .Site.Params.sponsor }}" class="btn-sponsor">♥ Sponsor</a></li>
+      <li>
+        <a href="{{ .Site.Params.sponsor }}" class="btn-sponsor">
+          <span class="btn-sponsor-icon" aria-hidden="true">♥</span>
+          <span>Sponsor</span>
+        </a>
+      </li>
     </ul>
   </nav>
 </header>
