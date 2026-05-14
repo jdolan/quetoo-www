@@ -10,25 +10,25 @@ Download the latest release of Quetoo for your platform.
     <div class="platform-icon">🍎</div>
     <h3>macOS</h3>
     <p>Apple Silicon bundle with auto-updater.</p>
-    <a href="https://github.com/jdolan/quetoo/releases" class="btn btn-primary">Download for macOS</a>
+    <a href="https://github.com/jdolan/quetoo/releases/latest#macos" class="btn btn-primary">Download for macOS</a>
   </div>
   <div class="download-card">
     <div class="platform-icon">🪟</div>
     <h3>Windows</h3>
     <p>64-bit bundle with auto-updater for Windows 10 and later.</p>
-    <a href="https://github.com/jdolan/quetoo/releases" class="btn btn-primary">Download for Windows</a>
+    <a href="https://github.com/jdolan/quetoo/releases/latest#windows-x86-64" class="btn btn-primary">Download for Windows</a>
   </div>
   <div class="download-card">
     <div class="platform-icon">🐧</div>
     <h3>Linux Client</h3>
     <p>x86_64 AppImage bundle with auto-updater.</p>
-    <a href="https://github.com/jdolan/quetoo/releases" class="btn btn-primary">Download for Linux</a>
+    <a href="https://github.com/jdolan/quetoo/releases/latest#linux-x86-64" class="btn btn-primary">Download for Linux</a>
   </div>
   <div class="download-card">
     <div class="platform-icon">🖥️</div>
     <h3>Linux Server</h3>
     <p>Debian/RPM packages for server operators. Managed by your package manager.</p>
-    <a href="https://github.com/jdolan/quetoo/releases" class="btn btn-primary">Linux Server Packages</a>
+    <a href="https://github.com/jdolan/quetoo/releases/latest#linux-x86-64" class="btn btn-primary">Linux Server Packages</a>
   </div>
 </div>
 
@@ -61,7 +61,7 @@ For dedicated server operators on Debian/Ubuntu or Fedora/RHEL, Quetoo is availa
 
 Two packages are required: `quetoo` (the engine) and `quetoo-data` (the game data). Download both from GitHub and install together:
 
- * [Quetoo Linux Server Releases](https://github.com/jdolan/quetoo/releases)
+ * [Quetoo Linux Server Releases](https://github.com/jdolan/quetoo/releases/latest#linux-x86-64)
  * [Quetoo Data Releases](https://github.com/jdolan/quetoo-data/releases)
 
 ```sh
