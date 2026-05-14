@@ -79,23 +79,27 @@ h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
   background: var(--bg-card);
 }
 
+.btn-discord,
+.btn-sponsor {
+  display: inline-flex;
+  align-items: center;
+  padding: calc(0.5rem - 2px) calc(1rem - 2px);
+  border: 2px solid transparent;
+  font-weight: 800;
+  border-radius: 6px;
+}
+
 .btn-discord {
   background: var(--accent) !important;
   color: #fff !important;
-  font-weight: 800;
-  border-radius: 6px;
 }
 
 .btn-discord:hover { background: var(--accent-light) !important; }
 
 .btn-sponsor {
-  display: inline-flex;
-  align-items: center;
   gap: 0.45rem;
   border: 2px solid var(--accent) !important;
   color: var(--text-muted) !important;
-  font-weight: 800;
-  border-radius: 6px;
 }
 
 .btn-sponsor-icon {
