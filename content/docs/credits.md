@@ -9,8 +9,8 @@ Quetoo is the work of a dedicated group of volunteers.
 
 | | |
 |---|---|
-| **jdolan (Jay Dolan)** | Engine, game module, tools, levels, artwork, sound |
-| **Paril (Jonathan Barkley)** | Engine, game module, bots |
+| **[jdolan](https://github.com/jdolan) (Jay Dolan)** | Engine, game module, tools, levels, artwork, sound |
+| **[Paril](https://github.com/Paril) (Jonathan Barkley)** | Engine, game module, bots |
 
 ## Artwork
 

@@ -360,7 +360,11 @@ h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
   border-collapse: collapse;
   margin-bottom: 1.5rem;
   font-size: 0.9rem;
+  table-layout: fixed;
 }
+
+.page-content td:nth-child(1) { width: 40%; }
+.page-content td:nth-child(2) { width: 60%; }
 
 .page-content thead tr {
   border-bottom: 2px solid var(--accent);
