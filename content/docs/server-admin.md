@@ -144,6 +144,7 @@ quetoo-dedicated \
 | Cvar | Default | Description |
 |------|---------|-------------|
 | `sv_max_clients` | `64` | Maximum simultaneous players |
+| `sv_min_clients` | `0` | Minimum total clients (human + bot); see [Bots](#bots) |
 | `sv_max_entities` | `1024` | Maximum entities; rarely needs changing |
 | `sv_timeout` | `20` | Client connection timeout in seconds |
 
@@ -171,6 +172,35 @@ quetoo-dedicated \
 | `g_spawn_farthest` | `0` | Spawn players as far as possible from enemies |
 | `g_ammo_respawn_time` | `20.0` | Ammo respawn interval in seconds |
 | `g_weapon_respawn_time` | `5` | Weapon respawn interval in seconds |
+
+---
+
+## Bots
+
+Quetoo has a built-in bot system that provides real opposition when human players aren't around. Bots are especially useful for **server seeding** — an empty server rarely attracts players, but a server with a few active bots is much more likely to draw people in.
+
+### sv_min_clients
+
+`sv_min_clients` sets the minimum total number of clients (human + bot) the server will maintain. The game automatically adds bots to meet this floor, and removes them one-by-one as real players join, keeping the total at `sv_min_clients` until all bots are gone.
+
+```
+// Keep at least 4 clients in the game at all times
+set sv_min_clients 4
+```
+
+When the last human disconnects, bots fill back up to `sv_min_clients` within a few seconds. `sv_min_clients` is capped by `sv_max_clients`, so you never need to worry about them conflicting.
+
+A typical seeding configuration for a public server:
+
+```
+// /etc/quetoo-dedicated/default.cfg
+set sv_hostname "My Quetoo Server"
+set sv_public 1
+set sv_max_clients 16
+set sv_min_clients 4   // always 4 players in the game
+set g_frag_limit 30
+set g_time_limit 20
+```
 
 ---
 
