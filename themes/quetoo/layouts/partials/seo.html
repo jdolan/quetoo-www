@@ -9,9 +9,11 @@
   {{- $title = printf "%s — %s" .Title .Site.Title -}}
 {{- end -}}
 {{- $image := absURL "images/hero.jpg" -}}
-{{- with .Params.image -}}
+{{- with .Params.featured_image -}}
   {{- $image = absURL . -}}
-{{- end -}}
+{{- else }}{{- with .Params.image -}}
+  {{- $image = absURL . -}}
+{{- end }}{{- end -}}
 <link rel="canonical" href="{{ .Permalink }}">
 <meta name="description" content="{{ $description }}">
 <meta property="og:site_name" content="{{ .Site.Title }}">
