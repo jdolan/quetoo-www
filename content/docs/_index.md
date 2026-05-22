@@ -10,6 +10,7 @@ description: "Quetoo documentation — guides for playing, server administration
 - [**Mapping Guide**](/docs/mapping/) — Creating and compiling levels with TrenchBroom
 - [**Modding Guide**](/docs/modding/) — Game module system, entities, and custom content
 - [**Compiling**](/docs/compiling/) — Building the engine from source
+- [**Credits**](/docs/credits/) — The people who made Quetoo
 
 ---
 
