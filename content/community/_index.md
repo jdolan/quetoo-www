@@ -7,22 +7,26 @@ Quetoo is built by a small, passionate community of players and developers. Here
 
 <div class="community-grid">
   <div class="community-card">
-    <h3><img src="/icons/discord.svg" class="brand-icon" alt="Discord"> Discord</h3>
+    <img src="/icons/discord.svg" class="brand-icon" alt="Discord">
+    <h3>Discord</h3>
     <p>The main hub for finding games, getting help, and chatting with the community.</p>
     <a href="https://discord.gg/unb9U4b" class="btn btn-primary">Join Discord</a>
   </div>
   <div class="community-card">
-    <h3><img src="/icons/itchdotio.svg" class="brand-icon" alt="Itch.io"> Itch.io</h3>
+    <img src="/icons/itchdotio.svg" class="brand-icon" alt="Itch.io">
+    <h3>Itch.io</h3>
     <p>Download Quetoo and leave a rating on our Itch.io page.</p>
     <a href="https://wickedoldgames.itch.io/quetoo" class="btn btn-secondary">View on Itch.io</a>
   </div>
   <div class="community-card">
-    <h3><img src="/icons/youtube.svg" class="brand-icon" alt="YouTube"> YouTube</h3>
+    <img src="/icons/youtube.svg" class="brand-icon" alt="YouTube">
+    <h3>YouTube</h3>
     <p>Watch gameplay videos, trailers, and tutorials on our YouTube channel.</p>
     <a href="https://www.youtube.com/@quetoo" class="btn btn-secondary">Watch on YouTube</a>
   </div>
   <div class="community-card">
-    <h3><img src="/icons/github.svg" class="brand-icon" alt="GitHub"> GitHub</h3>
+    <img src="/icons/github.svg" class="brand-icon" alt="GitHub">
+    <h3>GitHub</h3>
     <p>Browse the source code, report bugs, and contribute to the project.</p>
     <a href="https://github.com/jdolan/quetoo" class="btn btn-secondary">View on GitHub</a>
   </div>

@@ -9,25 +9,25 @@ Download the latest release of Quetoo for your platform.
   <div class="download-card">
     <div class="platform-icon"><img src="/icons/apple.svg" class="brand-icon" alt="macOS"></div>
     <h3>macOS</h3>
-    <p>Apple Silicon bundle with auto-updater for macOS Sequoia or later.</p>
+    <p>Apple Silicon <tt>.app</tt> for macOS Sequoia or later.</p>
     <a href="https://github.com/jdolan/quetoo/releases/latest#macos" class="btn btn-primary">Download for macOS</a>
   </div>
   <div class="download-card">
     <div class="platform-icon"><img src="/icons/windows.svg" class="brand-icon" alt="Windows"></div>
     <h3>Windows</h3>
-    <p>64-bit bundle with auto-updater for Windows 10 or later.</p>
+    <p>64-bit <tt>.zip</tt> for Windows 10 or later.</p>
     <a href="https://github.com/jdolan/quetoo/releases/latest#windows-x86-64" class="btn btn-primary">Download for Windows</a>
   </div>
   <div class="download-card">
     <div class="platform-icon"><img src="/icons/linux.svg" class="brand-icon" alt="Linux"></div>
     <h3>Linux Client</h3>
-    <p><tt>x86_64</tt> bundle with auto-updater compatible with most modern distros.</p>
+    <p>64-bit <tt>.tgz</tt> compatible with most modern distros.</p>
     <a href="https://github.com/jdolan/quetoo/releases/latest#linux-x86-64" class="btn btn-primary">Download for Linux</a>
   </div>
   <div class="download-card">
     <div class="platform-icon"><img src="/icons/linux.svg" class="brand-icon" alt="Linux Server"></div>
     <h3>Linux Server</h3>
-    <p><tt>.deb</tt> and <tt>.rpm</tt> packages for server operators.</p>
+    <p>64-bit packages for <tt>x64</tt> and <tt>arm64</tt> servers.</p>
     <a href="https://github.com/jdolan/quetoo/releases/latest#linux-x86-64" class="btn btn-primary">Linux Server Packages</a>
   </div>
 </div>
@@ -36,7 +36,7 @@ Download the latest release of Quetoo for your platform.
 
 Quetoo has a two-tier update model. On each launch, Quetoo checks for and automatically downloads the latest curated game content — maps, textures, and assets — so you're always playing with the current map pool without any manual steps. **Engine binaries** (the executable and game libraries) are not self-updating; re-download from this page periodically to pick up new engine releases. The game will tell you when a new version is available.
 
-### Platform Notes
+## Platform Notes
 
 ### macOS — `.app` Bundle
 
