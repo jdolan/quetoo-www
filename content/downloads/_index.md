@@ -7,25 +7,25 @@ Download the latest release of Quetoo for your platform.
 
 <div class="download-grid">
   <div class="download-card">
-    <div class="platform-icon">🍎</div>
+    <div class="platform-icon"><img src="/icons/apple.svg" class="brand-icon" alt="macOS"></div>
     <h3>macOS</h3>
     <p>Apple Silicon bundle with auto-updater for macOS Sequoia or later.</p>
     <a href="https://github.com/jdolan/quetoo/releases/latest#macos" class="btn btn-primary">Download for macOS</a>
   </div>
   <div class="download-card">
-    <div class="platform-icon">🪟</div>
+    <div class="platform-icon"><img src="/icons/windows.svg" class="brand-icon" alt="Windows"></div>
     <h3>Windows</h3>
     <p>64-bit bundle with auto-updater for Windows 10 or later.</p>
     <a href="https://github.com/jdolan/quetoo/releases/latest#windows-x86-64" class="btn btn-primary">Download for Windows</a>
   </div>
   <div class="download-card">
-    <div class="platform-icon">🐧</div>
+    <div class="platform-icon"><img src="/icons/linux.svg" class="brand-icon" alt="Linux"></div>
     <h3>Linux Client</h3>
     <p><tt>x86_64</tt> bundle with auto-updater compatible with most modern distros.</p>
     <a href="https://github.com/jdolan/quetoo/releases/latest#linux-x86-64" class="btn btn-primary">Download for Linux</a>
   </div>
   <div class="download-card">
-    <div class="platform-icon">🖥️</div>
+    <div class="platform-icon"><img src="/icons/linux.svg" class="brand-icon" alt="Linux Server"></div>
     <h3>Linux Server</h3>
     <p><tt>.deb</tt> and <tt>.rpm</tt> packages for server operators.</p>
     <a href="https://github.com/jdolan/quetoo/releases/latest#linux-x86-64" class="btn btn-primary">Linux Server Packages</a>
