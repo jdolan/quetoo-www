@@ -9,7 +9,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Coda:wght@400;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/style.css">
+  {{ if hugo.IsDevelopment }}
+  <link rel="stylesheet" href="/css/style.css?v={{ now.Unix }}">
+  {{ else }}
+  <link rel="stylesheet" href="/css/style.css?v={{ .Site.Params.cssVersion }}">
+  {{ end }}
 </head>
 <body>
   {{ partial "header.html" . }}

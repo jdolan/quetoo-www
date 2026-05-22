@@ -10,6 +10,7 @@ theme = 'quetoo'
   github = 'https://github.com/jdolan/quetoo'
   releases = 'https://github.com/jdolan/quetoo/releases'
   sponsor = 'https://github.com/sponsors/jdolan'
+  cssVersion = "2"
 
 [menu]
   [[menu.main]]
