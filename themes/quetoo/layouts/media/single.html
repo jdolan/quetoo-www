@@ -1,0 +1,11 @@
+{{ define "main" }}
+<section class="media-page">
+  <div class="container">
+    <h1>Media</h1>
+    {{ partial "media-tabs.html" . }}
+  </div>
+  <div class="media-subpage-content">
+    {{ .Content }}
+  </div>
+</section>
+{{ end }}

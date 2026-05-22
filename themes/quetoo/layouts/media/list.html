@@ -1,20 +1,10 @@
 {{ define "main" }}
-<section class="trailer media-trailer">
-  <div class="container">
-    <h2>Trailer</h2>
-    <div class="trailer-embed">
-      <iframe src="https://www.youtube.com/embed/GY2vPCj81bs"
-        title="Quetoo Release Trailer"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen></iframe>
-    </div>
-  </div>
-</section>
-
 <section class="media-page">
-  <h1>Media</h1>
-  <div class="gallery-grid full">
+  <div class="container">
+    <h1>Media</h1>
+    {{ partial "media-tabs.html" . }}
+  </div>
+  <div class="gallery-grid full media-gallery">
     {{ range (slice "quetoo000" "quetoo001" "quetoo002" "quetoo003" "quetoo004" "quetoo005" "quetoo006" "quetoo007" "quetoo008" "quetoo009" "quetoo010" "quetoo011" "quetoo012" "quetoo013" "quetoo014" "quetoo015" "quetoo016" "quetoo017" "quetoo018" "quetoo019" "quetoo020" "quetoo021" "quetoo022" "quetoo023" "quetoo028" "quetoo029" "quetoo030" "quetoo031" "quetoo032" "quetoo033" "quetoo034" "quetoo036" "quetoo037" "quetoo038" "quetoo039" "quetoo041" "quetoo042" "quetoo043" "quetoo044" "quetoo045" "quetoo046" "quetoo047" "quetoo049" "quetoo050" "quetoo051" "quetoo055" "quetoo057") }}
     <a href="/images/screenshots/{{ . }}.jpg" class="gallery-item" data-full="/images/screenshots/{{ . }}.jpg">
       <img src="/images/screenshots/{{ . }}.jpg" alt="Quetoo screenshot" loading="lazy">
@@ -27,6 +17,4 @@
   <button class="lightbox-close">&times;</button>
   <img id="lightbox-img" src="" alt="Screenshot">
 </div>
-
-<script src="/js/main.js"></script>
 {{ end }}

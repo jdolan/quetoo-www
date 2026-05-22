@@ -1,0 +1,25 @@
+{{- $before := .Get "before" -}}
+{{- $after  := .Get "after" -}}
+{{- $beforeLabel := .Get "before-label" | default "Before" -}}
+{{- $afterLabel  := .Get "after-label"  | default "After" -}}
+{{- $title := .Get "title" -}}
+<div class="ab-compare">
+  {{- if $title }}<p class="ab-title">{{ $title }}</p>{{ end -}}
+  <div class="ab-slider" data-ab>
+    <img class="ab-img ab-img-before" src="{{ $before }}" alt="{{ $beforeLabel }}" draggable="false">
+    <div class="ab-clip">
+      <img class="ab-img ab-img-after" src="{{ $after }}" alt="{{ $afterLabel }}" draggable="false">
+    </div>
+    <div class="ab-handle">
+      <div class="ab-handle-line"></div>
+      <div class="ab-handle-knob">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"></polyline>
+          <polyline points="9 18 15 12 9 6" transform="translate(6,0)"></polyline>
+        </svg>
+      </div>
+    </div>
+    <span class="ab-label ab-label-before">{{ $beforeLabel }}</span>
+    <span class="ab-label ab-label-after">{{ $afterLabel }}</span>
+  </div>
+</div>

@@ -43,3 +43,42 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+
+// ── A/B Before-After Comparison Sliders ──
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('[data-ab]').forEach(slider => {
+    const clip = slider.querySelector('.ab-clip');
+    const handle = slider.querySelector('.ab-handle');
+    let dragging = false;
+
+    function setPosition(x) {
+      const rect = slider.getBoundingClientRect();
+      let pct = Math.min(Math.max((x - rect.left) / rect.width, 0.02), 0.98);
+      const pctPx = (pct * 100).toFixed(2);
+      clip.style.clipPath = `inset(0 0 0 ${(pct * 100).toFixed(2)}%)`;
+      handle.style.left = pctPx + '%';
+    }
+
+    slider.addEventListener('mousedown', e => {
+      dragging = true;
+      setPosition(e.clientX);
+      e.preventDefault();
+    });
+
+    slider.addEventListener('touchstart', e => {
+      dragging = true;
+      setPosition(e.touches[0].clientX);
+    }, { passive: true });
+
+    window.addEventListener('mousemove', e => {
+      if (dragging) setPosition(e.clientX);
+    });
+
+    window.addEventListener('touchmove', e => {
+      if (dragging) setPosition(e.touches[0].clientX);
+    }, { passive: true });
+
+    window.addEventListener('mouseup', () => { dragging = false; });
+    window.addEventListener('touchend', () => { dragging = false; });
+  });
+});

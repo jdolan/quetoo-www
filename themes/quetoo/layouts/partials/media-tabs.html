@@ -1,0 +1,5 @@
+<nav class="media-tabs">
+  <a href="/media/" class="{{ if eq .RelPermalink "/media/" }}active{{ end }}">Screenshots</a>
+  <a href="/media/trailers/" class="{{ if hasPrefix .RelPermalink "/media/trailers" }}active{{ end }}">Trailers</a>
+  <a href="/media/then-and-now/" class="{{ if hasPrefix .RelPermalink "/media/then-and-now" }}active{{ end }}">Then &amp; Now</a>
+</nav>
