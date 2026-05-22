@@ -218,6 +218,19 @@ h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
   color: var(--accent-light);
   font-weight: 800;
   margin-bottom: 0.25rem;
+  position: relative;
+  height: 2em;
+}
+
+.tagline-slide {
+  position: absolute;
+  left: 0; right: 0;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+.tagline-slide.active {
+  opacity: 1;
 }
 
 .subtitle {

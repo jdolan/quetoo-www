@@ -6,6 +6,17 @@ document.addEventListener('DOMContentLoaded', () => {
     toggle.addEventListener('click', () => links.classList.toggle('open'));
   }
 
+  // Tagline carousel
+  const slides = document.querySelectorAll('#tagline-carousel .tagline-slide');
+  if (slides.length > 1) {
+    let current = 0;
+    setInterval(() => {
+      slides[current].classList.remove('active');
+      current = (current + 1) % slides.length;
+      slides[current].classList.add('active');
+    }, 5000);
+  }
+
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightbox-img');
   const lightboxVideo = document.getElementById('lightbox-video');

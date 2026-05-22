@@ -72,12 +72,10 @@ First-class [TrenchBroom](https://trenchbroom.github.io/) support makes Quetoo o
 
 ## Download & Links
 
-- **Downloads:** [quetoo.org](https://quetoo.org/downloads)
+- **Downloads:** [quetoo.org/downloads](https://quetoo.org/downloads)
 - **itch.io:** [wickedoldgames.itch.io/quetoo](https://wickedoldgames.itch.io/quetoo)
 - **Discord:** [discord.gg/unb9U4b](https://discord.gg/unb9U4b)
 - **GitHub:** [github.com/jdolan/quetoo](https://github.com/jdolan/quetoo)
 - **YouTube:** [@WickedOldGames](https://youtube.com/@WickedOldGames)
 
 </div>
-
-*Quetoo: bringing 2016 graphics to 1996 in 2026*

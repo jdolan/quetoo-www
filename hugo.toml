@@ -5,12 +5,15 @@ theme = 'quetoo'
 
 [params]
   description = 'A free first person shooter for Mac, PC and Linux'
-  tagline = "Pwning nubz, one rail slug at a time."
   discord = 'https://discord.gg/unb9U4b'
   github = 'https://github.com/jdolan/quetoo'
   releases = 'https://github.com/jdolan/quetoo/releases'
   sponsor = 'https://github.com/sponsors/jdolan'
   cssVersion = "2"
+  taglines = [
+    "Pwning nubz, one rail slug at a time.",
+    "Bringing 2016 graphics to 1996 in 2026.",
+  ]
 
 [menu]
   [[menu.main]]
