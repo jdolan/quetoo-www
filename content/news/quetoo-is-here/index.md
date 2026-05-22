@@ -23,7 +23,7 @@ aliases:
 
 ### A love letter to the <span style="color: ">QUAKE</span> series
 
-Quetoo was born out of a dorm room in the late 1990s — a time when Quake wasn't just a game, it was an obsession. In the early 2000's, the open source release of the Quake engine taught a generation how to write code, how to build maps and map compilers, how renderers worked, and how to think in 3D. For developer [Jay Dolan](https://github.com/jdolan/), Quake was a doorway to lifelong friendships and a career as a software developer.
+Quetoo development officially began in January 2007. But really, Quetoo was born out of a dorm room in the late 1990s — a time when Quake wasn't just a game, it was an obsession. In the early 2000's, the open source release of the Quake engine taught a generation how to write code, how to build maps and map compilers, how renderers worked, and how to think in 3D. For developer [Jay Dolan](https://github.com/jdolan/), Quake was a doorway to lifelong friendships and a career as a software developer.
 
 Decades later, Quetoo is his counterpoint to the modern arena shooter. Quetoo's gameplay is not mathematically balanced. The arenas are not starkly lit techno-voids, and when you blow your buddies up, their giblets bounce off of jump pads and fly through teleporters. Quetoo exists to **make Quake fun again**.
 
