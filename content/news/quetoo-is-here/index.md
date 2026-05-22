@@ -1,8 +1,10 @@
 ---
-title: "After 19 Years 💀 Quetoo Is Here"
+title: "Quetoo Is Here"
 description: "WickedOldGames and the Quetoo crew release their love letter to id Software's Quake series. Available now for Windows, Linux, and macOS."
 date: 2026-05-21
-layout: "press-release"
+featured_image: "/images/screenshots/quetoo057.jpg"
+aliases:
+  - /press-release/
 ---
 
 <div class="press-release">
@@ -38,11 +40,9 @@ layout: "press-release"
 
 ### A love letter to the <span style="color: ">QUAKE</span> series
 
-*Quake the way it felt back then.*
+Quetoo was born out of a dorm room in the late 1990s — a time when Quake wasn't just a game, it was an obsession. In the early 2000's, the open source release of the Quake engine taught a generation how to write code, how to build maps and map compilers, how renderers worked, and how to think in 3D. For developer [Jay Dolan](https://github.com/jdolan/), Quake was a doorway to lifelong friendships and a career as a software developer.
 
-Quetoo was born out of a dorm room in the late 1990s — a time when Quake wasn't just a game, it was an obsession. In the early 2000's, the open source release of the Quake engine taught a generation how to write code, how to build maps, how renderers worked, how to think in 3D. For developer [Jay Dolan](https://github.com/jdolan/), Quake was a doorway to lifelong friendships and a career as a software developer.
-
-Decades later, Quetoo is his counterpoint to the modern arena shooter. Quetoo's gameplay is not mathematically balanced. The arenas are not starkly lit techno-voids, and when you blow your buddies up, their giblets bounce off of jump pads and fly through teleporters. *Quetoo* exists to *make Quake fun again*.
+Decades later, Quetoo is his counterpoint to the modern arena shooter. Quetoo's gameplay is not mathematically balanced. The arenas are not starkly lit techno-voids, and when you blow your buddies up, their giblets bounce off of jump pads and fly through teleporters. Quetoo exists to **make Quake fun again**.
 
 ### Classic maps, faithfully remade
 Quetoo includes carefully crafted remakes of legendary Quake, Quake2 and Quake3 deathmatch arenas, rebuilt with thoughtful flourishes, dramatic lighting, and painstaking detail by the community's top artists over many years.
@@ -51,16 +51,16 @@ Quetoo includes carefully crafted remakes of legendary Quake, Quake2 and Quake3 
 Real-time dynamic lighting and soft shadow mapping make every room and cramped hallway come alive. If it moves, it casts a shadow. But you don't need a raytracing GPU to enjoy Quetoo. It will run just fine on a 10 year old rig. 
 
 ### Multiplayer modes for every occasion
-Free-for-all, Team Deathmatch, Capture the Flag 🚩, and Instagib — plus bot 🤖 support, so there's always someone to frag.
+Free-for-all, Team Deathmatch, Capture the Flag 🚩, and Instagib — plus bot 🤖 support, so there's always someone to frag. And who doesn't want to pop off on some AI right about now?
 
 ### Cross platform support
 Native builds for Windows, Linux, and macOS, compiled and available to you via [GitHub Releases](https://github.com/jdolan/quetoo/releases) the moment the code lands in `main`. An in-game auto-updater brings you the newest curated game content automatically.
 
 ### Run your own server
-Dedicated server packages for Red Hat and Debian Linux — drop one on a VPS and you're hosting in minutes. Set a password, or make it public. Up to you!
+Dedicated server packages for Red Hat and Debian Linux — drop one on a VPS and you're hosting games in minutes. Included `systemd` scripts make server management a breeze, even [running multiple ports](/docs/server-admin) on the same box. Set a password, or make it public. Up to you!
 
 ### Make your own maps and mods
-First-class [TrenchBroom](https://trenchbroom.github.io/) support makes *Quetoo* one of the most mapper-friendly games available. If you're a coder, the engine and game modules are fully open source under the GPL, and available on [GitHub](https://github.com/jdolan/quetoo). Fork us! You won't do it.
+First-class [TrenchBroom](https://trenchbroom.github.io/) support makes Quetoo one of the most mapper-friendly games available. And, all of our maps, textures and assets are available on [GitHub](https://github.com/jdolan/quetoo-data) under the Creative Commons license. If you're a coder, the engine and game modules are fully open source under the GPL, and available on [GitHub](https://github.com/jdolan/quetoo). Fork us! You won't do it.
 
 ## Download & Links
 

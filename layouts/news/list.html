@@ -1,0 +1,24 @@
+{{ define "main" }}
+<div class="page-content container">
+  <h1>News</h1>
+  <ul class="news-list">
+    {{ range .Pages.ByDate.Reverse }}
+    {{ $permalink := .RelPermalink }}
+    {{ $title := .Title }}
+    <li class="news-card">
+      {{ with .Params.featured_image }}
+      <a href="{{ $permalink }}" class="news-card-img-link">
+        <img src="{{ . }}" alt="{{ $title }}" class="news-card-img">
+      </a>
+      {{ end }}
+      <div class="news-card-body">
+        <span class="news-date">{{ .Date.Format "January 2, 2006" }}</span>
+        <a href="{{ .RelPermalink }}" class="news-title">{{ .Title }}</a>
+        {{ with .Description }}<p class="news-desc">{{ . }}</p>{{ end }}
+        <a href="{{ .RelPermalink }}" class="news-read-more">Read more →</a>
+      </div>
+    </li>
+    {{ end }}
+  </ul>
+</div>
+{{ end }}

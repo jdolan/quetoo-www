@@ -13,21 +13,25 @@ theme = 'quetoo'
 
 [menu]
   [[menu.main]]
+    name = 'News'
+    url = '/news/'
+    weight = 1
+  [[menu.main]]
     name = 'Media'
     url = '/media/'
-    weight = 1
+    weight = 2
   [[menu.main]]
     name = 'Downloads'
     url = '/downloads/'
-    weight = 2
-  [[menu.main]]
-    name = 'Documentation'
-    url = '/docs/'
     weight = 3
+  [[menu.main]]
+    name = 'Docs'
+    url = '/docs/'
+    weight = 4
   [[menu.main]]
     name = 'Community'
     url = '/community/'
-    weight = 4
+    weight = 5
 
 [markup]
   [markup.goldmark]
