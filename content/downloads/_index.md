@@ -32,32 +32,27 @@ Download the latest release of Quetoo for your platform.
   </div>
 </div>
 
-## Platform Notes
+## Release Model
 
-Quetoo has a two-tier update model. The **built-in updater** runs on every launch and automatically downloads the latest curated game content — maps, textures, and assets — so you're always playing with the current map pool without any manual steps. **Engine binaries** (the executable and game libraries) are not self-updating; re-download from this page periodically to pick up new engine releases. We announce them on the [News](/news/) page.
+Quetoo has a two-tier update model. On each launch, Quetoo checks for and automatically downloads the latest curated game content — maps, textures, and assets — so you're always playing with the current map pool without any manual steps. **Engine binaries** (the executable and game libraries) are not self-updating; re-download from this page periodically to pick up new engine releases. The game will tell you when a new version is available.
+
+### Platform Notes
 
 ### macOS — `.app` Bundle
 
-The macOS release is a self-contained `.app` bundle. On every launch, the built-in updater downloads the latest curated game content automatically. Re-download this bundle from the site when a new engine release is announced to pick up binary updates.
+The macOS release is a self-contained `.app` bundle. Drag it to your `Applications` folder and launch it to play.
 
 ### Windows — `.zip` Bundle
 
-The Windows release is a `.zip` archive containing the engine, game modules, and all required libraries. Extract it anywhere and run `quetoo.exe`. On every launch, the built-in updater downloads the latest curated game content automatically. Re-download and re-extract when a new engine release is announced to pick up binary updates.
+The Windows release is a `.zip` archive containing everything you need to run the game. Extract it anywhere and run `quetoo.exe`. Windows _SmartScreen_ may warn on first launch. Click **More info**, then **Run anyway** to proceed.
 
-Windows SmartScreen may warn on first launch. Click **More info**, then **Run anyway** to proceed.
+### Linux Client — `.tgz` Bundle
 
-### Linux Client — AppImage
-
-The Linux client is distributed as a tarball. Extract it to a location of your liking and run `./bin/quetoo`. On every launch, the built-in updater downloads the latest curated game content automatically. Re-download and re-extract when a new engine release is announced to pick up binary updates.
+The Linux client is distributed as a tarball. Extract it to a location of your liking and run `./bin/quetoo`.
 
 ### Linux Server — `.deb` / `.rpm` Packages
 
-For dedicated server operators on Debian/Ubuntu or Fedora/RHEL, Quetoo is available as native packages. These are managed by your system's package manager and do **not** use the built-in auto-updater — updates are applied via `apt`/`dnf` in the usual way.
-
-Two packages are required: `quetoo` (the engine) and `quetoo-data` (the game data). Download both from GitHub and install together:
-
- * [Quetoo Linux Server Releases](https://github.com/jdolan/quetoo/releases/latest#linux-x86-64)
- * [Quetoo Data Releases](https://github.com/jdolan/quetoo-data/releases)
+For dedicated server operators on Debian/Ubuntu or Fedora/RHEL, install the `quetoo` and `quetoo-data` packages using your package manager:
 
 ```sh
 # Debian / Ubuntu
