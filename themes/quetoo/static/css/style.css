@@ -166,6 +166,17 @@ h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
   color: #fff;
 }
 
+.btn-announcement {
+  background: transparent;
+  color: #f0c040;
+  border: 2px solid #f0c040;
+}
+
+.btn-announcement:hover {
+  background: #f0c040;
+  color: #111;
+}
+
 /* ── Hero ── */
 
 .hero {
