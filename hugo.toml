@@ -3,6 +3,10 @@ languageCode = 'en-us'
 title = 'Quetoo'
 theme = 'quetoo'
 
+[services]
+  [services.googleAnalytics]
+    ID = 'G-071NWTJCT1'
+
 [params]
   description = 'A free first person shooter for Mac, PC and Linux'
   discord = 'https://discord.gg/unb9U4b'
