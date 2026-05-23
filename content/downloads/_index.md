@@ -3,8 +3,6 @@ title: "Downloads"
 description: "Download Quetoo for Linux, macOS, and Windows. Free to download, play, and modify."
 ---
 
-Download the latest release of Quetoo for your platform.
-
 <div class="download-grid">
   <div class="download-card">
     <div class="platform-icon"><img src="/icons/apple.svg" class="brand-icon" alt="macOS"></div>
@@ -31,6 +29,8 @@ Download the latest release of Quetoo for your platform.
     <a href="https://github.com/jdolan/quetoo/releases/latest#linux-x86-64" class="btn btn-primary">Linux Server Packages</a>
   </div>
 </div>
+
+<div style="text-align: center;">{{< download-counter >}}</div>
 
 ## Release Model
 

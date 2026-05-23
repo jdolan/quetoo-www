@@ -55,6 +55,28 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+// ── Download Counter ──
+(async () => {
+  const targets = document.querySelectorAll('.download-counter-count');
+  if (!targets.length) return;
+  try {
+    let total = 0, page = 1, done = false;
+    while (!done) {
+      const res = await fetch(`https://api.github.com/repos/jdolan/quetoo/releases?per_page=100&page=${page}`);
+      if (!res.ok) break;
+      const releases = await res.json();
+      if (!releases.length) { done = true; break; }
+      for (const r of releases) {
+        for (const a of r.assets) total += a.download_count;
+      }
+      if (releases.length < 100) done = true;
+      else page++;
+    }
+    const formatted = total.toLocaleString();
+    targets.forEach(el => el.textContent = formatted);
+  } catch (_) { /* silently fail */ }
+})();
+
 // ── A/B Before-After Comparison Sliders ──
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('[data-ab]').forEach(slider => {

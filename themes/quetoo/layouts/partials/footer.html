@@ -2,21 +2,25 @@
   <div class="footer-container">
     <div class="footer-brand">
       <img src="/images/logo.png" alt="Quetoo" height="28">
-      <p>A free first person shooter based on id Tech 2.</p>
+      {{ partial "download-counter.html" . }}
     </div>
     <div class="footer-links">
       <h4>Links</h4>
       <ul>
-        <li><a href="{{ .Site.Params.github }}">GitHub</a></li>
-        <li><a href="{{ .Site.Params.releases }}">Releases</a></li>
         <li><a href="{{ .Site.Params.discord }}">Discord</a></li>
+        <li><a href="{{ .Site.Params.itch }}">Itch.io</a></li>
+        <li><a href="{{ .Site.Params.youtube }}">YouTube</a></li>
+        <li><a href="{{ .Site.Params.facebook }}">Facebook</a></li>
+        <li><a href="{{ .Site.Params.github }}">GitHub</a></li>
       </ul>
     </div>
     <div class="footer-links">
       <h4>Project</h4>
       <ul>
+        <li><a href="/news/">News</a></li>
+        <li><a href="/media/">Media</a></li>
         <li><a href="/downloads/">Downloads</a></li>
-        <li><a href="/docs/">Documentation</a></li>
+        <li><a href="/docs/">Docs</a></li>
         <li><a href="/community/">Community</a></li>
       </ul>
     </div>

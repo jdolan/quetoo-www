@@ -13,10 +13,14 @@ theme = 'quetoo'
   github = 'https://github.com/jdolan/quetoo'
   releases = 'https://github.com/jdolan/quetoo/releases'
   sponsor = 'https://github.com/sponsors/jdolan'
+  youtube = 'https://youtube.com/@WickedOldGames'
+  itch = 'https://wickedoldgames.itch.io/quetoo'
+  facebook = 'https://www.facebook.com/@Quetoo.org'
   cssVersion = "2"
   taglines = [
     "Pwning nubz, one rail slug at a time.",
     "Bringing 2016 graphics to 1996 in 2026.",
+    "I love the smell of giblets in the morning."
   ]
 
 [menu]
