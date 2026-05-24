@@ -9,10 +9,13 @@
     </div>
     <div class="stats-controls">
       <input id="stats-search" type="search" placeholder="Search player…" autocomplete="off" spellcheck="false">
-      <input id="stats-date-from" type="date" title="From date">
-      <span class="stats-date-sep">–</span>
-      <input id="stats-date-to" type="date" title="To date">
-      <button id="stats-date-clear" class="stats-date-clear" title="Clear date range" hidden>✕</button>
+      <select id="stats-period">
+        <option value="">All Time</option>
+        <option value="year">This Year</option>
+        <option value="month">This Month</option>
+        <option value="week">This Week</option>
+        <option value="today">Today</option>
+      </select>
       <select id="stats-limit">
         <option value="25">Top 25</option>
         <option value="50">Top 50</option>

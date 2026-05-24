@@ -13,34 +13,36 @@ const elPlayerName      = document.getElementById('stats-player-name');
 const elPlayerSummary   = document.getElementById('stats-player-summary');
 const elSearch          = document.getElementById('stats-search');
 const elLimit           = document.getElementById('stats-limit');
+const elPeriod          = document.getElementById('stats-period');
 const elBack            = document.getElementById('stats-back');
-const elDateFrom        = document.getElementById('stats-date-from');
-const elDateTo          = document.getElementById('stats-date-to');
-const elDateClear       = document.getElementById('stats-date-clear');
 
 // ------------------------------------------------------------------
-// Date range helpers
+// Period helpers — compute from/to from a named period
 // ------------------------------------------------------------------
 
 function getDateParams() {
-  const params = {};
-  if (elDateFrom.value) params.from = elDateFrom.value;
-  if (elDateTo.value)   params.to   = elDateTo.value;
-  return params;
+  const period = elPeriod.value;
+  if (!period) return {};
+  const now   = new Date();
+  const pad   = n => String(n).padStart(2, '0');
+  const fmt   = d => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+  const today = fmt(now);
+  let from;
+  if (period === 'today') {
+    from = today;
+  } else if (period === 'week') {
+    const d = new Date(now);
+    d.setDate(d.getDate() - d.getDay());
+    from = fmt(d);
+  } else if (period === 'month') {
+    from = `${now.getFullYear()}-${pad(now.getMonth() + 1)}-01`;
+  } else if (period === 'year') {
+    from = `${now.getFullYear()}-01-01`;
+  }
+  return from ? { from, to: today } : {};
 }
 
-function updateDateClear() {
-  elDateClear.hidden = !(elDateFrom.value || elDateTo.value);
-}
-
-elDateFrom.addEventListener('change', () => { updateDateClear(); reloadActive(); });
-elDateTo.addEventListener('change',   () => { updateDateClear(); reloadActive(); });
-elDateClear.addEventListener('click', () => {
-  elDateFrom.value = '';
-  elDateTo.value   = '';
-  updateDateClear();
-  reloadActive();
-});
+elPeriod.addEventListener('change', () => reloadActive());
 
 function reloadActive() {
   const guid = getHash();
