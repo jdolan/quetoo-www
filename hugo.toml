@@ -45,11 +45,13 @@ theme = 'quetoo'
     url = '/community/'
     weight = 5
   [[menu.main]]
-    name = 'Leaderboard'
-    url = '/stats/'
+    name = 'Discord'
+    url = 'https://discord.gg/unb9U4b'
     weight = 6
-    [menu.main.params]
-      class = 'btn-stats'
+  [[menu.main]]
+    name = 'Stats'
+    url = '/stats/'
+    weight = 7
 
 [markup]
   [markup.goldmark]

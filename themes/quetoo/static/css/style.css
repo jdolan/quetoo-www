@@ -86,44 +86,13 @@ h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
   padding-bottom: calc(0.5rem - 2px);
 }
 
-.btn-discord,
-.btn-sponsor,
-.btn-stats {
+.btn-sponsor {
   display: inline-flex;
   align-items: center;
   padding: calc(0.5rem - 2px) calc(1rem - 2px);
   border: 2px solid transparent;
   font-weight: 800;
   border-radius: 6px;
-}
-
-.btn-stats {
-  gap: 0.4rem;
-  border-color: var(--accent) !important;
-  color: var(--accent-light) !important;
-}
-
-.btn-stats::before {
-  content: '🏆';
-  font-style: normal;
-  line-height: 1;
-  filter: sepia(1) saturate(3) hue-rotate(140deg) brightness(1.1);
-}
-
-.btn-stats:hover,
-.btn-stats.active {
-  color: #fff !important;
-  background: rgba(74, 138, 154, 0.15) !important;
-}
-
-.btn-discord {
-  background: var(--accent) !important;
-  color: #fff !important;
-}
-
-.btn-discord:hover { background: var(--accent-light) !important; }
-
-.btn-sponsor {
   gap: 0.45rem;
   border: 2px solid var(--accent) !important;
   color: var(--text-muted) !important;
@@ -692,9 +661,7 @@ h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
   .nav-links li { width: 100%; }
   .nav-links a { display: block; padding: 0.75rem 1rem; }
 
-  .btn-discord,
-  .btn-sponsor,
-  .btn-stats {
+  .btn-sponsor {
     width: 100%;
     margin-left: 0;
     justify-content: center;

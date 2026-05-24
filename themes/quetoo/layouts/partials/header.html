@@ -10,7 +10,6 @@
       {{ range .Site.Menus.main }}
       <li><a href="{{ .URL }}" class="{{ with .Params.class }}{{ . }} {{ end }}{{ if $.IsMenuCurrent "main" . }}active{{ end }}">{{ .Name }}</a></li>
       {{ end }}
-      <li><a href="{{ .Site.Params.discord }}" class="btn-discord">Discord</a></li>
       <li>
         <a href="{{ .Site.Params.sponsor }}" class="btn-sponsor">
           <span class="btn-sponsor-icon" aria-hidden="true">♥</span>
