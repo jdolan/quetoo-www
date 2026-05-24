@@ -4,6 +4,7 @@
  */
 
 const API = 'https://giblets.quetoo.org/api/stats';
+const API_OPTIONS = 'https://giblets.quetoo.org/api/options';
 
 const elLeaderboard     = document.getElementById('stats-leaderboard');
 const elLeaderboardBody = document.getElementById('stats-leaderboard-body');
@@ -12,6 +13,8 @@ const elPlayerBody      = document.getElementById('stats-player-body');
 const elPlayerName      = document.getElementById('stats-player-name');
 const elPlayerSummary   = document.getElementById('stats-player-summary');
 const elSearch          = document.getElementById('stats-search');
+const elServer          = document.getElementById('stats-server');
+const elLevel           = document.getElementById('stats-level');
 const elLimit           = document.getElementById('stats-limit');
 const elPeriod          = document.getElementById('stats-period');
 const elBack            = document.getElementById('stats-back');
@@ -43,6 +46,35 @@ function getDateParams() {
 }
 
 elPeriod.addEventListener('change', () => reloadActive());
+
+// ------------------------------------------------------------------
+// Options — populate server and map dropdowns from the API
+// ------------------------------------------------------------------
+
+async function loadOptions() {
+  try {
+    const res  = await fetch(API_OPTIONS);
+    if (!res.ok) return;
+    const data = await res.json();
+
+    (data.servers || []).forEach(s => {
+      const opt = document.createElement('option');
+      opt.value       = s;
+      opt.textContent = s;
+      elServer.appendChild(opt);
+    });
+
+    (data.levels || []).forEach(l => {
+      const opt = document.createElement('option');
+      opt.value       = l;
+      opt.textContent = l;
+      elLevel.appendChild(opt);
+    });
+  } catch (_) { /* silently ignore */ }
+}
+
+elServer.addEventListener('change', loadLeaderboard);
+elLevel.addEventListener('change',  loadLeaderboard);
 
 function reloadActive() {
   const guid = getHash();
@@ -88,11 +120,15 @@ function showLeaderboard() {
 }
 
 async function loadLeaderboard() {
-  const name  = elSearch.value.trim();
-  const limit = elLimit.value;
+  const name   = elSearch.value.trim();
+  const limit  = elLimit.value;
+  const server = elServer.value;
+  const level  = elLevel.value;
 
   const params = new URLSearchParams({ limit, ...getDateParams() });
-  if (name) params.set('name', name);
+  if (name)   params.set('name',   name);
+  if (server) params.set('server', server);
+  if (level)  params.set('level',  level);
 
   elLeaderboardBody.innerHTML = '<div class="stats-loading">Loading\u2026</div>';
 
@@ -284,6 +320,7 @@ function formatDuration(seconds) {
 // ------------------------------------------------------------------
 
 (function init() {
+  loadOptions();
   const guid = getHash();
   if (guid) {
     // Load leaderboard in background so the back button can restore context
