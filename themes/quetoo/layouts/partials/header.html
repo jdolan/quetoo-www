@@ -8,7 +8,7 @@
     </button>
     <ul class="nav-links">
       {{ range .Site.Menus.main }}
-      <li><a href="{{ .URL }}"{{ if $.IsMenuCurrent "main" . }} class="active"{{ end }}>{{ .Name }}</a></li>
+      <li><a href="{{ .URL }}" class="{{ with .Params.class }}{{ . }} {{ end }}{{ if $.IsMenuCurrent "main" . }}active{{ end }}">{{ .Name }}</a></li>
       {{ end }}
       <li><a href="{{ .Site.Params.discord }}" class="btn-discord">Discord</a></li>
       <li>

@@ -5,58 +5,6 @@
   padding-bottom: 4rem;
 }
 
-.stats-date-bar {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 1.5rem;
-  flex-wrap: wrap;
-}
-
-.stats-date-label {
-  color: var(--text-muted);
-  font-size: 0.85rem;
-  margin-right: 0.25rem;
-  white-space: nowrap;
-}
-
-.stats-date-sep {
-  color: var(--text-muted);
-}
-
-.stats-date-bar input[type="date"] {
-  background: var(--bg-dark, #111820);
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  color: var(--text);
-  padding: 0.45rem 0.75rem;
-  font-family: inherit;
-  font-size: 0.9rem;
-  outline: none;
-  transition: border-color 0.15s;
-  color-scheme: dark;
-}
-
-.stats-date-bar input[type="date"]:focus {
-  border-color: var(--accent);
-}
-
-.stats-date-clear {
-  background: transparent;
-  border: none;
-  color: var(--text-muted);
-  font-size: 1rem;
-  line-height: 1;
-  padding: 0.3rem 0.4rem;
-  cursor: pointer;
-  transition: color 0.15s;
-  border-radius: 4px;
-}
-
-.stats-date-clear:hover {
-  color: var(--text);
-}
-
 .stats-header {
   margin-bottom: 1.5rem;
 }
@@ -72,9 +20,11 @@
   gap: 0.75rem;
   margin-bottom: 1.5rem;
   flex-wrap: wrap;
+  align-items: center;
 }
 
 .stats-controls input[type="search"],
+.stats-controls input[type="date"],
 .stats-controls select {
   background: var(--bg-dark, #111820);
   border: 1px solid var(--border);
@@ -93,13 +43,38 @@
   max-width: 360px;
 }
 
+.stats-controls input[type="date"] {
+  color-scheme: dark;
+}
+
 .stats-controls input[type="search"]:focus,
+.stats-controls input[type="date"]:focus,
 .stats-controls select:focus {
   border-color: var(--accent);
 }
 
 .stats-controls select option {
   background: #111820;
+}
+
+.stats-date-sep {
+  color: var(--text-muted);
+}
+
+.stats-date-clear {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1rem;
+  line-height: 1;
+  padding: 0.3rem 0.4rem;
+  cursor: pointer;
+  transition: color 0.15s;
+  border-radius: 4px;
+}
+
+.stats-date-clear:hover {
+  color: var(--text);
 }
 
 /* Table */
