@@ -206,33 +206,98 @@ set g_time_limit 20
 
 ## Map Rotation
 
-Map rotation is controlled by the `g_map_list` cvar, which points to a map list file. By default the server reads `maps.lst` from the game data directory.
+The server cycles through maps in rotation order when the frag limit or time limit is reached. The rotation is defined by a map list file — by default `maps.lst` from the game data.
+
+### Copying the Default maps.lst
+
+The installed game data includes a default `maps.lst` at:
+
+```
+/usr/share/quetoo/default/maps.lst
+```
+
+To customize the rotation, copy it to the server's user data directory and edit it there:
+
+```sh
+sudo -u quetoo mkdir -p /var/lib/quetoo/.local/share/WickedOldGames/Quetoo/default
+sudo -u quetoo cp /usr/share/quetoo/default/maps.lst \
+    /var/lib/quetoo/.local/share/WickedOldGames/Quetoo/default/my-rotation.lst
+```
+
+The user data directory takes precedence over the installed data, so your copy will be used without modifying the system files.
+
+### Pointing the Server at Your Custom List
+
+In `/etc/quetoo-dedicated/default.cfg`, add:
+
+```
+set g_map_list my-rotation.lst
+```
+
+The filename is resolved from the `default/` game directory — no path prefix needed.
 
 ### maps.lst Format
 
+Each map is an entry enclosed in `{ }`. Only `name` is required; all other fields are optional and override the corresponding server cvar for that map only.
+
 ```
-// maps.lst — one map per entry, with optional settings
 {
-    map "edge"
-    message "Back to Edge!"
+    name edge
 }
 {
-    map "aerowalk"
+    name aerowalk
+    gameplay instagib
 }
 {
-    map "bsp2"
-    g_ctf "1"
-    g_time_limit "30"
+    name lavatomb
+    min_clients 4
+}
+{
+    name pits
+    teams 1
+    num_teams 2
+    hook 0
+    gravity 600.0
+    music quetoo/the_pits
 }
 ```
 
-Override with a custom file:
+**Supported fields:**
 
-```bash
-+set g_map_list "cfg/myserver_maps.lst"
+| Field | Type | Description |
+|-------|------|-------------|
+| `name` | string | Map filename (required) |
+| `gameplay` | string | `default`, `instagib`, or `arena` |
+| `teams` | int | `1` to enable Team Deathmatch |
+| `num_teams` | int | Number of teams (overrides auto-detect) |
+| `ctf` | int | `1` to enable Capture the Flag |
+| `hook` | int | `1` to enable grappling hook, `0` to disable |
+| `gravity` | float | World gravity (default `800.0`) |
+| `min_clients` | int | Skip this map unless at least this many clients are connected |
+| `music` | string | Music track to play on this map |
+
+### Using min_clients to Skip Maps
+
+The `min_clients` field lets you exclude large or team-oriented maps when the server is lightly populated. For example, a server seeded with bots might want to skip big CTF maps until real players show up:
+
+```
+{
+    name warehouse
+    min_clients 6
+}
+{
+    name chthon
+    teams 1
+    ctf 1
+    min_clients 8
+}
 ```
 
-Maps rotate automatically when the frag limit or time limit is reached. You can also change the map manually from the console:
+When the rotation reaches a map whose `min_clients` threshold isn't met, the server automatically advances to the next eligible map.
+
+### Advancing the Map Manually
+
+From the server console or via `rcon`:
 
 ```
 map edge
