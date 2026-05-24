@@ -99,16 +99,15 @@ h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
 
 .btn-stats {
   gap: 0.4rem;
-  border: 2px solid var(--accent) !important;
+  border-color: var(--accent) !important;
   color: var(--accent-light) !important;
-  border-bottom-width: 2px !important;
-  padding-bottom: calc(0.5rem - 2px) !important;
 }
 
 .btn-stats::before {
   content: '🏆';
   font-style: normal;
   line-height: 1;
+  filter: sepia(1) saturate(3) hue-rotate(140deg) brightness(1.1);
 }
 
 .btn-stats:hover,
