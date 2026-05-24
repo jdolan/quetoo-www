@@ -11,3 +11,13 @@ date: 2026-05-21
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
     allowfullscreen></iframe>
 </div>
+
+<div class="trailer-embed">
+  <iframe src="https://www.youtube.com/embed/z48cW6kAl28"
+    title="Quetoo Jumpin' Around by GroinMischief"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen></iframe>
+</div>
+
+
