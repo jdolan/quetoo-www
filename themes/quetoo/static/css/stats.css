@@ -5,6 +5,58 @@
   padding-bottom: 4rem;
 }
 
+.stats-date-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.stats-date-label {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-right: 0.25rem;
+  white-space: nowrap;
+}
+
+.stats-date-sep {
+  color: var(--text-muted);
+}
+
+.stats-date-bar input[type="date"] {
+  background: var(--bg-dark, #111820);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text);
+  padding: 0.45rem 0.75rem;
+  font-family: inherit;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.15s;
+  color-scheme: dark;
+}
+
+.stats-date-bar input[type="date"]:focus {
+  border-color: var(--accent);
+}
+
+.stats-date-clear {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1rem;
+  line-height: 1;
+  padding: 0.3rem 0.4rem;
+  cursor: pointer;
+  transition: color 0.15s;
+  border-radius: 4px;
+}
+
+.stats-date-clear:hover {
+  color: var(--text);
+}
+
 .stats-header {
   margin-bottom: 1.5rem;
 }
@@ -115,7 +167,7 @@
 /* Player detail */
 .stats-detail-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(2, calc(50% - 0.75rem));
   gap: 1.5rem;
   margin-top: 1rem;
 }
@@ -187,6 +239,10 @@
 }
 
 @media (max-width: 640px) {
-  .stats-table th:nth-child(4),
-  .stats-table td:nth-child(4) { display: none; } /* hide damage on mobile */
+  .stats-detail-grid {
+    grid-template-columns: 1fr;
+  }
+  /* On mobile keep Rank, Player, Frags — hide Deaths, Damage, Time */
+  .stats-table th:nth-child(n+4),
+  .stats-table td:nth-child(n+4) { display: none; }
 }

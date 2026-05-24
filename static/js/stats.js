@@ -14,6 +14,42 @@ const elPlayerSummary   = document.getElementById('stats-player-summary');
 const elSearch          = document.getElementById('stats-search');
 const elLimit           = document.getElementById('stats-limit');
 const elBack            = document.getElementById('stats-back');
+const elDateFrom        = document.getElementById('stats-date-from');
+const elDateTo          = document.getElementById('stats-date-to');
+const elDateClear       = document.getElementById('stats-date-clear');
+
+// ------------------------------------------------------------------
+// Date range helpers
+// ------------------------------------------------------------------
+
+function getDateParams() {
+  const params = {};
+  if (elDateFrom.value) params.from = elDateFrom.value;
+  if (elDateTo.value)   params.to   = elDateTo.value;
+  return params;
+}
+
+function updateDateClear() {
+  elDateClear.hidden = !(elDateFrom.value || elDateTo.value);
+}
+
+elDateFrom.addEventListener('change', () => { updateDateClear(); reloadActive(); });
+elDateTo.addEventListener('change',   () => { updateDateClear(); reloadActive(); });
+elDateClear.addEventListener('click', () => {
+  elDateFrom.value = '';
+  elDateTo.value   = '';
+  updateDateClear();
+  reloadActive();
+});
+
+function reloadActive() {
+  const guid = getHash();
+  if (guid) {
+    showPlayer(guid);
+  } else {
+    loadLeaderboard();
+  }
+}
 
 // ------------------------------------------------------------------
 // Routing — hash encodes the selected player's hashed guid
@@ -53,7 +89,7 @@ async function loadLeaderboard() {
   const name  = elSearch.value.trim();
   const limit = elLimit.value;
 
-  const params = new URLSearchParams({ limit });
+  const params = new URLSearchParams({ limit, ...getDateParams() });
   if (name) params.set('name', name);
 
   elLeaderboardBody.innerHTML = '<div class="stats-loading">Loading\u2026</div>';
@@ -130,8 +166,11 @@ async function showPlayer(guid) {
   elPlayerSummary.textContent = '';
   elPlayerBody.innerHTML = '<div class="stats-loading">Loading\u2026</div>';
 
+  const params = new URLSearchParams(getDateParams());
+  const url    = params.toString() ? `${API}/${guid}?${params}` : `${API}/${guid}`;
+
   try {
-    const res = await fetch(`${API}/${guid}`);
+    const res = await fetch(url);
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const data = await res.json();
     renderPlayer(guid, data);

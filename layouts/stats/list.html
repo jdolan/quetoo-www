@@ -1,6 +1,15 @@
 {{ define "main" }}
 <div class="stats-page container">
 
+  <!-- Persistent date range filter — applies to leaderboard and player detail -->
+  <div class="stats-date-bar">
+    <label class="stats-date-label">Date range</label>
+    <input id="stats-date-from" type="date" title="From date">
+    <span class="stats-date-sep">–</span>
+    <input id="stats-date-to" type="date" title="To date">
+    <button id="stats-date-clear" class="stats-date-clear" title="Clear date range" hidden>✕</button>
+  </div>
+
   <!-- Leaderboard view -->
   <div id="stats-leaderboard">
     <div class="stats-header">
