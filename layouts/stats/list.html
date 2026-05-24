@@ -1,0 +1,38 @@
+{{ define "main" }}
+<div class="stats-page container">
+
+  <!-- Leaderboard view -->
+  <div id="stats-leaderboard">
+    <div class="stats-header">
+      <h1>Leaderboard</h1>
+      <p class="stats-subtitle">Frags from public servers worldwide. Human players only.</p>
+    </div>
+    <div class="stats-controls">
+      <input id="stats-search" type="search" placeholder="Search player…" autocomplete="off" spellcheck="false">
+      <select id="stats-limit">
+        <option value="25">Top 25</option>
+        <option value="50">Top 50</option>
+        <option value="100">Top 100</option>
+      </select>
+    </div>
+    <div id="stats-leaderboard-body">
+      <div class="stats-loading">Loading…</div>
+    </div>
+  </div>
+
+  <!-- Player detail view (hidden until a player is selected) -->
+  <div id="stats-player" class="hidden">
+    <div class="stats-header">
+      <button id="stats-back" class="btn btn-secondary">← Leaderboard</button>
+      <h1 id="stats-player-name"></h1>
+      <p class="stats-subtitle" id="stats-player-summary"></p>
+    </div>
+    <div id="stats-player-body">
+      <div class="stats-loading">Loading…</div>
+    </div>
+  </div>
+
+</div>
+<link rel="stylesheet" href="/css/stats.css">
+<script src="/js/stats.js"></script>
+{{ end }}

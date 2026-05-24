@@ -1,0 +1,192 @@
+/* ── Stats / Leaderboard ── */
+
+.stats-page {
+  padding-top: 100px;
+  padding-bottom: 4rem;
+}
+
+.stats-header {
+  margin-bottom: 1.5rem;
+}
+
+.stats-subtitle {
+  color: var(--text-muted);
+  margin-top: 0.4rem;
+  font-size: 0.95rem;
+}
+
+.stats-controls {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.stats-controls input[type="search"],
+.stats-controls select {
+  background: var(--bg-dark, #111820);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text);
+  padding: 0.5rem 0.85rem;
+  font-family: inherit;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.stats-controls input[type="search"] {
+  flex: 1;
+  min-width: 180px;
+  max-width: 360px;
+}
+
+.stats-controls input[type="search"]:focus,
+.stats-controls select:focus {
+  border-color: var(--accent);
+}
+
+.stats-controls select option {
+  background: #111820;
+}
+
+/* Table */
+.stats-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.stats-table th {
+  text-align: left;
+  padding: 0.6rem 1rem;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+.stats-table td {
+  padding: 0.65rem 1rem;
+  border-bottom: 1px solid rgba(74,138,154,0.1);
+  vertical-align: middle;
+}
+
+.stats-table tbody tr {
+  transition: background 0.1s;
+  cursor: pointer;
+}
+
+.stats-table tbody tr:hover {
+  background: var(--bg-card);
+}
+
+.stats-rank {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  width: 3rem;
+}
+
+.stats-rank-1  { color: #ffd700; font-weight: 800; }
+.stats-rank-2  { color: #c0c0c0; font-weight: 800; }
+.stats-rank-3  { color: #cd7f32; font-weight: 800; }
+
+.stats-player-name {
+  color: var(--accent-light);
+  font-weight: 400;
+}
+
+.stats-table tbody tr:hover .stats-player-name {
+  color: #fff;
+}
+
+.stats-num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+}
+
+.stats-damage {
+  color: var(--text-muted);
+}
+
+/* Player detail */
+.stats-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.stats-detail-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 1.25rem 1.5rem;
+}
+
+.stats-detail-card h3 {
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.85rem;
+}
+
+.stats-detail-card .stats-table th,
+.stats-detail-card .stats-table td {
+  padding: 0.45rem 0.5rem;
+}
+
+.stats-detail-card .stats-table tbody tr {
+  cursor: default;
+}
+
+.stats-empty {
+  color: var(--text-muted);
+  padding: 2rem 0;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+.stats-loading {
+  color: var(--text-muted);
+  padding: 2rem 0;
+  text-align: center;
+}
+
+.stats-error {
+  color: #e07070;
+  padding: 1rem;
+  border: 1px solid rgba(224,112,112,0.3);
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.hidden { display: none !important; }
+
+.btn-secondary {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  padding: 0.4rem 0.9rem;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+  margin-bottom: 1rem;
+  display: inline-block;
+}
+
+.btn-secondary:hover {
+  border-color: var(--accent);
+  color: var(--text);
+}
+
+@media (max-width: 640px) {
+  .stats-table th:nth-child(4),
+  .stats-table td:nth-child(4) { display: none; } /* hide damage on mobile */
+}

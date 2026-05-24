@@ -44,6 +44,10 @@ theme = 'quetoo'
     name = 'Community'
     url = '/community/'
     weight = 5
+  [[menu.main]]
+    name = 'Stats'
+    url = '/stats/'
+    weight = 6
 
 [markup]
   [markup.goldmark]
