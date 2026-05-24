@@ -74,9 +74,16 @@ h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
   transition: color 0.2s, background 0.2s;
 }
 
-.nav-links a:hover, .nav-links a.active {
+.nav-links a:hover {
   color: #fff;
   background: var(--bg-card);
+}
+
+.nav-links a.active {
+  color: #fff;
+  background: var(--bg-card);
+  border-bottom: 2px solid var(--accent-light);
+  padding-bottom: calc(0.5rem - 2px);
 }
 
 .btn-discord,
