@@ -213,14 +213,14 @@ The server cycles through maps in rotation order when the frag limit or time lim
 The installed game data includes a default `maps.lst` at:
 
 ```
-/usr/share/quetoo/default/maps.lst
+/usr/lib/quetoo/share/quetoo/default/maps.lst
 ```
 
 To customize the rotation, copy it to the server's user data directory and edit it there:
 
 ```sh
 sudo -u quetoo mkdir -p /var/lib/quetoo/.local/share/WickedOldGames/Quetoo/default
-sudo -u quetoo cp /usr/share/quetoo/default/maps.lst \
+sudo -u quetoo cp /usr/lib/quetoo/share/quetoo/default/maps.lst \
     /var/lib/quetoo/.local/share/WickedOldGames/Quetoo/default/my-rotation.lst
 ```
 
