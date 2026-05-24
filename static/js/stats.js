@@ -117,7 +117,6 @@ function renderLeaderboard(rows) {
     const frags      = Number(row.frags).toLocaleString();
     const deaths     = Number(row.deaths).toLocaleString();
     const damage     = Number(row.damage).toLocaleString();
-    const timePlayed = formatDuration(row.time_played);
     const cls        = rank <= 3 ? ` stats-rank-${rank}` : '';
     return `<tr data-guid="${esc(row.guid)}" data-name="${esc(row.name)}">
       <td class="stats-rank${cls}">${rank}</td>
@@ -125,7 +124,6 @@ function renderLeaderboard(rows) {
       <td class="stats-num">${frags}</td>
       <td class="stats-num">${deaths}</td>
       <td class="stats-num stats-damage">${damage}</td>
-      <td class="stats-num stats-damage">${timePlayed}</td>
     </tr>`;
   }).join('');
 
@@ -138,7 +136,6 @@ function renderLeaderboard(rows) {
           <th style="text-align:right">Frags</th>
           <th style="text-align:right">Deaths</th>
           <th style="text-align:right">Damage</th>
-          <th style="text-align:right">Time</th>
         </tr>
       </thead>
       <tbody>${tbody}</tbody>
@@ -202,7 +199,7 @@ function renderPlayer(guid, data) {
   const deathsTile  = tile('Deaths',  deaths.toLocaleString());
   const kdTile      = tile('K/D',     kd);
   const damageTile  = tile('Damage',  Number(data.damage).toLocaleString());
-  const timeTile    = tile('Played',  formatDuration(data.time_played));
+  const timeTile    = '';
   let   nemesisTile = '';
   if (data.nemesis) {
     nemesisTile = `<div class="stats-tile stats-tile-nemesis" data-guid="${esc(data.nemesis.guid)}" title="Killed you ${Number(data.nemesis.deaths).toLocaleString()} times">
