@@ -165,6 +165,53 @@
 }
 
 /* Player detail */
+.stats-tiles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1.75rem;
+}
+
+.stats-tile {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.85rem 1.25rem;
+  min-width: 80px;
+  text-align: center;
+}
+
+.stats-tile-value {
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+
+.stats-tile-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--text-muted);
+  margin-top: 0.3rem;
+}
+
+.stats-tile-nemesis {
+  cursor: pointer;
+  border-color: rgba(224, 112, 112, 0.35);
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.stats-tile-nemesis:hover {
+  border-color: rgba(224, 112, 112, 0.7);
+  background: rgba(224, 112, 112, 0.08);
+}
+
+.stats-tile-nemesis .stats-tile-value {
+  color: #e07070;
+}
+
 .stats-detail-grid {
   display: grid;
   grid-template-columns: repeat(2, calc(50% - 0.75rem));
@@ -245,4 +292,12 @@
   /* On mobile keep Rank, Player, Frags — hide Deaths, Damage, Time */
   .stats-table th:nth-child(n+4),
   .stats-table td:nth-child(n+4) { display: none; }
+
+  .stats-tile {
+    flex: 1 1 calc(33% - 0.5rem);
+    min-width: 0;
+    padding: 0.65rem 0.75rem;
+  }
+
+  .stats-tile-value { font-size: 1.1rem; }
 }

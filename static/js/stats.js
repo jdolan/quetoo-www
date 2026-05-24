@@ -185,11 +185,34 @@ function renderPlayer(guid, data) {
   const name   = nameEl ? nameEl.dataset.name : (guid.slice(0, 8) + '\u2026');
 
   elPlayerName.textContent    = name;
-  const rankStr = data.rank ? `#${data.rank} \u00b7 ` : '';
-  elPlayerSummary.textContent =
-    `${rankStr}${Number(data.frags).toLocaleString()} frags \u00b7 ${Number(data.damage).toLocaleString()} damage \u00b7 ${formatDuration(data.time_played)} played`;
+  elPlayerSummary.textContent = '';
+
+  const frags  = Number(data.frags);
+  const deaths = Number(data.deaths);
+  const kd     = deaths > 0 ? (frags / deaths).toFixed(2) : frags.toFixed(2);
+
+  function tile(label, value, extra = '') {
+    return `<div class="stats-tile"${extra}><div class="stats-tile-value">${value}</div><div class="stats-tile-label">${label}</div></div>`;
+  }
+
+  const rankTile    = tile('Rank',    data.rank ? `#${data.rank}` : '—');
+  const fragsTile   = tile('Frags',   frags.toLocaleString());
+  const deathsTile  = tile('Deaths',  deaths.toLocaleString());
+  const kdTile      = tile('K/D',     kd);
+  const damageTile  = tile('Damage',  Number(data.damage).toLocaleString());
+  const timeTile    = tile('Played',  formatDuration(data.time_played));
+  let   nemesisTile = '';
+  if (data.nemesis) {
+    nemesisTile = `<div class="stats-tile stats-tile-nemesis" data-guid="${esc(data.nemesis.guid)}" title="Killed you ${Number(data.nemesis.deaths).toLocaleString()} times">
+      <div class="stats-tile-value">${esc(data.nemesis.name)}</div>
+      <div class="stats-tile-label">Nemesis &middot; ${Number(data.nemesis.deaths).toLocaleString()} kills</div>
+    </div>`;
+  }
+
+  const tilesHtml = `<div class="stats-tiles">${rankTile}${fragsTile}${deathsTile}${kdTile}${damageTile}${timeTile}${nemesisTile}</div>`;
 
   elPlayerBody.innerHTML = `
+    ${tilesHtml}
     <div class="stats-detail-grid">
       ${detailCard('Kills by Weapon',   data.kills_by_weapon,    ['Weapon',   'Frags',  'Damage'], r => [r.weapon||'unknown', r.frags,  r.damage])}
       ${detailCard('Deaths by Weapon',  data.deaths_by_weapon,   ['Weapon',   'Deaths'],           r => [r.weapon||'unknown', r.deaths])}
@@ -198,6 +221,11 @@ function renderPlayer(guid, data) {
       ${detailCard('Kills by Level',    data.kills_by_level,     ['Level',    'Frags',  'Damage'], r => [r.level,             r.frags,  r.damage])}
       ${detailCard('Deaths by Level',   data.deaths_by_level,    ['Level',    'Deaths'],           r => [r.level,             r.deaths])}
     </div>`;
+
+  const nemesisEl = elPlayerBody.querySelector('.stats-tile-nemesis');
+  if (nemesisEl) {
+    nemesisEl.addEventListener('click', () => navigate(nemesisEl.dataset.guid));
+  }
 }
 
 function detailCard(title, rows, headers, rowFn) {
