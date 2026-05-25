@@ -149,17 +149,19 @@ function renderLeaderboard(rows) {
   }
 
   const tbody = rows.map((row) => {
-    const rank       = row.rank;
-    const frags      = Number(row.frags).toLocaleString();
-    const deaths     = Number(row.deaths).toLocaleString();
-    const damage     = Number(row.damage).toLocaleString();
-    const cls        = rank <= 3 ? ` stats-rank-${rank}` : '';
+    const rank     = row.rank;
+    const frags    = Number(row.frags).toLocaleString();
+    const deaths   = Number(row.deaths).toLocaleString();
+    const damage   = Number(row.damage).toLocaleString();
+    const captures = Number(row.captures ?? 0).toLocaleString();
+    const cls      = rank <= 3 ? ` stats-rank-${rank}` : '';
     return `<tr data-guid="${esc(row.guid)}" data-name="${esc(stripColors(row.name))}">
       <td class="stats-rank${cls}">${rank}</td>
       <td class="stats-player-name">${colorize(row.name)}</td>
       <td class="stats-num">${frags}</td>
       <td class="stats-num">${deaths}</td>
       <td class="stats-num stats-damage">${damage}</td>
+      <td class="stats-num">${captures}</td>
     </tr>`;
   }).join('');
 
@@ -172,6 +174,7 @@ function renderLeaderboard(rows) {
           <th style="text-align:right">Frags</th>
           <th style="text-align:right">Deaths</th>
           <th style="text-align:right">Damage</th>
+          <th style="text-align:right">Captures</th>
         </tr>
       </thead>
       <tbody>${tbody}</tbody>
@@ -230,13 +233,14 @@ function renderPlayer(guid, data) {
     return `<div class="stats-tile"${extra}><div class="stats-tile-value">${value}</div><div class="stats-tile-label">${label}</div></div>`;
   }
 
-  const rankTile    = tile('Rank',    data.rank ? `#${data.rank}` : '—');
-  const fragsTile   = tile('Frags',   frags.toLocaleString());
-  const deathsTile  = tile('Deaths',  deaths.toLocaleString());
-  const kdTile      = tile('K/D',     kd);
-  const damageTile  = tile('Damage',  Number(data.damage).toLocaleString());
-  const timeTile    = '';
-  let   nemesisTile = '';
+  const rankTile     = tile('Rank',     data.rank ? `#${data.rank}` : '—');
+  const fragsTile    = tile('Frags',    frags.toLocaleString());
+  const deathsTile   = tile('Deaths',   deaths.toLocaleString());
+  const kdTile       = tile('K/D',      kd);
+  const damageTile   = tile('Damage',   Number(data.damage).toLocaleString());
+  const capturesTile = tile('Captures', Number(data.captures ?? 0).toLocaleString());
+  const timeTile     = '';
+  let   nemesisTile  = '';
   if (data.nemesis) {
     nemesisTile = `<div class="stats-tile stats-tile-nemesis" data-guid="${esc(data.nemesis.guid)}" title="Killed you ${Number(data.nemesis.deaths).toLocaleString()} times">
       <div class="stats-tile-value">${colorize(data.nemesis.name)}</div>
@@ -244,7 +248,7 @@ function renderPlayer(guid, data) {
     </div>`;
   }
 
-  const tilesHtml = `<div class="stats-tiles">${rankTile}${fragsTile}${deathsTile}${kdTile}${damageTile}${timeTile}${nemesisTile}</div>`;
+  const tilesHtml = `<div class="stats-tiles">${rankTile}${fragsTile}${deathsTile}${kdTile}${damageTile}${capturesTile}${timeTile}${nemesisTile}</div>`;
 
   elPlayerBody.innerHTML = `
     ${tilesHtml}
@@ -255,6 +259,7 @@ function renderPlayer(guid, data) {
       ${detailCard('Deaths by Player',  data.deaths_by_attacker, ['Player',   'Deaths'],           r => [r.name,              r.deaths],           true)}
       ${detailCard('Kills by Level',    data.kills_by_level,     ['Level',    'Frags',  'Damage'], r => [r.level,             r.frags,  r.damage])}
       ${detailCard('Deaths by Level',   data.deaths_by_level,    ['Level',    'Deaths'],           r => [r.level,             r.deaths])}
+      ${detailCard('Captures by Level', data.captures_by_level,  ['Level',    'Captures'],         r => [r.level,             r.captures])}
     </div>`;
 
   const nemesisEl = elPlayerBody.querySelector('.stats-tile-nemesis');
