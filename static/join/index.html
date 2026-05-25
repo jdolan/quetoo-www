@@ -3,7 +3,13 @@
 <head>
   <meta charset="utf-8">
   <title>Join — Quetoo</title>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-071NWTJCT1"></script>
   <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-071NWTJCT1');
+
     var addr = window.location.search.slice(1);
     if (addr) {
       window.location.replace('quetoo://' + addr);
