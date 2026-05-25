@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Join — Quetoo</title>
+  <script>
+    var addr = window.location.search.slice(1);
+    if (addr) {
+      window.location.replace('quetoo://' + addr);
+    } else {
+      window.location.replace('/');
+    }
+  </script>
+</head>
+<body></body>
+</html>
