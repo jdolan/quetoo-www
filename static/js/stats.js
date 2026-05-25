@@ -154,9 +154,9 @@ function renderLeaderboard(rows) {
     const deaths     = Number(row.deaths).toLocaleString();
     const damage     = Number(row.damage).toLocaleString();
     const cls        = rank <= 3 ? ` stats-rank-${rank}` : '';
-    return `<tr data-guid="${esc(row.guid)}" data-name="${esc(row.name)}">
+    return `<tr data-guid="${esc(row.guid)}" data-name="${esc(stripColors(row.name))}">
       <td class="stats-rank${cls}">${rank}</td>
-      <td class="stats-player-name">${esc(row.name)}</td>
+      <td class="stats-player-name">${colorize(row.name)}</td>
       <td class="stats-num">${frags}</td>
       <td class="stats-num">${deaths}</td>
       <td class="stats-num stats-damage">${damage}</td>
@@ -219,7 +219,7 @@ function renderPlayer(guid, data) {
   const nameEl = elLeaderboardBody.querySelector(`tr[data-guid="${guid}"]`);
   const name   = nameEl ? nameEl.dataset.name : (guid.slice(0, 8) + '\u2026');
 
-  elPlayerName.textContent    = name;
+  elPlayerName.innerHTML      = colorize(name);
   elPlayerSummary.textContent = '';
 
   const frags  = Number(data.frags);
@@ -239,7 +239,7 @@ function renderPlayer(guid, data) {
   let   nemesisTile = '';
   if (data.nemesis) {
     nemesisTile = `<div class="stats-tile stats-tile-nemesis" data-guid="${esc(data.nemesis.guid)}" title="Killed you ${Number(data.nemesis.deaths).toLocaleString()} times">
-      <div class="stats-tile-value">${esc(data.nemesis.name)}</div>
+      <div class="stats-tile-value">${colorize(data.nemesis.name)}</div>
       <div class="stats-tile-label">Nemesis &middot; ${Number(data.nemesis.deaths).toLocaleString()} kills</div>
     </div>`;
   }
@@ -251,8 +251,8 @@ function renderPlayer(guid, data) {
     <div class="stats-detail-grid">
       ${detailCard('Kills by Weapon',   data.kills_by_weapon,    ['Weapon',   'Frags',  'Damage'], r => [r.weapon||'unknown', r.frags,  r.damage])}
       ${detailCard('Deaths by Weapon',  data.deaths_by_weapon,   ['Weapon',   'Deaths'],           r => [r.weapon||'unknown', r.deaths])}
-      ${detailCard('Kills by Player',   data.kills_by_target,    ['Player',   'Frags',  'Damage'], r => [r.name,              r.frags,  r.damage])}
-      ${detailCard('Deaths by Player',  data.deaths_by_attacker, ['Player',   'Deaths'],           r => [r.name,              r.deaths])}
+      ${detailCard('Kills by Player',   data.kills_by_target,    ['Player',   'Frags',  'Damage'], r => [r.name,              r.frags,  r.damage], true)}
+      ${detailCard('Deaths by Player',  data.deaths_by_attacker, ['Player',   'Deaths'],           r => [r.name,              r.deaths],           true)}
       ${detailCard('Kills by Level',    data.kills_by_level,     ['Level',    'Frags',  'Damage'], r => [r.level,             r.frags,  r.damage])}
       ${detailCard('Deaths by Level',   data.deaths_by_level,    ['Level',    'Deaths'],           r => [r.level,             r.deaths])}
     </div>`;
@@ -263,7 +263,7 @@ function renderPlayer(guid, data) {
   }
 }
 
-function detailCard(title, rows, headers, rowFn) {
+function detailCard(title, rows, headers, rowFn, colorizeFirst = false) {
   if (!rows || !rows.length) {
     return `<div class="stats-detail-card"><h3>${title}</h3><div class="stats-empty">No data.</div></div>`;
   }
@@ -274,7 +274,8 @@ function detailCard(title, rows, headers, rowFn) {
     const cells = rowFn(r);
     return '<tr>' + cells.map((c, i) => {
       const val = (i > 0 && Number.isFinite(+c)) ? Number(c).toLocaleString() : c;
-      return `<td class="${i === 0 ? '' : 'stats-num'}">${esc(String(val))}</td>`;
+      const rendered = (i === 0 && colorizeFirst) ? colorize(String(val)) : esc(String(val));
+      return `<td class="${i === 0 ? '' : 'stats-num'}">${rendered}</td>`;
     }).join('') + '</tr>';
   }).join('');
   return `<div class="stats-detail-card">
@@ -291,6 +292,55 @@ function detailCard(title, rows, headers, rowFn) {
 // ------------------------------------------------------------------
 
 elBack.addEventListener('click', () => navigate(null));
+
+// ------------------------------------------------------------------
+// Quetoo color escape rendering (^0–^7)
+// ------------------------------------------------------------------
+
+const Q_COLORS = [
+  '#ffffff', // ^0 black — renders as white (matches game behaviour)
+  '#ff0000', // ^1 red
+  '#00ff00', // ^2 green
+  '#ffff00', // ^3 yellow
+  '#0000ff', // ^4 blue
+  '#00ffff', // ^5 cyan
+  '#ff00ff', // ^6 magenta
+  '#ffffff', // ^7 white
+  '#ff8800', // ^8 orange
+  '#888888', // ^9 grey
+];
+
+/** Strip color escapes, returning plain text. */
+function stripColors(str) {
+  return String(str).replace(/\^[0-9]/g, '');
+}
+
+/**
+ * Render color escapes as <span style="color:…"> elements.
+ * Text segments are HTML-escaped to prevent XSS.
+ */
+function colorize(str) {
+  if (!str) return '';
+  const s = String(str);
+  if (!/\^[0-9]/.test(s)) return esc(s);  // fast path — no escapes
+
+  const parts  = s.split(/(\^[0-9])/);
+  let result   = '';
+  let inSpan   = false;
+
+  for (const part of parts) {
+    if (/^\^[0-9]$/.test(part)) {
+      if (inSpan) result += '</span>';
+      result += `<span style="color:${Q_COLORS[parseInt(part[1])]}">`;
+      inSpan = true;
+    } else if (part) {
+      result += esc(part);
+    }
+  }
+
+  if (inSpan) result += '</span>';
+  return result;
+}
 
 // ------------------------------------------------------------------
 // Helpers
