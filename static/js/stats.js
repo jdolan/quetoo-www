@@ -60,14 +60,14 @@ async function loadOptions() {
     (data.servers || []).forEach(s => {
       const opt = document.createElement('option');
       opt.value       = s;
-      opt.textContent = s;
+      opt.textContent = stripColors(s);
       elServer.appendChild(opt);
     });
 
     (data.levels || []).forEach(l => {
       const opt = document.createElement('option');
       opt.value       = l;
-      opt.textContent = l;
+      opt.textContent = stripColors(l);
       elLevel.appendChild(opt);
     });
   } catch (_) { /* silently ignore */ }
