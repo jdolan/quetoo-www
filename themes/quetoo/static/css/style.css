@@ -345,8 +345,6 @@ h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
 
 .page-content {
   padding: 8rem 1.5rem 6rem;
-  max-width: 900px;
-  margin: 0 auto;
 }
 
 .page-content h1 {
@@ -505,7 +503,7 @@ h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
 
 /* ── Media page (full) ── */
 
-.media-page { padding: 2rem 0 6rem; }
+.media-page { padding: 8rem 0 6rem; }
 
 .media-page h1 {
   color: var(--accent-light);
