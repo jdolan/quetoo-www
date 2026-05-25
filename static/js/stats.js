@@ -112,6 +112,18 @@ window.addEventListener('hashchange', () => {
 // ------------------------------------------------------------------
 
 let searchTimer = null;
+let sortState   = { key: 'frags', dir: 'desc' };
+
+// key: null marks non-sortable columns (rank is derived from frags order)
+const SORT_COLS = [
+  { label: '#',        key: null,       align: 'left'  },
+  { label: 'Player',   key: 'name',     align: 'left',  defaultDir: 'asc'  },
+  { label: 'Frags',    key: 'frags',    align: 'right', defaultDir: 'desc' },
+  { label: 'Deaths',   key: 'deaths',   align: 'right', defaultDir: 'desc' },
+  { label: 'K/D',      key: 'kd',       align: 'right', defaultDir: 'desc' },
+  { label: 'Damage',   key: 'damage',   align: 'right', defaultDir: 'desc' },
+  { label: 'Captures', key: 'captures', align: 'right', defaultDir: 'desc' },
+];
 
 function showLeaderboard() {
   elPlayer.classList.add('hidden');
@@ -129,6 +141,8 @@ async function loadLeaderboard() {
   if (name)   params.set('name',   name);
   if (server) params.set('server', server);
   if (level)  params.set('level',  level);
+  params.set('sort', sortState.key);
+  params.set('dir',  sortState.dir);
 
   elLeaderboardBody.innerHTML = '<div class="stats-loading">Loading\u2026</div>';
 
@@ -169,21 +183,34 @@ function renderLeaderboard(rows) {
     </tr>`;
   }).join('');
 
+  const thead = SORT_COLS.map(col => {
+    const active  = col.key && sortState.key === col.key;
+    const arrow   = active ? (sortState.dir === 'asc' ? ' ▲' : ' ▼') : '';
+    const align   = col.align === 'right' ? 'text-align:right;' : '';
+    const pointer = col.key ? 'cursor:pointer;user-select:none;' : '';
+    const attrs   = col.key ? ` data-sort="${col.key}"` : '';
+    return `<th${attrs} style="${align}${pointer}">${col.label}${arrow}</th>`;
+  }).join('');
+
   elLeaderboardBody.innerHTML = `
     <table class="stats-table">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Player</th>
-          <th style="text-align:right">Frags</th>
-          <th style="text-align:right">Deaths</th>
-          <th style="text-align:right">K/D</th>
-          <th style="text-align:right">Damage</th>
-          <th style="text-align:right">Captures</th>
-        </tr>
-      </thead>
+      <thead><tr>${thead}</tr></thead>
       <tbody>${tbody}</tbody>
     </table>`;
+
+  elLeaderboardBody.querySelectorAll('thead th[data-sort]').forEach(th => {
+    th.addEventListener('click', () => {
+      const key = th.dataset.sort;
+      const col = SORT_COLS.find(c => c.key === key);
+      if (sortState.key === key) {
+        sortState.dir = sortState.dir === 'asc' ? 'desc' : 'asc';
+      } else {
+        sortState.key = key;
+        sortState.dir = col.defaultDir;
+      }
+      loadLeaderboard();
+    });
+  });
 
   elLeaderboardBody.querySelectorAll('tbody tr').forEach(tr => {
     tr.addEventListener('click', () => navigate(tr.dataset.guid));
