@@ -394,6 +394,10 @@
   border-bottom: 1px solid var(--border);
 }
 
+.servers-players-table th.servers-cell-num {
+  text-align: right;
+}
+
 .servers-players-table td {
   padding: 0.25rem 0.5rem;
   border-bottom: none;
