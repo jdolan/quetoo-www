@@ -250,3 +250,161 @@
 
   .stats-tile-value { font-size: 1.1rem; }
 }
+
+/* ── Server Browser ─────────────────────────────────────────────────────── */
+
+.servers-page {
+  padding-top: 100px;
+  padding-bottom: 4rem;
+}
+
+.servers-header {
+  margin-bottom: 1.5rem;
+}
+
+.servers-subtitle {
+  color: var(--text-muted);
+  margin-top: 0.4rem;
+  font-size: 0.95rem;
+}
+
+.servers-loading,
+.servers-empty,
+.servers-error {
+  padding: 2rem;
+  text-align: center;
+  color: var(--text-muted);
+}
+
+.servers-error {
+  color: #e07070;
+  border: 1px solid rgba(224,112,112,0.3);
+  border-radius: 4px;
+}
+
+/* Main table */
+.servers-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.servers-table thead th {
+  text-align: left;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  border-bottom: 2px solid var(--border);
+  white-space: nowrap;
+}
+
+.servers-row {
+  cursor: pointer;
+  transition: background 0.12s;
+}
+
+.servers-row:hover {
+  background: var(--bg-hover, #162030);
+}
+
+.servers-row td {
+  padding: 0.65rem 0.75rem;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+
+.servers-dot {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+.servers-dot-online { background: #4caf50; }
+.servers-dot-empty  { background: #444; }
+
+.servers-hostname {
+  font-weight: 600;
+  vertical-align: middle;
+}
+
+.servers-map,
+.servers-gameplay {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.servers-cell-num {
+  text-align: right;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.servers-join-cell {
+  text-align: right;
+  white-space: nowrap;
+  width: 1%;
+}
+
+.servers-join {
+  text-decoration: none;
+}
+
+.btn-sm {
+  padding: 0.3rem 0.85rem;
+  font-size: 0.85rem;
+  border-radius: 4px;
+  background: var(--accent);
+  color: #fff;
+  font-family: inherit;
+  font-weight: 700;
+  transition: background 0.15s;
+}
+
+.btn-sm:hover {
+  background: var(--accent-light);
+  color: #fff;
+}
+
+/* Expanded player detail row */
+.servers-players td {
+  padding: 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.servers-players-td {
+  padding: 0.6rem 1.5rem 0.6rem 2rem !important;
+  background: var(--bg-dark, #090f16);
+}
+
+.servers-players-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.servers-players-table th {
+  text-align: left;
+  color: var(--text-muted);
+  font-weight: 500;
+  padding: 0.2rem 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.servers-players-table td {
+  padding: 0.25rem 0.5rem;
+  border-bottom: none;
+}
+
+.servers-no-players {
+  color: var(--text-muted);
+  text-align: center;
+  padding: 0.4rem;
+}
+
+@media (max-width: 640px) {
+  .servers-gameplay { display: none; }
+}

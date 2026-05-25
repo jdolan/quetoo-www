@@ -1,0 +1,19 @@
+{{ define "main" }}
+<div class="servers-page container">
+
+  <div class="servers-header">
+    <h1>Servers</h1>
+    <p class="servers-subtitle">
+      Live public servers. Click a row to see players.
+      <span id="servers-refresh-status"></span>
+    </p>
+  </div>
+
+  <div id="servers-list">
+    <div class="servers-loading">Loading…</div>
+  </div>
+
+</div>
+<link rel="stylesheet" href="/css/stats.css">
+<script src="/js/servers.js"></script>
+{{ end }}

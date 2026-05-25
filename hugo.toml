@@ -45,13 +45,17 @@ theme = 'quetoo'
     url = '/community/'
     weight = 5
   [[menu.main]]
+    name = 'Servers'
+    url = '/servers/'
+    weight = 6
+  [[menu.main]]
     name = 'Discord'
     url = 'https://discord.gg/unb9U4b'
-    weight = 6
+    weight = 7
   [[menu.main]]
     name = 'Stats'
     url = '/stats/'
-    weight = 7
+    weight = 8
 
 [markup]
   [markup.goldmark]
