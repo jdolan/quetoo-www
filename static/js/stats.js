@@ -150,8 +150,11 @@ function renderLeaderboard(rows) {
 
   const tbody = rows.map((row) => {
     const rank     = row.rank;
-    const frags    = Number(row.frags).toLocaleString();
-    const deaths   = Number(row.deaths).toLocaleString();
+    const fragsN   = Number(row.frags);
+    const deathsN  = Number(row.deaths);
+    const frags    = fragsN.toLocaleString();
+    const deaths   = deathsN.toLocaleString();
+    const kd       = (deathsN > 0 ? fragsN / deathsN : fragsN).toFixed(2);
     const damage   = Number(row.damage).toLocaleString();
     const captures = Number(row.captures ?? 0).toLocaleString();
     const cls      = rank <= 3 ? ` stats-rank-${rank}` : '';
@@ -160,6 +163,7 @@ function renderLeaderboard(rows) {
       <td class="stats-player-name">${colorize(row.name)}</td>
       <td class="stats-num">${frags}</td>
       <td class="stats-num">${deaths}</td>
+      <td class="stats-num">${kd}</td>
       <td class="stats-num stats-damage">${damage}</td>
       <td class="stats-num">${captures}</td>
     </tr>`;
@@ -173,6 +177,7 @@ function renderLeaderboard(rows) {
           <th>Player</th>
           <th style="text-align:right">Frags</th>
           <th style="text-align:right">Deaths</th>
+          <th style="text-align:right">K/D</th>
           <th style="text-align:right">Damage</th>
           <th style="text-align:right">Captures</th>
         </tr>
