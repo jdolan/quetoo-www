@@ -1,4 +1,4 @@
 ---
 title: "Stats"
-description: "Global frag leaderboard and player stats for Quetoo public servers."
+description: "Global leaderboard and player stats for Quetoo public servers."
 ---

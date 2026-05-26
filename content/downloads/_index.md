@@ -7,7 +7,7 @@ description: "Download Quetoo for Linux, macOS, and Windows. Free to download, p
   <div class="download-card">
     <div class="platform-icon"><img src="/icons/apple.svg" class="brand-icon" alt="macOS"></div>
     <h3>macOS</h3>
-    <p>Apple Silicon <tt>.app</tt> for macOS Sequoia or later.</p>
+    <p>Universal <tt>.app</tt> for macOS Sequoia or later.</p>
     <a href="https://github.com/jdolan/quetoo/releases/latest#macos" class="btn btn-primary">Download for macOS</a>
   </div>
   <div class="download-card">
@@ -18,15 +18,27 @@ description: "Download Quetoo for Linux, macOS, and Windows. Free to download, p
   </div>
   <div class="download-card">
     <div class="platform-icon"><img src="/icons/linux.svg" class="brand-icon" alt="Linux"></div>
-    <h3>Linux Client</h3>
-    <p>64-bit <tt>.tgz</tt> compatible with most modern distros.</p>
+    <h3>x64 Linux Client</h3>
+    <p>64-bit <tt>.tgz</tt> for modern <tt>x86-64</tt> distros.</p>
     <a href="https://github.com/jdolan/quetoo/releases/latest#linux-x86-64" class="btn btn-primary">Download for Linux</a>
   </div>
   <div class="download-card">
-    <div class="platform-icon"><img src="/icons/linux.svg" class="brand-icon" alt="Linux Server"></div>
-    <h3>Linux Server</h3>
-    <p>64-bit packages for <tt>x64</tt> and <tt>arm64</tt> servers.</p>
+    <div class="platform-icon"><img src="/icons/linux.svg" class="brand-icon" alt="Linux"></div>
+    <h3>arm64 Linux Client</h3>
+    <p>64 bit <tt>.tgz</tt> for modern <tt>aarch64</tt> distros.</p>
+    <a href="https://github.com/jdolan/quetoo/releases/latest#linux-arm64" class="btn btn-primary">Download for Linux</a>
+  </div>
+  <div class="download-card">
+    <div class="platform-icon"><img src="/icons/linux.svg" class="brand-icon" alt="x86-64 Linux Server"></div>
+    <h3>x64 Linux Server</h3>
+    <p>Prebuilt packages for <tt>x86-64</tt> servers.</p>
     <a href="https://github.com/jdolan/quetoo/releases/latest#linux-x86-64" class="btn btn-primary">Linux Server Packages</a>
+  </div>
+  <div class="download-card">
+    <div class="platform-icon"><img src="/icons/linux.svg" class="brand-icon" alt="aarch64 Linux Server"></div>
+    <h3>arm64 Linux Server</h3>
+    <p>Prebuilt packages for <tt>aarch64</tt> servers.</p>
+    <a href="https://github.com/jdolan/quetoo/releases/latest#linux-aarch64" class="btn btn-primary">Linux Server Packages</a>
   </div>
 </div>
 
