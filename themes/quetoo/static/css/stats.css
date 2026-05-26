@@ -1,7 +1,6 @@
 /* ── Stats / Leaderboard ── */
 
 .stats-page {
-  padding-top: 100px;
   padding-bottom: 4rem;
 }
 
@@ -254,7 +253,6 @@
 /* ── Server Browser ─────────────────────────────────────────────────────── */
 
 .servers-page {
-  padding-top: 100px;
   padding-bottom: 4rem;
 }
 

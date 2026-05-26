@@ -347,9 +347,7 @@ h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
   padding: 8rem 1.5rem 6rem;
 }
 
-.page-content h1,
-.servers-header h1,
-.stats-header h1 {
+.page-content h1 {
   color: var(--accent-light);
   margin-bottom: 2rem;
   padding-bottom: 1rem;
