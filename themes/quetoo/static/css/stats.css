@@ -93,6 +93,11 @@
 .stats-rank-2  { color: #c0c0c0; font-weight: 800; }
 .stats-rank-3  { color: #cd7f32; font-weight: 800; }
 
+/* Override .page-content td:first-child (0,2,1) from style.css */
+.stats-table td.stats-rank-1 { color: #ffd700; }
+.stats-table td.stats-rank-2 { color: #c0c0c0; }
+.stats-table td.stats-rank-3 { color: #cd7f32; }
+
 .stats-player-name {
   color: var(--accent-light);
   font-weight: 400;
