@@ -274,7 +274,11 @@ function renderPlayer(guid, data) {
     return `<div class="stats-tile"${extra}><div class="stats-tile-value">${value}</div><div class="stats-tile-label">${label}</div></div>`;
   }
 
-  const rankTile     = tile('Rank',     data.rank ? `#${data.rank}` : '—');
+  const rankColors   = { 1: '#ffd700', 2: '#c0c0c0', 3: '#cd7f32' };
+  const rankColor    = rankColors[data.rank];
+  const rankExtra    = rankColor ? ` style="border-color:${rankColor}33"` : '';
+  const rankValue    = data.rank ? `<span${rankColor ? ` style="color:${rankColor}"` : ''}>#${data.rank}</span>` : '—';
+  const rankTile     = tile('Rank', rankValue, rankExtra);
   const fragsTile    = tile('Frags',    frags.toLocaleString());
   const deathsTile   = tile('Deaths',   deaths.toLocaleString());
   const kdTile       = tile('K/D',      kd);
