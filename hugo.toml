@@ -1,7 +1,9 @@
 baseURL = 'https://quetoo.org/'
-languageCode = 'en-us'
 title = 'Quetoo'
 theme = 'quetoo'
+
+[language]
+  locale = 'en-us'
 
 [services]
   [services.googleAnalytics]
