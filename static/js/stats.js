@@ -18,6 +18,7 @@ const elPlayerSummary   = document.getElementById('stats-player-summary');
 const elSearch          = document.getElementById('stats-search');
 const elServer          = document.getElementById('stats-server');
 const elLevel           = document.getElementById('stats-level');
+const elAi              = document.getElementById('stats-ai');
 const elLimit           = document.getElementById('stats-limit');
 const elPeriod          = document.getElementById('stats-period');
 const elBack            = document.getElementById('stats-back');
@@ -78,6 +79,7 @@ async function loadOptions() {
 
 elServer.addEventListener('change', loadLeaderboard);
 elLevel.addEventListener('change',  loadLeaderboard);
+elAi.addEventListener('change',  reloadActive);
 
 function reloadActive() {
   const guid = getHash();
@@ -139,11 +141,13 @@ async function loadLeaderboard() {
   const limit  = elLimit.value;
   const server = elServer.value;
   const level  = elLevel.value;
+  const ai     = elAi.value;
 
   const params = new URLSearchParams({ limit, ...getDateParams() });
   if (name)   params.set('name',   name);
   if (server) params.set('server', server);
   if (level)  params.set('level',  level);
+  params.set('ai', ai);
   params.set('sort', sortState.key);
   params.set('dir',  sortState.dir);
 
@@ -240,6 +244,7 @@ async function showPlayer(guid) {
   elPlayerBody.innerHTML = '<div class="stats-loading">Loading\u2026</div>';
 
   const params = new URLSearchParams(getDateParams());
+  params.set('ai', elAi.value);
   const url    = params.toString() ? `${API}/${guid}?${params}` : `${API}/${guid}`;
 
   try {
