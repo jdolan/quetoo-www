@@ -9,6 +9,8 @@ const REFRESH_MS      = 30000;
 
 const elList          = document.getElementById('servers-list');
 const elRefreshStatus = document.getElementById('servers-refresh-status');
+const elHideEmpty     = document.getElementById('hideEmpty');
+const elHideBots      = document.getElementById('hideBots');
 
 // Strip Quetoo color escape sequences (^0–^9).
 function stripColors(str) {
@@ -26,6 +28,45 @@ const SORT_COLS = [
 
 let sortState = { key: 'num_clients', dir: 'desc' };
 
+// ── Filter state (persisted) ──────────────────────────────────────────────────
+
+const filterState = {
+  hideEmpty: localStorage.getItem('servers.hideEmpty') === 'true',
+  hideBots:  localStorage.getItem('servers.hideBots')  === 'true',
+};
+
+elHideEmpty.checked = filterState.hideEmpty;
+elHideBots.checked  = filterState.hideBots;
+
+elHideEmpty.addEventListener('change', () => {
+  filterState.hideEmpty = elHideEmpty.checked;
+  localStorage.setItem('servers.hideEmpty', filterState.hideEmpty);
+  applyAndRender();
+});
+
+elHideBots.addEventListener('change', () => {
+  filterState.hideBots = elHideBots.checked;
+  localStorage.setItem('servers.hideBots', filterState.hideBots);
+  applyAndRender();
+});
+
+// ── Raw data cache ────────────────────────────────────────────────────────────
+
+let rawServers = [];
+
+// ── Filtering ─────────────────────────────────────────────────────────────────
+
+function humanCount(s) {
+  return filterState.hideBots ? s.num_clients - (s.bots || 0) : s.num_clients;
+}
+
+function filterServers(servers) {
+  return servers.filter(s => {
+    const visible = humanCount(s);
+    return !(visible === 0 && (filterState.hideEmpty || filterState.hideBots));
+  });
+}
+
 // ── Rendering ─────────────────────────────────────────────────────────────────
 
 function renderServers(servers) {
@@ -42,11 +83,12 @@ function renderServers(servers) {
   }).join('') + '<th></th>';
 
   const tbody = servers.map((s, idx) => {
-    const dotClass   = s.num_clients > 0 ? 'servers-dot-online' : 'servers-dot-empty';
+    const visible    = humanCount(s);
+    const dotClass   = visible > 0 ? 'servers-dot-online' : 'servers-dot-empty';
     const playerRows = s.players.length
       ? s.players.map(p => `
-          <tr>
-            <td>${stripColors(p.name)}</td>
+          <tr${p.ai ? ' class="servers-player-bot"' : ''}>
+            <td>${stripColors(p.name)}${p.ai ? ' <span class="servers-bot-badge">bot</span>' : ''}</td>
             <td class="servers-cell-num">${p.score}</td>
             <td class="servers-cell-num">${p.ping} ms</td>
           </tr>`).join('')
@@ -60,7 +102,7 @@ function renderServers(servers) {
         </td>
         <td class="servers-map">${s.map || '—'}</td>
         <td class="servers-gameplay">${s.gameplay || '—'}</td>
-        <td class="servers-cell-num">${s.num_clients}/${s.max_clients}</td>
+        <td class="servers-cell-num">${visible}/${s.max_clients}</td>
         <td class="servers-join-cell">
           <a class="servers-join btn btn-sm"
              href="https://quetoo.org/join/?${s.ip}:${s.port}"
@@ -102,6 +144,10 @@ function renderServers(servers) {
   });
 }
 
+function applyAndRender() {
+  renderServers(filterServers(rawServers));
+}
+
 function togglePlayers(idx) {
   document.getElementById(`players-${idx}`)?.classList.toggle('hidden');
 }
@@ -113,8 +159,8 @@ async function loadServers() {
   try {
     const res  = await fetch(`${API_SERVERS}?${params}`);
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const data = await res.json();
-    renderServers(data);
+    rawServers = await res.json();
+    applyAndRender();
     elRefreshStatus.textContent = `· updated ${new Date().toLocaleTimeString()}`;
   } catch (e) {
     elList.innerHTML = `<div class="servers-error">Failed to load servers: ${e.message}</div>`;

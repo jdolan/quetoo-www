@@ -420,3 +420,48 @@
 @media (max-width: 640px) {
   .servers-gameplay { display: none; }
 }
+
+/* Filter controls */
+.servers-controls {
+  display: flex;
+  gap: 1.25rem;
+  margin-bottom: 1rem;
+  align-items: center;
+}
+
+.servers-filter-label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  user-select: none;
+}
+
+.servers-filter-label:hover {
+  color: var(--text);
+}
+
+.servers-filter-label input[type="checkbox"] {
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+/* Bot player rows in expanded player list */
+.servers-player-bot td {
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.servers-bot-badge {
+  font-size: 0.7rem;
+  font-style: normal;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 0 0.35rem;
+  vertical-align: middle;
+  color: var(--text-muted);
+  margin-left: 0.25rem;
+}
