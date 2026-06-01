@@ -334,6 +334,11 @@
   vertical-align: middle;
 }
 
+.servers-table th:first-child,
+.servers-table td:first-child {
+  width: 40%;
+}
+
 .servers-map,
 .servers-gameplay {
   color: var(--text-muted);
