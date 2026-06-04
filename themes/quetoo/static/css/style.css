@@ -442,6 +442,8 @@ h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
   padding: 1.5rem;
   overflow-x: auto;
   margin-bottom: 1.5rem;
+  width: fit-content;
+  min-width: 50%;
 }
 
 .page-content pre code {
@@ -457,6 +459,133 @@ h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
 .doc-figure { display: block; margin: 1.5rem 0; cursor: zoom-in; }
 .doc-figure img { max-width: 100%; height: auto; border-radius: 6px; display: block; transition: opacity 0.2s; }
 .doc-figure:hover img { opacity: 0.85; }
+
+/* ── Docs layout: article + sticky TOC ── */
+
+.doc-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 220px;
+  column-gap: 3rem;
+}
+
+.doc-layout:not(:has(.doc-toc)) {
+  grid-template-columns: 1fr;
+}
+
+.doc-layout > .page-content {
+  align-self: start;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.doc-content h2,
+.doc-content h3,
+.doc-content h4 {
+  scroll-margin-top: 80px;
+}
+
+.doc-content pre,
+.doc-content .highlight,
+.doc-content table,
+.doc-content blockquote {
+  clear: both;
+}
+
+.doc-content table {
+  table-layout: auto;
+}
+
+.doc-content td:nth-child(1) {
+  width: auto;
+  white-space: nowrap;
+}
+
+/* ── Floated figures ── */
+
+.doc-figure-left,
+.doc-figure-right {
+  max-width: 400px;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.doc-figure-left { float: left; margin-right: 2rem; }
+.doc-figure-right { float: right; margin-left: 2rem; }
+
+.doc-figure-left:hover,
+.doc-figure-right:hover {
+  transform: none;
+}
+
+@media (max-width: 768px) {
+  .doc-figure-left,
+  .doc-figure-right {
+    float: none;
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+/* ── Table of contents ── */
+
+.doc-toc {
+  padding-top: 8rem;
+}
+
+.doc-toc-inner {
+  position: sticky;
+  top: 80px;
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+}
+
+.doc-toc-heading {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+}
+
+.doc-toc nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.doc-toc nav ul ul {
+  padding-left: 0.75rem;
+}
+
+.doc-toc nav ul li {
+  margin-bottom: 0.3rem;
+}
+
+.doc-toc nav ul li a {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  line-height: 1.4;
+  display: block;
+  padding: 0.1rem 0;
+  transition: color 0.15s;
+}
+
+.doc-toc nav ul li a:hover {
+  color: var(--accent-light);
+}
+
+@media (max-width: 1100px) {
+  .doc-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .doc-toc {
+    display: none;
+  }
+}
 
 /* ── Downloads ── */
 

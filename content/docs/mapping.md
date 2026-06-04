@@ -23,15 +23,9 @@ Load your map in Quetoo from the console (`` ` ``):
 map mymap
 ```
 
-Package a finished map and its custom assets for release:
-
-```bash
-quemap -zip maps/mymap.bsp
-```
-
 ---
 
-## Custom Content Paths
+## Content Paths
 
 Quetoo looks for custom maps, textures, sounds, and models in your platform's user data directory:
 
@@ -63,11 +57,15 @@ Then load it from the console:
 map mymap
 ```
 
-> **Tip:** The `quemap -zip` command packages a finished map together with all its custom assets into a single `.pk3` that players can drop in their own `default/` directory.
+> **Tip:** Package a finished map and all its custom assets into a single `.pk3` for release:
+> ```bash
+> quemap -zip maps/mymap.bsp
+> ```
+> Players drop the resulting `.pk3` into their own `default/` directory.
 
 ---
 
-## Materials
+## Materials System
 
 Every texture in Quetoo can have a matching `.mat` file that controls how it looks and behaves in the engine. A material file has the same base name as its texture and lives alongside it in the `textures/` tree:
 
@@ -78,7 +76,7 @@ textures/mymap/wall01.mat       ← the material definition
 
 If no `.mat` file exists, the engine uses built-in defaults for all properties.
 
-### File Structure
+### File Syntax
 
 A material file contains exactly one material block, enclosed in curly braces. C-style `//` line comments and `/* */` block comments are supported.
 
@@ -180,7 +178,7 @@ A material can have any number of stage blocks. Each stage is an additional rend
     envmap <asset>                // environment-map reflection
     terrain <floor> <ceil>        // blend based on world Z height
     dirtmap <intensity>           // apply ambient occlusion dirtmap (0.0–1.0)
-    shell <radius>                // render as an outward shell (item glow effect)
+    shell <radius>                // render as an outward shell (item glow effect; mesh/model surfaces only)
 }
 ```
 
@@ -192,18 +190,16 @@ Valid `blend` source/destination constants: `GL_ONE`, `GL_ZERO`, `GL_SRC_ALPHA`,
 
 #### 1. Minimal material (PBR properties only)
 
-A simple metal floor. Normal and specular maps are auto-detected from `_norm`/`_spec` suffixes, so only the PBR scalars are needed:
+A simple metal floor. The diffuse map defaults to the texture name, and normal/specular maps are auto-detected from `_norm`/`_spec` suffixes, so only the PBR scalars are needed:
 
 ```
 // textures/mymap/metal_floor.mat
 {
-    diffusemap mymap/metal_floor
     roughness 3.43
     hardness 3.84
     specularity 2.12
     parallax 0.75
     shadow 0.00
-    footsteps metal
 }
 ```
 
@@ -346,7 +342,7 @@ Cobweb that is visible but does not block movement or projectiles:
 
 ---
 
-## The In-Game Editor
+## In-Game Editor
 
 Quetoo includes a built-in live editor. It lets you place and modify entities and tweak material properties in real time, with instant visual feedback, without ever leaving the game.
 
@@ -357,13 +353,13 @@ editor 1
 map mymap
 ```
 
-The editor panel appears on the right side of the screen. It has two tabs: **Entities** and **Materials**.
+The editor panel appears on the right side of the screen. It has three tabs: **Entities**, **Materials**, and **Mesh**.
 
 ---
 
-### Entity Editor
+### Entities
 
-{{< figure src="/images/editor/editor-entities.jpg" alt="In-game entity editor" >}}
+{{< figure src="/images/editor/editor-entities.jpg" alt="In-game entity editor" float="right" >}}
 
 The entity editor shows all key/value pairs for the entity you are currently looking at. When you open the editor, the entity closest to your crosshair is automatically selected.
 
@@ -386,6 +382,8 @@ With the entity panel open and an entity selected, use the standard movement key
 
 Movement is snapped to the **grid size**, which you can change with keys `1`–`8` (matching Radiant convention: key `1` = 1 unit, `2` = 2, `3` = 4, … `8` = 128). The default grid size is 16 units.
 
+> **Windows note:** If entity movement keys are unresponsive, make sure all lock keys (Caps Lock, Num Lock, Scroll Lock) are off. An SDL key-mapping quirk on Windows can cause lock keys to interfere with movement input.
+
 **Creating and deleting entities**
 
 - **Create** — the **Create Entity** button spawns a new `light` entity at your crosshair position, snapped to the grid
@@ -407,11 +405,11 @@ All key/value pairs for the selected entity are shown as editable fields. Click 
 
 Click **Save** (or run `save_editor_map` from the console) to write the modified entity data back to the `.map` file on disk. Material changes are saved at the same time via `r_save_materials`.
 
-{{< figure src="/images/editor/editor-lights.jpg" alt="Editing a light entity in-game" >}}
-
 ---
 
 ### Light Teams
+
+{{< figure src="/images/editor/editor-lights.jpg" alt="Editing a light entity in-game" float="left" >}}
 
 Light teams are one of the most powerful time-saving features in Quetoo's lighting system. They let you manage a group of `light` entities — a row of ceiling fixtures, a ring of wall sconces, an array of runway lights — as a single unit. Set the shared properties (color, radius, intensity, animation style) once on the **team master**, and every light in the team inherits them automatically. Change the master in the in-game editor and all lights update live, without recompiling the map.
 
@@ -495,9 +493,9 @@ You can write a custom style string for any rhythm you like. Styles are especial
 
 ---
 
-### Material Editor
+### Materials
 
-{{< figure src="/images/editor/editor-materials.jpg" alt="In-game material editor" >}}
+{{< figure src="/images/editor/editor-materials.jpg" alt="In-game material editor" float="right" >}}
 
 The **Materials** tab lets you tune surface properties of any material in the map — in real time, with instant visual feedback.
 
@@ -528,12 +526,13 @@ All changes are reflected immediately in the renderer. The material is marked di
 | `info_player_deathmatch` | Deathmatch spawn point. Place multiple. |
 | `info_player_team1` / `info_player_team2` | Red / blue team spawns |
 | `item_flag_team1` / `item_flag_team2` | CTF flags |
-| `light` | Point light. Keys: `radius`, `color`, `intensity`, `style`, `team` |
-| `light_sun` | Directional sunlight for outdoor areas |
+| `light` | Point light. Keys: `radius`, `color`, `intensity`, `style`, `team`, `drift`, `target` |
 | `func_door` | Moving door brush entity |
 | `func_plat` | Rising platform |
 | `func_rotating` | Continuously rotating brush |
-| `trigger_teleport` | Teleporter trigger volume |
+| `misc_teleporter` | Point-entity teleporter (model-less). Warps touching players to a targeted `misc_teleporter_dest`. |
+| `misc_teleporter_dest` | Teleport destination for `misc_teleporter`. |
+| `trigger_teleport` | Brush-entity teleporter trigger volume |
 
 Items use standard Quake II classnames: `item_health`, `weapon_railgun`, `ammo_slugs`, `item_armor_body`, etc.
 

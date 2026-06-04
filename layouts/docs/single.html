@@ -1,0 +1,21 @@
+{{ define "main" }}
+<div class="doc-layout container">
+  <article class="doc-content page-content">
+    <h1>{{ .Title }}</h1>
+    {{ .Content }}
+  </article>
+  {{ with .TableOfContents }}
+  <nav class="doc-toc" aria-label="Table of contents">
+    <div class="doc-toc-inner">
+      <p class="doc-toc-heading">On this page</p>
+      {{ . }}
+    </div>
+  </nav>
+  {{ end }}
+</div>
+
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close">&times;</button>
+  <img id="lightbox-img" src="" alt="">
+</div>
+{{ end }}
