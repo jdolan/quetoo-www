@@ -119,6 +119,14 @@ window.addEventListener('hashchange', () => {
 let searchTimer = null;
 let sortState   = { key: 'frags', dir: 'desc' };
 
+function formatTime(seconds) {
+  const s = Number(seconds ?? 0);
+  if (s <= 0) return '—';
+  const h = Math.floor(s / 3600);
+  const m = Math.floor((s % 3600) / 60);
+  return h > 0 ? `${h}h ${m}m` : `${m}m`;
+}
+
 // key: null marks non-sortable columns (rank is derived from frags order)
 const SORT_COLS = [
   { label: '#',        key: null,       align: 'left'  },
@@ -127,7 +135,8 @@ const SORT_COLS = [
   { label: 'Deaths',   key: 'deaths',   align: 'right', defaultDir: 'desc' },
   { label: 'K/D',      key: 'kd',       align: 'right', defaultDir: 'desc' },
   { label: 'Damage',   key: 'damage',   align: 'right', defaultDir: 'desc' },
-  { label: 'Captures', key: 'captures', align: 'right', defaultDir: 'desc' },
+  { label: 'Captures', key: 'captures',    align: 'right', defaultDir: 'desc' },
+  { label: 'Time',     key: 'time_played', align: 'right', defaultDir: 'desc' },
 ];
 
 function showLeaderboard() {
@@ -176,8 +185,9 @@ function renderLeaderboard(rows) {
     const frags    = fragsN.toLocaleString();
     const deaths   = deathsN.toLocaleString();
     const kd       = (deathsN > 0 ? fragsN / deathsN : fragsN).toFixed(2);
-    const damage   = row.damage.toLocaleString();
-    const captures = Number(row.captures ?? 0).toLocaleString();
+    const damage      = row.damage.toLocaleString();
+    const captures    = Number(row.captures ?? 0).toLocaleString();
+    const time_played = formatTime(row.time_played);
     const cls      = rank <= 3 ? ` stats-rank-${rank}` : '';
     return `<tr data-guid="${esc(row.guid)}" data-name="${esc(stripColors(row.name))}">
       <td class="stats-rank${cls}">${rank}</td>
@@ -187,6 +197,7 @@ function renderLeaderboard(rows) {
       <td class="stats-num">${kd}</td>
       <td class="stats-num stats-damage">${damage}</td>
       <td class="stats-num">${captures}</td>
+      <td class="stats-num">${time_played}</td>
     </tr>`;
   }).join('');
 
@@ -289,7 +300,7 @@ function renderPlayer(guid, data) {
   const kdTile       = tile('K/D',      kd);
   const damageTile   = tile('Damage',   data.damage.toLocaleString());
   const capturesTile = tile('Captures', Number(data.captures ?? 0).toLocaleString());
-  const timeTile     = '';
+  const timeTile     = tile('Time Played', formatTime(data.time_played));
   let   nemesisTile  = '';
   if (data.nemesis) {
     nemesisTile = `<div class="stats-tile stats-tile-nemesis" data-guid="${esc(data.nemesis.guid)}" title="Killed you ${Number(data.nemesis.deaths).toLocaleString()} times">
