@@ -176,7 +176,7 @@ function renderLeaderboard(rows) {
     const frags    = fragsN.toLocaleString();
     const deaths   = deathsN.toLocaleString();
     const kd       = (deathsN > 0 ? fragsN / deathsN : fragsN).toFixed(2);
-    const damage   = Number(row.damage).toLocaleString();
+    const damage   = row.damage.toLocaleString();
     const captures = Number(row.captures ?? 0).toLocaleString();
     const cls      = rank <= 3 ? ` stats-rank-${rank}` : '';
     return `<tr data-guid="${esc(row.guid)}" data-name="${esc(stripColors(row.name))}">
@@ -287,7 +287,7 @@ function renderPlayer(guid, data) {
   const fragsTile    = tile('Frags',    frags.toLocaleString());
   const deathsTile   = tile('Deaths',   deaths.toLocaleString());
   const kdTile       = tile('K/D',      kd);
-  const damageTile   = tile('Damage',   Number(data.damage).toLocaleString());
+  const damageTile   = tile('Damage',   data.damage.toLocaleString());
   const capturesTile = tile('Captures', Number(data.captures ?? 0).toLocaleString());
   const timeTile     = '';
   let   nemesisTile  = '';
