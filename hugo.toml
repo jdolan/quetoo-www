@@ -18,11 +18,11 @@ theme = 'quetoo'
   youtube = 'https://youtube.com/@WickedOldGames'
   itch = 'https://wickedoldgames.itch.io/quetoo'
   facebook = 'https://www.facebook.com/@Quetoo.org'
-  cssVersion = "3"
+  cssVersion = "4"
   taglines = [
     "Pwning nubz, one rail slug at a time.",
     "Bringing 2006 graphics to 1996 in 2026.",
-    "I love the smell of giblets in the morning."
+    "\"This is legitimately better than Quake2\" –Elysium"
   ]
 
 [menu]
