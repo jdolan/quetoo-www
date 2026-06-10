@@ -277,7 +277,11 @@ function renderPlayer(guid, data) {
                :                (guid.slice(0, 8) + '\u2026');
 
   elPlayerName.innerHTML      = colorize(name);
-  elPlayerSummary.textContent = '';
+  if (aliases.length > 1) {
+    elPlayerSummary.innerHTML = `Aliases: ${aliases.slice(1).map(a => colorize(a.name)).join(' <span aria-hidden="true">&middot;</span> ')}`;
+  } else {
+    elPlayerSummary.textContent = '';
+  }
 
   const frags  = Number(data.frags);
   const deaths = Number(data.deaths);
@@ -307,30 +311,9 @@ function renderPlayer(guid, data) {
 
   const tilesHtml = `<div class="stats-tiles">${rankTile}${fragsTile}${deathsTile}${kdTile}${capturesTile}${timeTile}${nemesisTile}</div>`;
 
-  // Aliases card — only shown when the player has used more than one name
-  let aliasesHtml = '';
-  if (aliases.length > 1) {
-    const rows = aliases.map(a => {
-      const date = a.last_seen ? new Date(a.last_seen).toLocaleDateString() : '';
-      return `<tr>
-        <td>${colorize(a.name)}</td>
-        <td class="stats-num">${Number(a.frags).toLocaleString()}</td>
-        <td class="stats-num stats-aliases-date">${esc(date)}</td>
-      </tr>`;
-    }).join('');
-    aliasesHtml = `<div class="stats-detail-card stats-aliases">
-      <h3>Aliases</h3>
-      <table class="stats-table">
-        <thead><tr><th>Name</th><th style="text-align:right">Frags</th><th style="text-align:right">Last Seen</th></tr></thead>
-        <tbody>${rows}</tbody>
-      </table>
-    </div>`;
-  }
-
   elPlayerBody.innerHTML = `
     ${tilesHtml}
     <div class="stats-detail-grid">
-      ${aliasesHtml}
       ${detailCard('Kills by Weapon',   data.kills_by_weapon,    ['Weapon',   'Frags'],           r => [r.weapon||'unknown', r.frags])}
       ${detailCard('Deaths by Weapon',  data.deaths_by_weapon,   ['Weapon',   'Deaths'],           r => [r.weapon||'unknown', r.deaths])}
       ${detailCard('Kills by Player',   data.kills_by_target,    ['Player',   'Frags'],           r => [r.name,              r.frags],           true)}
