@@ -134,7 +134,6 @@ const SORT_COLS = [
   { label: 'Frags',    key: 'frags',    align: 'right', defaultDir: 'desc' },
   { label: 'Deaths',   key: 'deaths',   align: 'right', defaultDir: 'desc' },
   { label: 'K/D',      key: 'kd',       align: 'right', defaultDir: 'desc' },
-  { label: 'Damage',   key: 'damage',   align: 'right', defaultDir: 'desc' },
   { label: 'Captures', key: 'captures',    align: 'right', defaultDir: 'desc' },
   { label: 'Time',     key: 'time_played', align: 'right', defaultDir: 'desc' },
 ];
@@ -185,20 +184,18 @@ function renderLeaderboard(rows) {
     const frags    = fragsN.toLocaleString();
     const deaths   = deathsN.toLocaleString();
     const kd       = (deathsN > 0 ? fragsN / deathsN : fragsN).toFixed(2);
-    const damage      = row.damage.toLocaleString();
     const captures    = Number(row.captures ?? 0).toLocaleString();
     const time_played = formatTime(row.time_played);
     const cls      = rank <= 3 ? ` stats-rank-${rank}` : '';
     return `<tr data-guid="${esc(row.guid)}" data-name="${esc(stripColors(row.name))}">
-      <td class="stats-rank${cls}">${rank}</td>
-      <td class="stats-player-name">${colorize(row.name)}</td>
-      <td class="stats-num">${frags}</td>
-      <td class="stats-num">${deaths}</td>
-      <td class="stats-num">${kd}</td>
-      <td class="stats-num stats-damage">${damage}</td>
-      <td class="stats-num">${captures}</td>
-      <td class="stats-num">${time_played}</td>
-    </tr>`;
+        <td class="stats-rank${cls}">${rank}</td>
+        <td class="stats-player-name">${colorize(row.name)}</td>
+        <td class="stats-num">${frags}</td>
+        <td class="stats-num">${deaths}</td>
+        <td class="stats-num">${kd}</td>
+        <td class="stats-num">${captures}</td>
+        <td class="stats-num">${time_played}</td>
+      </tr>`;
   }).join('');
 
   const thead = SORT_COLS.map(col => {
@@ -298,7 +295,6 @@ function renderPlayer(guid, data) {
   const fragsTile    = tile('Frags',    frags.toLocaleString());
   const deathsTile   = tile('Deaths',   deaths.toLocaleString());
   const kdTile       = tile('K/D',      kd);
-  const damageTile   = tile('Damage',   data.damage.toLocaleString());
   const capturesTile = tile('Captures', Number(data.captures ?? 0).toLocaleString());
   const timeTile     = tile('Time Played', formatTime(data.time_played));
   let   nemesisTile  = '';
@@ -309,7 +305,7 @@ function renderPlayer(guid, data) {
     </div>`;
   }
 
-  const tilesHtml = `<div class="stats-tiles">${rankTile}${fragsTile}${deathsTile}${kdTile}${damageTile}${capturesTile}${timeTile}${nemesisTile}</div>`;
+  const tilesHtml = `<div class="stats-tiles">${rankTile}${fragsTile}${deathsTile}${kdTile}${capturesTile}${timeTile}${nemesisTile}</div>`;
 
   // Aliases card — only shown when the player has used more than one name
   let aliasesHtml = '';
@@ -335,11 +331,11 @@ function renderPlayer(guid, data) {
     ${tilesHtml}
     <div class="stats-detail-grid">
       ${aliasesHtml}
-      ${detailCard('Kills by Weapon',   data.kills_by_weapon,    ['Weapon',   'Frags',  'Damage'], r => [r.weapon||'unknown', r.frags,  r.damage])}
+      ${detailCard('Kills by Weapon',   data.kills_by_weapon,    ['Weapon',   'Frags'],           r => [r.weapon||'unknown', r.frags])}
       ${detailCard('Deaths by Weapon',  data.deaths_by_weapon,   ['Weapon',   'Deaths'],           r => [r.weapon||'unknown', r.deaths])}
-      ${detailCard('Kills by Player',   data.kills_by_target,    ['Player',   'Frags',  'Damage'], r => [r.name,              r.frags,  r.damage], true)}
+      ${detailCard('Kills by Player',   data.kills_by_target,    ['Player',   'Frags'],           r => [r.name,              r.frags],           true)}
       ${detailCard('Deaths by Player',  data.deaths_by_attacker, ['Player',   'Deaths'],           r => [r.name,              r.deaths],           true)}
-      ${detailCard('Kills by Level',    data.kills_by_level,     ['Level',    'Frags',  'Damage'], r => [r.level,             r.frags,  r.damage])}
+      ${detailCard('Kills by Level',    data.kills_by_level,     ['Level',    'Frags'],           r => [r.level,             r.frags])}
       ${detailCard('Deaths by Level',   data.deaths_by_level,    ['Level',    'Deaths'],           r => [r.level,             r.deaths])}
       ${detailCard('Captures by Level', data.captures_by_level,  ['Level',    'Captures'],         r => [r.level,             r.captures])}
     </div>`;

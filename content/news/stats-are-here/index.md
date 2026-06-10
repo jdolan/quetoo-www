@@ -1,6 +1,6 @@
 ---
 title: "Stats Are Here"
-description: "Track your frags, damage, K/D, and CTF captures on the new Quetoo Stats leaderboard."
+description: "Track your frags, K/D, and CTF captures on the new Quetoo Stats leaderboard."
 date: 2026-05-28
 featured_image: "/news/stats-are-here/leaderboard.png"
 ---
@@ -19,11 +19,11 @@ Every frag on every public Quetoo server is recorded and ranked. Filter by serve
 
 [![Stats leaderboard](leaderboard.png)](/stats/)
 
-The leaderboard tracks frags, deaths, K/D ratio, total damage dealt, and CTF flag captures. Click any column header to re-sort. Click any player row to dive into their full breakdown.
+The leaderboard tracks frags, deaths, K/D ratio, and CTF flag captures. Click any column header to re-sort. Click any player row to dive into their full breakdown.
 
 ### Player deep-stats
 
-Curious how you stack up weapon by weapon? Every player page shows kills and damage by weapon, deaths by weapon, and — most importantly — your **nemesis**: the player who has fragged you the most.
+Curious how you stack up weapon by weapon? Every player page shows kills by weapon, deaths by weapon, and — most importantly — your **nemesis**: the player who has fragged you the most.
 
 [![Player stats](player-stats.png)](/stats/)
 

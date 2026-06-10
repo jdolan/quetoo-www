@@ -113,10 +113,6 @@
   color: var(--text);
 }
 
-.stats-damage {
-  color: var(--text-muted);
-}
-
 /* Player detail */
 .stats-tiles {
   display: flex;
@@ -242,7 +238,7 @@
   .stats-detail-grid {
     grid-template-columns: 1fr;
   }
-  /* On mobile keep Rank, Player, Frags — hide Deaths, Damage, Time */
+  /* On mobile keep Rank, Player, Frags — hide Deaths and Time */
   .stats-table th:nth-child(n+4),
   .stats-table td:nth-child(n+4) { display: none; }
 
