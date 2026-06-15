@@ -21,14 +21,14 @@ const elLevel           = document.getElementById('stats-level');
 const elAi              = document.getElementById('stats-ai');
 const elLimit           = document.getElementById('stats-limit');
 const elPeriod          = document.getElementById('stats-period');
+const elPlayerPeriod    = document.getElementById('stats-player-period');
 const elBack            = document.getElementById('stats-back');
 
 // ------------------------------------------------------------------
 // Period helpers — compute from/to from a named period
 // ------------------------------------------------------------------
 
-function getDateParams() {
-  const period = elPeriod.value;
+function computeDateParams(period) {
   if (!period) return {};
   const now   = new Date();
   const pad   = n => String(n).padStart(2, '0');
@@ -49,7 +49,12 @@ function getDateParams() {
   return from ? { from, to: today } : {};
 }
 
-elPeriod.addEventListener('change', () => reloadActive());
+function getDateParams()       { return computeDateParams(elPeriod.value); }
+function getPlayerDateParams() { return computeDateParams(elPlayerPeriod.value); }
+
+// Leaderboard period only reloads the leaderboard; player has its own picker.
+elPeriod.addEventListener('change', loadLeaderboard);
+elPlayerPeriod.addEventListener('change', () => { const guid = getHash(); if (guid) showPlayer(guid); });
 
 // ------------------------------------------------------------------
 // Options — populate server and map dropdowns from the API
@@ -251,7 +256,7 @@ async function showPlayer(guid) {
   elPlayerSummary.textContent = '';
   elPlayerBody.innerHTML = '<div class="stats-loading">Loading\u2026</div>';
 
-  const params = new URLSearchParams(getDateParams());
+  const params = new URLSearchParams(getPlayerDateParams());
   params.set('ai', elAi.value);
   const url    = params.toString() ? `${API}/${guid}?${params}` : `${API}/${guid}`;
 
