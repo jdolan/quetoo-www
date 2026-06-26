@@ -17,9 +17,11 @@ Most dependencies are fetched automatically by the build system. The following a
 | [ObjectivelyMVC](https://github.com/jdolan/ObjectivelyMVC/) | UI framework |
 | [PhysicsFS](https://icculus.org/physfs/) | Virtual filesystem |
 | [OpenAL](https://www.openal.org/) | 3D audio |
-| [libsndfile](http://mega-nerd.com/libsndfile/) | Audio format loading |
+| [libsndfile](http://mega-nerd.com/libsndfile/) | Multiformat sound loading |
 | [ncurses](https://www.gnu.org/software/ncurses/) | Server console |
 | [SDL3](https://libsdl.org/) | Window, input, and GL context |
+| [SDL3_image](https://libsdl.org/) | Multiformat image loading |
+| [SDL3_ttf](https://libsdl.org/) | TrueType Font rendering |
 | [libcheck](https://libcheck.github.io/check/) | Unit testing |
 
 ---
