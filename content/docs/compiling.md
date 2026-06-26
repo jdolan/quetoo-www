@@ -26,11 +26,9 @@ Most dependencies are fetched automatically by the build system. The following a
 
 ---
 
-## Building
+## Linux / BSD
 
-### Linux / BSD — GNU Autotools
-
-Install dependencies with your package manager, then:
+Install dependencies with your package manager, then clone and build:
 
 ```bash
 git clone https://github.com/jdolan/quetoo.git
@@ -41,7 +39,14 @@ make -j$(nproc)
 sudo make install
 ```
 
-To also build the unit test suite:
+Clone the game data and link it into your installation:
+
+```bash
+git clone https://github.com/jdolan/quetoo-data.git
+sudo ln -s $(pwd)/quetoo-data/target /usr/local/share/quetoo
+```
+
+To also build and run the unit test suite:
 
 ```bash
 ./configure --with-tests
@@ -51,65 +56,84 @@ make check
 
 ---
 
-### macOS — GNU Autotools
+## macOS — Xcode
 
-Install [Homebrew](https://brew.sh), then install dependencies:
+Xcode is the recommended development environment on macOS. Install [Homebrew](https://brew.sh), then install the required dependencies:
 
 ```bash
 brew install autoconf automake check libtool pkg-config \
   libsndfile ncurses openal-soft physfs sdl3_image sdl3_ttf
 ```
 
-Clone and build Objectively and ObjectivelyMVC as siblings of the quetoo repository:
+Clone Objectively, ObjectivelyMVC, quetoo, and quetoo-data as siblings (the workspace requires this layout):
 
 ```bash
-# All three repos should be siblings, e.g. ~/Coding/
 git clone https://github.com/jdolan/Objectively.git
 git clone https://github.com/jdolan/ObjectivelyMVC.git
 git clone https://github.com/jdolan/quetoo.git
+git clone https://github.com/jdolan/quetoo-data.git
 ```
 
-Build and install Objectively first, then ObjectivelyMVC, then quetoo — each with:
+Link the game data into your installation:
 
 ```bash
-autoreconf -i
-./configure [--with-homebrew=/opt/homebrew]
-make -j$(nproc)
-sudo make install
-```
-
----
-
-### macOS — Xcode
-
-Xcode is the recommended development environment on macOS. Objectively, ObjectivelyMVC, and Quetoo must be cloned as siblings:
-
-```
-~/Coding/
-  Objectively/
-  ObjectivelyMVC/
-  quetoo/
+sudo ln -s $(pwd)/quetoo-data/target /usr/local/share/quetoo
 ```
 
 Open `quetoo/Quetoo.xcworkspace` — this workspace includes all three projects and manages their dependencies automatically. Select the **Quetoo** scheme and press **⌘B** to build.
 
-> **Note:** Homebrew dependencies (PhysFS, SDL3, etc.) must still be installed via `brew install` as described above. The Xcode workspace does not install them.
+---
+
+## macOS — GNU Autotools
+
+Install [Homebrew](https://brew.sh), then install the required dependencies:
+
+```bash
+brew install autoconf automake check libtool pkg-config \
+  libsndfile ncurses openal-soft physfs sdl3_image sdl3_ttf
+```
+
+Clone Objectively, ObjectivelyMVC, quetoo, and quetoo-data as siblings:
+
+```bash
+git clone https://github.com/jdolan/Objectively.git
+git clone https://github.com/jdolan/ObjectivelyMVC.git
+git clone https://github.com/jdolan/quetoo.git
+git clone https://github.com/jdolan/quetoo-data.git
+```
+
+Build and install Objectively, then ObjectivelyMVC, then quetoo — each with:
+
+```bash
+autoreconf -i
+./configure
+make -j$(nproc)
+sudo make install
+```
+
+> **Intel Macs:** Homebrew installs to `/usr/local` rather than `/opt/homebrew`. Pass `--with-homebrew=/usr/local` to `./configure` on those machines.
+
+Link the game data into your installation:
+
+```bash
+sudo ln -s $(pwd)/quetoo-data/target /usr/local/share/quetoo
+```
 
 ---
 
-### Windows — Visual Studio
+## Windows — Visual Studio
 
 The Visual Studio solution uses **Clang-CL** as its compiler and targets Windows 10 x64. Visual Studio 2019 or later is required with the **Desktop development with C++** workload and the **Clang compiler for Windows** optional component installed.
 
 #### 1. Clone the repositories
 
-Objectively, ObjectivelyMVC, and quetoo must be cloned as siblings:
+Clone Objectively, ObjectivelyMVC, quetoo, and quetoo-data as siblings:
 
-```
-C:\Projects\
-  Objectively\
-  ObjectivelyMVC\
-  quetoo\
+```powershell
+git clone https://github.com/jdolan/Objectively.git
+git clone https://github.com/jdolan/ObjectivelyMVC.git
+git clone https://github.com/jdolan/quetoo.git
+git clone https://github.com/jdolan/quetoo-data.git
 ```
 
 #### 2. Set `QUETOO_HOME`
@@ -128,29 +152,15 @@ Run `Quetoo.vs15\MAKE_DATA_JUNCTION.ps1` to create a directory junction from `%Q
 .\Quetoo.vs15\MAKE_DATA_JUNCTION.ps1
 ```
 
-#### 4. Open the solution and build
+#### 4. Build the solution
 
-Open `Quetoo.vs15\quetoo_all.sln` in Visual Studio. Select the **Release | x64** configuration and build the solution (**⌃⇧B** / **Ctrl+Shift+B**).
+Open `Quetoo.vs15\quetoo_all.sln` in Visual Studio. Select the **Release | x64** configuration and build the solution (**Ctrl+Shift+B**).
 
-After building, run `Quetoo.vs15\COPY_DEPENDENCIES.bat` to copy required DLLs (SDL3, OpenAL, etc.) into the output directory:
+After building, run `Quetoo.vs15\COPY_DEPENDENCIES.bat` to copy required DLLs into the output directory:
 
 ```bat
 COPY_DEPENDENCIES.bat quetoo x64 Release
 ```
-
----
-
-## Installing Game Data
-
-The engine requires game data from the [quetoo-data](https://github.com/jdolan/quetoo-data) repository. On first launch the client will attempt to download data automatically; for offline development, install it manually:
-
-**Linux / macOS / BSD:**
-```bash
-git clone https://github.com/jdolan/quetoo-data.git
-sudo ln -s $(pwd)/quetoo-data/target /usr/local/share/quetoo
-```
-
-**Windows:** Use the `MAKE_DATA_JUNCTION.ps1` script described above.
 
 ---
 
