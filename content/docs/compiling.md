@@ -3,32 +3,43 @@ title: "Compiling"
 weight: 50
 ---
 
-Compiling Quetoo from source is recommended for developers and mappers who want to build against the latest code. The engine builds on macOS, Linux, BSD, and Windows.
+Compiling Quetoo from source is only recommended for developers modders. The engine builds on macOS, Linux, BSD, and Windows.
 
 ---
 
-## Dependencies
+## Noteworthy Dependencies
 
-Most dependencies are fetched automatically by the build system. The following are required regardless of platform:
+Quetoo has a few dependencies you will likely not find in Homebrew or in your package manager:
 
 | Library | Notes |
 |---------|-------|
-| [Objectively](https://github.com/jdolan/Objectively/) | Object-oriented C runtime |
-| [ObjectivelyMVC](https://github.com/jdolan/ObjectivelyMVC/) | UI framework |
-| [PhysicsFS](https://icculus.org/physfs/) | Virtual filesystem |
-| [OpenAL](https://www.openal.org/) | 3D audio |
-| [libsndfile](http://mega-nerd.com/libsndfile/) | Multiformat sound loading |
-| [ncurses](https://www.gnu.org/software/ncurses/) | Server console |
-| [SDL3](https://libsdl.org/) | Window, input, and GL context |
-| [SDL3_image](https://libsdl.org/) | Multiformat image loading |
-| [SDL3_ttf](https://libsdl.org/) | TrueType Font rendering |
-| [libcheck](https://libcheck.github.io/check/) | Unit testing |
+| [Objectively](https://github.com/jdolan/Objectively/) | Object-oriented framework for GNU C |
+| [ObjectivelyGPU](https://github.com/jdolan/ObjectivelyGPU/) | Object-oriented graphics library for GNU C and SDL3 |
+| [ObjectivelyMVC](https://github.com/jdolan/ObjectivelyMVC/) | Object-oriented user interface library for GNU C and SDL3 |
 
 ---
 
 ## Linux / BSD
 
-Install dependencies with your package manager, then clone and build:
+### Install dependencies
+
+On recent Debian / Ubuntu / Mint:
+
+```bash
+sudo apt-get update
+sudo apt-get install -y \
+  build-essential autoconf automake libtool pkg-config check \
+  libcurl4-openssl-dev \
+  libncurses-dev \
+  libopenal-dev \
+  libphysfs-dev \
+  libsdl3-image-dev libsdl3-ttf-dev \
+  libsndfile1-dev
+```
+
+### Clone repositories
+
+Clone Objectively, ObjectivelyMVC, quetoo, and quetoo-data as siblings:
 
 ```bash
 git clone https://github.com/jdolan/Objectively.git
@@ -37,7 +48,7 @@ git clone https://github.com/jdolan/quetoo.git
 git clone https://github.com/jdolan/quetoo-data.git
 ```
 
-Build and install Objectively, ObjectivelyMVC, and quetoo:
+### Build and install
 
 ```bash
 for repo in Objectively ObjectivelyMVC quetoo; do
@@ -49,10 +60,9 @@ for repo in Objectively ObjectivelyMVC quetoo; do
 done
 ```
 
-Clone the game data and link it into your installation:
+Link the game data into your installation:
 
 ```bash
-git clone https://github.com/jdolan/quetoo-data.git
 sudo ln -s $(pwd)/quetoo-data/target /usr/local/share/quetoo
 ```
 
