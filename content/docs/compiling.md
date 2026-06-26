@@ -31,18 +31,66 @@ Most dependencies are fetched automatically by the build system. The following a
 Install dependencies with your package manager, then clone and build:
 
 ```bash
+git clone https://github.com/jdolan/Objectively.git
+git clone https://github.com/jdolan/ObjectivelyMVC.git
 git clone https://github.com/jdolan/quetoo.git
-cd quetoo
-autoreconf -i
-./configure
-make -j$(nproc)
-sudo make install
+git clone https://github.com/jdolan/quetoo-data.git
+```
+
+Build and install Objectively, ObjectivelyMVC, and quetoo:
+
+```bash
+for repo in Objectively ObjectivelyMVC quetoo; do
+  pushd $repo
+  autoreconf -i
+  ./configure
+  make -j$(nproc) && sudo make install
+  popd
+done
 ```
 
 Clone the game data and link it into your installation:
 
 ```bash
 git clone https://github.com/jdolan/quetoo-data.git
+sudo ln -s $(pwd)/quetoo-data/target /usr/local/share/quetoo
+```
+
+---
+
+## macOS — GNU Autotools
+
+Install [Homebrew](https://brew.sh), then install the required dependencies:
+
+```bash
+brew install autoconf automake check libtool pkg-config \
+  libsndfile ncurses openal-soft physfs sdl3_image sdl3_ttf
+```
+
+Clone Objectively, ObjectivelyMVC, quetoo, and quetoo-data as siblings:
+
+```bash
+git clone https://github.com/jdolan/Objectively.git
+git clone https://github.com/jdolan/ObjectivelyMVC.git
+git clone https://github.com/jdolan/quetoo.git
+git clone https://github.com/jdolan/quetoo-data.git
+```
+
+Build and install Objectively, ObjectivelyMVC, and quetoo:
+
+```bash
+for repo in Objectively ObjectivelyMVC quetoo; do
+  pushd $repo
+  autoreconf -i
+  ./configure
+  make -j$(nproc) && sudo make install
+  popd
+done
+```
+
+Link the game data into your installation:
+
+```bash
 sudo ln -s $(pwd)/quetoo-data/target /usr/local/share/quetoo
 ```
 
@@ -73,43 +121,6 @@ sudo ln -s $(pwd)/quetoo-data/target /usr/local/share/quetoo
 ```
 
 Open `quetoo/Quetoo.xcworkspace` — this workspace includes all three projects and manages their dependencies automatically. Select the **Quetoo** scheme and press **⌘B** to build.
-
----
-
-## macOS — GNU Autotools
-
-Install [Homebrew](https://brew.sh), then install the required dependencies:
-
-```bash
-brew install autoconf automake check libtool pkg-config \
-  libsndfile ncurses openal-soft physfs sdl3_image sdl3_ttf
-```
-
-Clone Objectively, ObjectivelyMVC, quetoo, and quetoo-data as siblings:
-
-```bash
-git clone https://github.com/jdolan/Objectively.git
-git clone https://github.com/jdolan/ObjectivelyMVC.git
-git clone https://github.com/jdolan/quetoo.git
-git clone https://github.com/jdolan/quetoo-data.git
-```
-
-Build and install Objectively, then ObjectivelyMVC, then quetoo — each with:
-
-```bash
-autoreconf -i
-./configure
-make -j$(nproc)
-sudo make install
-```
-
-> **Intel Macs:** Homebrew installs to `/usr/local` rather than `/opt/homebrew`. Pass `--with-homebrew=/usr/local` to `./configure` on those machines.
-
-Link the game data into your installation:
-
-```bash
-sudo ln -s $(pwd)/quetoo-data/target /usr/local/share/quetoo
-```
 
 ---
 
