@@ -55,7 +55,7 @@ Install [Homebrew](https://brew.sh), then install dependencies:
 
 ```bash
 brew install autoconf automake check libtool pkg-config \
-     physfs libsndfile openal-soft sdl3
+  libsndfile ncurses openal-soft physfs sdl3_image sdl3_ttf
 ```
 
 Clone and build Objectively and ObjectivelyMVC as siblings of the quetoo repository:
@@ -71,12 +71,10 @@ Build and install Objectively first, then ObjectivelyMVC, then quetoo — each w
 
 ```bash
 autoreconf -i
-./configure
+./configure [--with-homebrew=/opt/homebrew]
 make -j$(nproc)
 sudo make install
 ```
-
-> **Intel Macs:** Homebrew installs to `/usr/local` rather than `/opt/homebrew`. Pass `--with-homebrew=/usr/local` to `./configure` on those machines.
 
 ---
 
