@@ -46,14 +46,6 @@ git clone https://github.com/jdolan/quetoo-data.git
 sudo ln -s $(pwd)/quetoo-data/target /usr/local/share/quetoo
 ```
 
-To also build and run the unit test suite:
-
-```bash
-./configure --with-tests
-make -j$(nproc)
-make check
-```
-
 ---
 
 ## macOS — Xcode
@@ -161,9 +153,3 @@ After building, run `Quetoo.vs15\COPY_DEPENDENCIES.bat` to copy required DLLs in
 ```bat
 COPY_DEPENDENCIES.bat quetoo x64 Release
 ```
-
----
-
-## Licensing
-
-Quetoo is licensed under the [GNU General Public License v2](https://opensource.org/licenses/GPL-2.0). You are free to download, play, and modify the game. All source code is available on [GitHub](https://github.com/jdolan/quetoo).
