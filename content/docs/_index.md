@@ -8,7 +8,7 @@ description: "Quetoo documentation — guides for playing, server administration
 - [**Playing Quetoo**](/docs/players/) — Controls, game modes, and mechanics
 - [**Server Administration**](/docs/server-admin/) — Running a dedicated server
 - [**Mapping Guide**](/docs/mapping/) — Creating and compiling levels with TrenchBroom
-- [**Modding Guide**](/docs/modding/) — Game module system, entities, and custom content
+- [**Modding Guide**](/docs/modding/) — Writing a mod: modules, features, and hooks
 - [**Compiling**](/docs/compiling/) — Building the engine from source
 - [**Credits**](/docs/credits/) — The people who made Quetoo
 
