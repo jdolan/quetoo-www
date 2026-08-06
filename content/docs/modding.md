@@ -4,13 +4,22 @@ description: "Writing a Quetoo mod — the game and cgame modules, the eight fil
 weight: 40
 ---
 
-A mod in Quetoo is its own gameplay, not a fork of the engine's furniture. Gameplay lives in two shared libraries that the engine loads at runtime — `game` on the server and `cgame` on the client — and everything those modules have in common is compiled from `src/game/common` and `src/cgame/common` rather than copied.
+Modding Quetoo involves writing custom C code to _modify_ the gameplay. By writing a mod, you can:
 
-The practical consequence: **a mod is eight files.** Everything else it inherits.
+ * Change gameplay rules like teams, friendly fire, kill streaks..
+ * Change physics like projectile strength or speed, gravity, friction..
+ * Change player movement to introduce flying, wall jumping, power sliding..
+ * Add new weapons, items, powerups or entity types.
+ * Introduce new audio and visual effects like lights, sprites and more.
+ * Change or introduce new menus to help players find your features.
+
+But a mod is not a fork of the entire Quetoo engine or even the entire game module source. Instead, a mod is _composed_ by including gameplay features from a common set of source files, and then augmenting them with your own code using callbacks. Your mod is split into two shared libraries: `game.so` for server-side gameplay changes, and `cgame.so` for client-side effect and menu changes.
+
+The practical consequence of composing modules rather than forking them is that your mod stays very small, and evolves with the rest of the Quetoo codebase and ecosystem.
 
 ## What a module owns
 
-Quetoo ships three modules. `default` is deathmatch, `ctf` is capture the flag, and `lithium` is deathmatch with the grappling hook and the tech powerups. Each one is exactly this, and nothing more:
+Quetoo ships three modules. `default` is deathmatch with optional teams support, `ctf` is capture the flag, and `lithium` is deathmatch with the grappling hook and the tech powerups. Each one is exactly this, and nothing more:
 
 ```
 src/game/<mod>/                 src/cgame/<mod>/
@@ -20,8 +29,6 @@ src/game/<mod>/                 src/cgame/<mod>/
     bg_item.c
     g_module.c
 ```
-
-`lithium` was built from `default`'s files and cost **125 lines** over them. That is the whole budget for a gameplay mode that adds a grapple and five powerups, because the grapple and the powerups are features of the common sources that it switches on rather than code it carries.
 
 | File | What it is |
 |------|------------|
