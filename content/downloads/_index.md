@@ -14,31 +14,31 @@ description: "Download Quetoo for Linux, macOS, and Windows. Free to download, p
     <div class="platform-icon"><img src="/icons/windows.svg" class="brand-icon" alt="Windows"></div>
     <h3>Windows</h3>
     <p>64-bit <tt>.zip</tt> for Windows 10 or later.</p>
-    <a href="https://github.com/jdolan/quetoo/releases/latest#windows-x86-64" class="btn btn-primary">Download for Windows</a>
+    <a href="https://github.com/jdolan/quetoo/releases/latest#windows" class="btn btn-primary">Download for Windows</a>
   </div>
   <div class="download-card">
     <div class="platform-icon"><img src="/icons/linux.svg" class="brand-icon" alt="Linux"></div>
     <h3>x64 Linux Client</h3>
     <p>64-bit <tt>.tgz</tt> for modern <tt>x86-64</tt> distros.</p>
-    <a href="https://github.com/jdolan/quetoo/releases/latest#linux-x86-64" class="btn btn-primary">Download for Linux</a>
+    <a href="https://github.com/jdolan/quetoo/releases/latest#linux" class="btn btn-primary">Download for Linux</a>
   </div>
   <div class="download-card">
     <div class="platform-icon"><img src="/icons/linux.svg" class="brand-icon" alt="Linux"></div>
     <h3>arm64 Linux Client</h3>
     <p>64 bit <tt>.tgz</tt> for modern <tt>aarch64</tt> distros.</p>
-    <a href="https://github.com/jdolan/quetoo/releases/latest#linux-arm64" class="btn btn-primary">Download for Linux</a>
+    <a href="https://github.com/jdolan/quetoo/releases/latest#linux" class="btn btn-primary">Download for Linux</a>
   </div>
   <div class="download-card">
     <div class="platform-icon"><img src="/icons/linux.svg" class="brand-icon" alt="x86-64 Linux Server"></div>
     <h3>x64 Linux Server</h3>
     <p>Prebuilt packages for <tt>x86-64</tt> servers.</p>
-    <a href="https://github.com/jdolan/quetoo/releases/latest#linux-x86-64" class="btn btn-primary">Linux Server Packages</a>
+    <a href="https://github.com/jdolan/quetoo/releases/latest#linux-packages-requires-quetoo-data" class="btn btn-primary">Linux Server Packages</a>
   </div>
   <div class="download-card">
     <div class="platform-icon"><img src="/icons/linux.svg" class="brand-icon" alt="aarch64 Linux Server"></div>
     <h3>arm64 Linux Server</h3>
     <p>Prebuilt packages for <tt>aarch64</tt> servers.</p>
-    <a href="https://github.com/jdolan/quetoo/releases/latest#linux-aarch64" class="btn btn-primary">Linux Server Packages</a>
+    <a href="https://github.com/jdolan/quetoo/releases/latest#linux-packages-requires-quetoo-data" class="btn btn-primary">Linux Server Packages</a>
   </div>
 </div>
 
@@ -64,14 +64,14 @@ The Linux client is distributed as a tarball. Extract it to a location of your l
 
 ### Linux Server — `.deb` / `.rpm` Packages
 
-For dedicated server operators on Debian/Ubuntu or Fedora/RHEL, install the `quetoo` and `quetoo-data` packages using your package manager:
+For dedicated server operators on Debian/Ubuntu or Fedora/RHEL, install the `quetoo-server` and `quetoo-data` packages using your package manager:
 
 ```sh
 # Debian / Ubuntu
-apt install ./quetoo_*.deb ./quetoo-data_*.deb
+apt install ./quetoo-server_*.deb ./quetoo-data_*.deb
 
 # Fedora / RHEL
-dnf install quetoo-*.rpm quetoo-data-*.rpm
+dnf install quetoo-server-*.rpm quetoo-data-*.rpm
 ```
 
 ### Building from Source
