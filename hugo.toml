@@ -18,7 +18,7 @@ theme = 'quetoo'
   youtube = 'https://youtube.com/@WickedOldGames'
   itch = 'https://wickedoldgames.itch.io/quetoo'
   facebook = 'https://www.facebook.com/@Quetoo.org'
-  cssVersion = "4"
+  cssVersion = "5"
   taglines = [
     "Pwning nubz, one rail slug at a time.",
     "Bringing 2006 graphics to 1996 in 2026.",

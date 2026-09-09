@@ -1,0 +1,7 @@
+{{- $type := .Get "type" | default "image" -}}
+{{- $id := .Get "id" -}}
+{{- $caption := .Get "caption" -}}
+<div class="asset-placeholder asset-placeholder-{{ $type }}">
+  <span class="asset-placeholder-tag">TODO {{ $type | upper }}{{ with $id }} · {{ . }}{{ end }}</span>
+  {{- with $caption }}<p>{{ . }}</p>{{ end -}}
+</div>
