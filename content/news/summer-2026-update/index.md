@@ -1,6 +1,6 @@
 ---
 title: "The Summer Update"
-description: "Eighty-eight releases in four months: a new renderer, real mod support, a racing mod, five ways to move, a HUD you can build yourself, a new map, turrets, mine carts, and a whole lot more."
+description: "Eighty-eight releases in four months: a new renderer, real mod support, a racing mod, five ways to move, a HUD you can rebuild yourself, a new map, turrets, mine carts, and a whole lot more."
 date: 2026-09-09
 featured_image: "/images/screenshots/quetoo039.jpg"
 build:
@@ -14,7 +14,7 @@ build:
 
 # 💀 The <span style="color: #5fb0c4">Summer</span> Update
 
-Quetoo 1.0 shipped on May 22nd. Since then we've pushed **88 engine releases**, **30 game data releases**, and roughly a thousand commits across Quetoo and its supporting libraries. If you've had the auto-updater on, you've been getting all of this quietly. If you haven't played since launch, here's what you missed.
+Quetoo 1.0 shipped on May 22nd. Since then we've pushed **88 engine releases**, **30 game data releases**, and roughly fifteen hundred commits across Quetoo and its supporting libraries. If you've had the auto-updater on, you've been getting all of this quietly. If you haven't played since launch, here's what you missed.
 
 Grab the latest from [Downloads](/downloads/) — everything below is live right now.
 
@@ -24,13 +24,13 @@ Grab the latest from [Downloads](/downloads/) — everything below is live right
 
 ### Race
 
-There is a **racing mod** in the box now. `race` is a full game module that ships alongside `default`, `ctf`, and `lithium`, and it is a port of the community jump mod by **MovoWR** — his movement rulesets, his replay format, and the semantics of his barriers, rebuilt on Quetoo's mod framework.
+There is a **racing mod** in the box now. `race` is a full game module that ships alongside `default`, `ctf`, and `lithium`, and it exists because of **MovoWR**, whose community jump mod gave us its design, its replay format, and the semantics of its barriers, rebuilt here on Quetoo's mod framework.
 
 A course is described entirely by entities, so any mapper can build one: `trigger_race_start`, `trigger_race_checkpoint`, `trigger_race_split`, `trigger_race_stage`, and `trigger_race_finish`, plus `func_race_checkpoint_gate` and `func_race_oneway_wall` for barriers that open only once you've earned them. Barriers are resolved per player and **predicted on the client**, so a gate you've passed doesn't yank you back.
 
-The mod keeps **one personal best per player, per movement**, and the fastest run on the server becomes the course record. The record's raceline is kept too, which means you can type `ghost` and race it: the record holder's run, wearing the record holder's skin, leaving the start with you. The HUD shows your speed, your run count, and your splits **as deltas against your own bests**, so you know which third of the course you just lost.
+The mod keeps **one personal best per player, per movement**, and the fastest run under a given movement becomes the course record. The record's raceline is kept too, which means you can type `ghost` and race it: the record holder's run, wearing the record holder's skin, leaving the start with you. The HUD shows your speed, your run count, and your splits **as deltas against both your own best and the course record**, so you know which third of the course you just lost.
 
-{{< placeholder type="video" id="A2" caption="Clip: 20-30s of a race run with the ghost visible ahead, HUD showing the timer, speed, and a split delta going green then red." >}}
+{{< placeholder type="video" id="A2" caption="Clip: 20-30s of a race run with the ghost visible ahead, HUD showing the timer, speed, and a split delta against the record going green then red." >}}
 
 Racing has two modes. In **race** mode the clock counts and the grapple and noclip are refused; a run is thrown out if you noclip or if the movement changes underneath you. In **practice** mode nothing counts and everything is allowed, which is where you'll spend most of your time. The scoreboard is rearranged to suit: course records on one side, the racers on the other.
 
@@ -41,14 +41,16 @@ Racing has two modes. In **race** mode the clock counts and the grapple and nocl
 Player movement is no longer one thing. Quetoo now ships **five movements**, and you pick one:
 
 - **Quetoo** — what you've been playing, and the only one with the grappling hook.
-- **Quetoo Race** — MovoWR's ruleset, tuned for jumping.
+- **Quetoo Race** — Quetoo's own movement for jumping, and the only one still being tuned.
 - **Quake** — QuakeWorld.
 - **Quake II**
 - **Quake III Arena**
 
 Set it with the `g_movement` cvar, from the **Create Server** menu, or per-level with a `movement` key on worldspawn; each game module decides which movement a level falls back to when nothing asks for one, and the race module falls back to Race. Servers advertise the movement they resolved, so the server browser tells you what you're joining before you join it.
 
-The important part is that a movement is **finished, not maintained**. Each one lives in its own file with its own fixed parameters, deliberately out of reach of the server's tuning cvars, so a movement someone set a record under can never quietly drift. Movement travels with the player rather than with the server, so the client and the server run the same code over the same numbers, and your player bounding box — and the size your model is drawn at — comes from the movement you're using.
+The important part is what each movement is allowed to do. The three that imitate another game are **frozen**: fixed parameters in their own file, out of reach of the server's tuning cvars, finished the moment they match what they're imitating. The Quetoo movement still follows the server's movement cvars, as it always has. And Quetoo Race is deliberately the odd one out — it imitates nothing, having begun from Quake II and picked up its ramp mechanics by way of Digital Paint: Paintball 2, and it is still being tuned, because racing is entirely about movement. Race records carry a hash of the parameters they were set under, so a time can always be told which version of the movement produced it.
+
+Movement travels with the player rather than with the server, so the client and the server run the same code over the same numbers, and your player bounding box — and the size your model is drawn at — comes from the movement you're using.
 
 {{< placeholder type="video" id="A4" caption="Clip: the same strafe jump or gap attempted under Quetoo, Quake, Quake II, and Quake III in quick succession, labelled, showing how differently each lands." >}}
 
@@ -80,18 +82,18 @@ When you die, the camera now lingers on whoever did it to you. We call it the de
 
 ### A HUD you can rebuild
 
-The heads-up display used to be drawn by hand, in C, one call at a time — which is why it had looked the same for a decade. The whole thing has been **rebuilt on the same toolkit and the same renderer as the menus**. Every element — vitals, powerups, the stat column, the clock, pickups, the weapon bar, the team banner, the crosshair, the scoreboard, the chat, the notifications, the console, and the diagnostics — is now a view described in **JSON and styled with CSS**.
+The heads-up display used to be drawn by hand, in C, one call at a time — which is why it had looked the same for a decade. The whole thing has been **rebuilt on the same toolkit and the same renderer as the menus**. Every element — vitals, powerups, the stat column, the clock, pickups, the weapon bar, the team banner, the crosshair, the scoreboard, the chat, the notifications, the console, and the diagnostics — is now a **real view**, with the HUD's own layout described in JSON and all of it styled with CSS.
 
 Which means the HUD is now **yours**. The `cg_hud` cvar names a directory, `ui/hud/<variant>`, holding `hud.json`, `hud.css`, `scoreboard.json`, and `scoreboard.css`. Anything your variant doesn't ship falls back to the default, so a variant that only changes colors is four lines long. Two ship with the game:
 
-- **default** — the classic arrangement, now in Barlow Condensed with M PLUS U numerals.
+- **default** — the classic arrangement, now set in Barlow Condensed with M PLUS U numerals.
 - **chrome** — edge-anchored: four corner clusters sitting flush to the screen edges on angled cards cut from a gradient, the weapon bar running up the right edge, and a tabular scoreboard.
 
 {{< placeholder type="image" id="A10" caption="The default HUD variant in a firefight: vitals, weapon bar, stat column all visible." >}}
 
 {{< placeholder type="image" id="A11" caption="The chrome HUD variant in the same scene as A10 if possible, showing the angled corner cards and the vertical weapon bar." >}}
 
-Because the HUD draws through the UI renderer, its icons and glyphs come from a shared atlas and its numbers are baked fonts, so all of it lands in a handful of draw calls — the new HUD is cheaper than the one it replaced, not more expensive. Pics can be SVG now, rasterized at your display's actual pixel density, and the crosshair is rasterized at the size it's drawn rather than scaled up from a small bitmap. Your own scoreboard row is highlighted. The frame rate counter has your ping under it, and the diagnostics overlay is a real table.
+Because the HUD draws through the UI renderer, its icons and glyphs come from a shared atlas and its numbers are baked fonts, so all of it lands in a handful of draw calls. Pics can be SVG now, rasterized at your display's actual pixel density, and the crosshair is rasterized at the size it's drawn rather than scaled up from a small bitmap. Your own scoreboard row is highlighted. The frame rate counter has your ping under it, and the diagnostics overlay is a real table.
 
 The menus got attention alongside it: rounded panels throughout, a loading screen that shows the map, the server, and a backdrop while you wait, color escapes accepted in server hostnames and player names, and confirmation dialogs that no longer stack up if you click Quit twice.
 
@@ -123,11 +125,11 @@ Bots now flee from Quad and Invulnerability carriers, can't spot invisible playe
 
 Items that fall into lava or slime can now **respawn immediately at their origin** when the mapper flags them, so no more waiting out a 30 second timer because someone knocked the rocket launcher into the drink.
 
-A long-standing bug where high frame rates shortened your jumps is fixed. Clients can also **vote** on the map, the bot count, the limits, and each other.
+A long-standing bug where high frame rates shortened your jumps is fixed. Clients can also **vote** on the map, the bot count, the frag and time limits, and on forcing each other to spectate.
 
 ### Finding a game
 
-The server browser was rewritten on top of a new status protocol and then rebuilt as a **two-pane browser**: the servers on the left, and everything known about the one you've selected on the right — hostname, address, whether it came from the master or the LAN, the map and its mapshot, the gameplay, the movement, occupancy, and ping. **Hide Empty** and **Hide Bots** filters, live scores, and a re-query of the master every time you open it. A server that answers on both the LAN and the master is now shown once instead of twice, and one that never answered at all renders as unknown and sorts last rather than posing as a 999 ms server.
+The server browser was rewritten on top of a new status protocol and then rebuilt as a **two-pane browser**: the servers on the left, and everything known about the one you've selected on the right — hostname, address, whether it came from the master or the LAN, the map and its mapshot, the gameplay, the movement, occupancy, and ping. **Hide Empty** and **Hide Bots** filters, live scores, and a re-query of the master every time you open it. A server that answers on both the LAN and the master is now shown once instead of twice, and one that never answered at all renders as unset and, when you sort by ping, sorts last rather than posing as a 999 ms server.
 
 The Home menu shows the **global leaderboard** from [Stats](/stats/). And Discord join announcements now include a `quetoo://` link, so one click puts you in the server your friends are on.
 
@@ -151,16 +153,16 @@ We are not announcing a mobile port. But for the first time, there is nothing in
 
 Quake 2 gave you a `game.dll` and a copy of the source. Quake 3 gave you three of them and QVMs. Both left you with one option: fork the whole game and maintain a divergent copy forever. Quetoo 1.0.68 shipped a **mod framework** designed to make that unnecessary, and we've spent the summer proving it out.
 
-Gameplay rules are composed from **chainable hooks** rather than by editing the default game. There are now hooks for damage (which can veto an attack outright), item drops, entity spawning, trace clipping, entity presentation, chat, the client lifecycle, client commands, gameplay and movement resolution, and HUD arrangement, most of them in matching `Will`/`Did` pairs. Shared code lives in `src/game/common` and `src/cgame/common` and is compiled into each module, so every mod owns its own struct layouts and nothing breaks when the default game changes shape.
+Gameplay rules are composed from **chainable hooks** rather than by editing the default game. There are now hooks for damage (which can veto an attack outright), item drops, entity spawning, trace clipping, entity presentation, chat, the client lifecycle, client commands, and gameplay resolution, with the client lifecycle hooks in matching `Will`/`Did` pairs. Shared code lives in `src/game/common` and `src/cgame/common` and is compiled into each module, so every mod owns its own struct layouts and nothing breaks when the default game changes shape.
 
-**Three modules now ship beside the default game**, each proving a different point. **CTF** was extracted out of the default game, so the framework has to support what was previously privileged. **Lithium** (deathmatch plus grappling hook and techs) was written from scratch against the hooks alone. And **Race** replaces the entire premise — no frags, its own scoring, its own movement, its own HUD, its own entity classes, its own on-disk record and replay formats — without touching a line of the default game. If a racing mod fits, most things fit.
+**Three modules now ship beside the default game**, each proving a different point. **CTF** was extracted out of the default game, so the framework has to support what was previously privileged. **Lithium** (deathmatch plus grappling hook and techs) was written from scratch against the hooks alone. And **Race** replaces the entire premise — no frags, its own scoring, the racing movement, its own HUD, its own entity classes, its own on-disk record and replay formats — without touching a line of the default game. If a racing mod fits, most things fit.
 
 {{< placeholder type="image" id="A18" caption="Create Server menu showing the game module selector with default / ctf / lithium / race, and the movement selector open beside it." >}}
 
 Two things that fell out of the mod work are worth calling out on their own:
 
-- **A module can supply the movement.** The five movements above are movement kernels selected per player through the movement parameters, and a module says which one a level falls back to. If you want flying, wall jumping, or power sliding, that is now a file, not a fork.
-- **A module can arrange the HUD.** Modules chain onto the HUD configuration hook and add their own views by container identifier — CTF adds a captures counter, Lithium adds the held tech, Race adds speed and run counters — and the whole layout is JSON and CSS, styled with the same gradient and corner-cut properties the shipped `chrome` variant uses.
+- **A module chooses the movement.** The five movements above are kernels selected per player through the movement parameters, and each module names the one a level falls back to. New movements live in the shared movement tree rather than inside a module — the ids are networked and have to resolve on both sides — so adding flying, wall jumping, or power sliding is a file alongside the other five rather than a fork of the game.
+- **A module arranges its own HUD.** A module ships its own `hud.json` and `scoreboard.json` per variant, reusing common's views and slotting in its own — CTF a captures counter, Lithium the held tech, Race speed and run counters — styled with the same gradient and corner-cut properties the shipped `chrome` variant uses.
 
 If you don't need code, you don't need a build. **Shallow mods** let you `quetoo +game mymod` with nothing but a `.cfg` and some maps in your game directory; the engine falls back to the default modules. A server module can declare which client module its players should load, and the engine refuses to connect a client running a mismatched game or BSP. The `game` command tab-completes any directory under any search root, including hand-installed mods in your user directory.
 
@@ -174,12 +176,13 @@ Quetoo's [TrenchBroom](https://trenchbroom.github.io/) integration got a lot of 
 
 - **Valve 220 map format.** `quemap` auto-detects it, the game config prefers it, and every shipped `.map` source has been converted. Better texture alignment, fewer surprises.
 - **Entity definitions audited against the source.** The FGD and `entities.def` were compared line by line with the game code, fixing swapped `func_door_rotating` spawnflags, missing `target` keys, a wrongly-classed `trigger_exec`, missing Quake items, and more. Target link lines draw correctly in the editor again.
-- **New entities:** `func_bob`, `ballistics_*` and `turret_*` per-weapon trap and turret classes, `trigger_push` with `start_off` and `toggle`, `trigger_multiple` that fires for as long as it's touched, `trigger_void`, the `hazard_respawn` item spawnflag, custom `func_button` sounds, and the `trigger_race_*` and `func_race_*` classes for building courses.
+- **New entities:** `func_bob`, `ballistics_*` and `turret_*` per-weapon trap and turret classes, `trigger_push` with `start_off` and `toggle`, `trigger_multiple` that fires for as long as it's touched, `trigger_void`, the `hazard_respawn` item spawnflag, and custom `func_button` sounds.
 - **func_train:** origin brushes, per-`path_corner` speed with smooth acceleration, heading inferred from the route, and the previously undocumented `teleport` and `silent` corner flags are now documented.
+- **Race courses:** the `trigger_race_*` and `func_race_*` classes are documented in the race module's own source, but they are not in the shipped FGD or `entities.def` yet, so for now you'll be adding them to your editor by hand.
 - **Materials:** the new `emissive` stage property replaces `bloom`, and material stages support flat lighting.
 - **Textures:** the new `ceil2_*` set (a remake of `ceil1_*` in extra colors), an expanded `evil` set, new lava materials, and refreshed Atlantis and Quake 2 sets. Every set ships with its Krita source.
 
-{{< placeholder type="image" id="A19" caption="TrenchBroom showing the Quetoo entity browser with the turret_* / ballistics_* / trigger_race_* groups, or func_train path_corner links drawn." >}}
+{{< placeholder type="image" id="A19" caption="TrenchBroom showing the Quetoo entity browser with the turret_* / ballistics_* groups, or func_train path_corner links drawn." >}}
 
 {{< placeholder type="image" id="A20" caption="Texture sheet: the ceil2_* set laid out in a grid, or in-game on a ceiling." >}}
 
