@@ -1,6 +1,6 @@
 ---
 title: "The Summer Update"
-description: "Eighty-eight releases in four months: a new renderer, real mod support, a racing mod, five ways to move, a HUD you can rebuild yourself, a new map, turrets, mine carts, and a whole lot more."
+description: "Eighty-eight releases in four months: a new renderer, real mod support, five ways to move, a HUD you can rebuild yourself, a new map, turrets, mine carts, and a whole lot more."
 date: 2026-09-09
 featured_image: "/images/screenshots/quetoo039.jpg"
 build:
@@ -22,19 +22,15 @@ Grab the latest from [Downloads](/downloads/) — everything below is live right
 
 ## For players
 
-### Race
+### Miner Difficulty
 
-There is a **racing mod** in the box now. `race` is a full game module that ships alongside `default`, `ctf`, and `lithium`, and it exists because of **MovoWR**, whose community jump mod gave us its design, its replay format, and the semantics of its barriers, rebuilt here on Quetoo's mod framework.
+Skies912's long-awaited cavern mine map, **Miner Difficulty**, is in the rotation. Winding tunnels, rail tracks, and the largest BSP in the game by a wide margin. It also drove a pile of engine work, more on that below.
 
-A course is described entirely by entities, so any mapper can build one: `trigger_race_start`, `trigger_race_checkpoint`, `trigger_race_split`, `trigger_race_stage`, and `trigger_race_finish`, plus `func_race_checkpoint_gate` and `func_race_oneway_wall` for barriers that open only once you've earned them. Barriers are resolved per player and **predicted on the client**, so a gate you've passed doesn't yank you back.
+{{< placeholder type="image" id="A2" caption="Miner Difficulty: wide establishing shot of the main cavern with rail tracks visible." >}}
 
-The mod keeps **one personal best per player, per movement**, and the fastest run under a given movement becomes the course record. The record's raceline is kept too, which means you can type `ghost` and race it: the record holder's run, wearing the record holder's skin, leaving the start with you. The HUD shows your speed, your run count, and your splits **as deltas against both your own best and the course record**, so you know which third of the course you just lost.
+Two more Skies912 remakes are in progress in the data repo: **Another Place of Two Deaths** (a full rebuild of 2deaths) and **Campgrounds**, our take on Q3DM6. Neither ships yet, but the sources are public if you want a preview.
 
-{{< placeholder type="video" id="A2" caption="Clip: 20-30s of a race run with the ghost visible ahead, HUD showing the timer, speed, and a split delta against the record going green then red." >}}
-
-Racing has two modes. In **race** mode the clock counts and the grapple and noclip are refused; a run is thrown out if you noclip or if the movement changes underneath you. In **practice** mode nothing counts and everything is allowed, which is where you'll spend most of your time. The scoreboard is rearranged to suit: course records on one side, the racers on the other.
-
-{{< placeholder type="image" id="A3" caption="Race scoreboard: course records column alongside the current racers, ideally with a personal best and a course record visible." >}}
+{{< placeholder type="image" id="A3" caption="Campgrounds WIP: side-by-side or single shot of the remade central atrium. Label as work in progress." >}}
 
 ### Five ways to move
 
@@ -46,7 +42,7 @@ Player movement is no longer one thing. Quetoo now ships **five movements**, and
 - **Quake II**
 - **Quake III Arena**
 
-Set it with the `g_movement` cvar, from the **Create Server** menu, or per-level with a `movement` key on worldspawn; each game module decides which movement a level falls back to when nothing asks for one, and the race module falls back to Race. Servers advertise the movement they resolved, so the server browser tells you what you're joining before you join it.
+Set it with the `g_movement` cvar, from the **Create Server** menu, or per-level with a `movement` key on worldspawn; and each game module decides which movement a level falls back to when nothing asks for one. Servers advertise the movement they resolved, so the server browser tells you what you're joining before you join it.
 
 The important part is what each movement is allowed to do. The three that imitate another game are **frozen**: fixed parameters in their own file, out of reach of the server's tuning cvars, finished the moment they match what they're imitating. The Quetoo movement still follows the server's movement cvars, as it always has. And Quetoo Race is deliberately the odd one out — it imitates nothing, having begun from Quake II and picked up its ramp mechanics by way of Digital Paint: Paintball 2, and it is still being tuned, because racing is entirely about movement. Race records carry a hash of the parameters they were set under, so a time can always be told which version of the movement produced it.
 
@@ -54,31 +50,21 @@ Movement travels with the player rather than with the server, so the client and 
 
 {{< placeholder type="video" id="A4" caption="Clip: the same strafe jump or gap attempted under Quetoo, Quake, Quake II, and Quake III in quick succession, labelled, showing how differently each lands." >}}
 
-### Miner Difficulty
-
-Skies912's long-awaited cavern mine map, **Miner Difficulty**, is in the rotation. Winding tunnels, rail tracks, and the largest BSP in the game by a wide margin. It also drove a pile of engine work, more on that below.
-
-{{< placeholder type="image" id="A5" caption="Miner Difficulty: wide establishing shot of the main cavern with rail tracks visible." >}}
-
-Two more Skies912 remakes are in progress in the data repo: **Another Place of Two Deaths** (a full rebuild of 2deaths) and **Campgrounds**, our take on Q3DM6. Neither ships yet, but the sources are public if you want a preview.
-
-{{< placeholder type="image" id="A6" caption="Campgrounds WIP: side-by-side or single shot of the remade central atrium. Label as work in progress." >}}
-
 ### Traps, turrets, and mine carts
 
 Mappers have new toys, which means you have new ways to die. **Ballistics traps** fire any weapon's projectile on an interval, on a trigger, or as a toggle. **Turrets** are player-operated: walk up, use it, and fire along your view. Frags scored from a turret count for you, with a dozen new obituaries to match.
 
 `func_train` got a complete overhaul so that a mine cart can bank and pitch to follow its rails, accelerate smoothly between corners, and carry its own heading. And the new `func_bob` mover does what it says: a self-contained bobbing platform with no path corners to fiddle with.
 
-{{< placeholder type="video" id="A7" caption="Clip: player hops on a turret and fires at incoming players; cut to a ballistics trap firing rockets down a hallway." >}}
+{{< placeholder type="video" id="A5" caption="Clip: player hops on a turret and fires at incoming players; cut to a ballistics trap firing rockets down a hallway." >}}
 
-{{< placeholder type="video" id="A8" caption="Clip: mine cart on Miner Difficulty rounding a bend and climbing, showing the cart pitching with the rails." >}}
+{{< placeholder type="video" id="A6" caption="Clip: mine cart on Miner Difficulty rounding a bend and climbing, showing the cart pitching with the rails." >}}
 
 ### The cam of shame
 
 When you die, the camera now lingers on whoever did it to you. We call it the death cam. You will call it something else.
 
-{{< placeholder type="video" id="A9" caption="Clip: 5-10s death cam following the killer after a rail frag." >}}
+{{< placeholder type="video" id="A7" caption="Clip: 5-10s death cam following the killer after a rail frag." >}}
 
 ### A HUD you can rebuild
 
@@ -89,9 +75,9 @@ Which means the HUD is now **yours**. The `cg_hud` cvar names a directory, `ui/h
 - **default** — the classic arrangement, now set in Barlow Condensed with M PLUS U numerals.
 - **chrome** — edge-anchored: four corner clusters sitting flush to the screen edges on angled cards cut from a gradient, the weapon bar running up the right edge, and a tabular scoreboard.
 
-{{< placeholder type="image" id="A10" caption="The default HUD variant in a firefight: vitals, weapon bar, stat column all visible." >}}
+{{< placeholder type="image" id="A8" caption="The default HUD variant in a firefight: vitals, weapon bar, stat column all visible." >}}
 
-{{< placeholder type="image" id="A11" caption="The chrome HUD variant in the same scene as A10 if possible, showing the angled corner cards and the vertical weapon bar." >}}
+{{< placeholder type="image" id="A9" caption="The chrome HUD variant in the same scene as A10 if possible, showing the angled corner cards and the vertical weapon bar." >}}
 
 Because the HUD draws through the UI renderer, its icons and glyphs come from a shared atlas and its numbers are baked fonts, so all of it lands in a handful of draw calls. Pics can be SVG now, rasterized at your display's actual pixel density, and the crosshair is rasterized at the size it's drawn rather than scaled up from a small bitmap. Your own scoreboard row is highlighted. The frame rate counter has your ping under it, and the diagnostics overlay is a real table.
 
@@ -106,12 +92,12 @@ Lighting was unified across the world, models, and effects, and every map has be
   after="/news/summer-update/TODO-ao-after.jpg"
   before-label="1.0"
   after-label="Now"
-  title="A12 — ambient occlusion and liquid lighting (same camera position, before/after)"
+  title="A10 — ambient occlusion and liquid lighting (same camera position, before/after)"
 >}}
 
-{{< placeholder type="image" id="A13" caption="Alpha-tested shadows: a grate or fence casting a patterned shadow on the floor." >}}
+{{< placeholder type="image" id="A11" caption="Alpha-tested shadows: a grate or fence casting a patterned shadow on the floor." >}}
 
-{{< placeholder type="image" id="A14" caption="Emissive materials: a wall of glowing computer screens or lit panels blooming in a dark room." >}}
+{{< placeholder type="image" id="A12" caption="Emissive materials: a wall of glowing computer screens or lit panels blooming in a dark room." >}}
 
 Also: proper **Hor+ field of view** on ultrawide and portrait displays, a saturation slider, custom fullscreen modes, MSAA and AO controls in the Graphics menu, and beefier bullet and nail impacts.
 
@@ -133,9 +119,17 @@ The server browser was rewritten on top of a new status protocol and then rebuil
 
 The Home menu shows the **global leaderboard** from [Stats](/stats/). And Discord join announcements now include a `quetoo://` link, so one click puts you in the server your friends are on.
 
-{{< placeholder type="image" id="A15" caption="New two-pane Join Server browser: server table on the left, details pane with mapshot on the right." >}}
+{{< placeholder type="image" id="A13" caption="New two-pane Join Server browser: server table on the left, details pane with mapshot on the right." >}}
 
-{{< placeholder type="image" id="A16" caption="Home menu showing the global leaderboard table." >}}
+{{< placeholder type="image" id="A14" caption="Home menu showing the global leaderboard table." >}}
+
+### Race, in preview
+
+The mod framework's most ambitious tenant ships in the box: **Race**, a timed-run mod built on the design, the replay format and the barrier semantics of **MovoWR**'s community jump mod. Runs are timed against checkpoints, your best is kept separately for each movement, and the fastest run on a course becomes its record — whose ghost you can then line up alongside and race.
+
+Consider it a **preview**. There are no race maps and no public race servers yet, so for now it is something to load up locally and poke at rather than a game to go find tonight. Courses are built entirely out of entities, so that changes the moment mappers get hold of it.
+
+{{< placeholder type="video" id="A15" caption="Clip: 15-20s of a race run on a test course, the record holder's ghost visible ahead and the run timer on the HUD. Preview-quality footage is fine here." >}}
 
 ## Under the hood: a new renderer
 
@@ -143,7 +137,7 @@ This is the big one. Quetoo's renderer has been **ported from OpenGL to Metal, V
 
 Along the way we consolidated most rendering into a single render pass with a single per-frame upload, moved decals and sprites to storage buffers, and cache dynamic light and shadow state across frames. On the same hardware, the new renderer is faster than the old one. With the HUD, console, and overlays moved onto the UI toolkit, the old 2D drawing layer is gone as well: there is now exactly one path from a pixel to the screen.
 
-{{< placeholder type="image" id="A17" caption="Quetoo running on a Mac with a GPU/frame-time overlay showing Metal, or a Linux screenshot showing Vulkan in the console." >}}
+{{< placeholder type="image" id="A16" caption="Quetoo running on a Mac with a GPU/frame-time overlay showing Metal, or a Linux screenshot showing Vulkan in the console." >}}
 
 The other half of the portability story is the dependency diet. **glib is gone**, replaced by [Objectively 2](https://github.com/jdolan/Objectively) collections. The UI toolkit, [ObjectivelyMVC](https://github.com/jdolan/ObjectivelyMVC), no longer touches OpenGL either; it renders through ObjectivelyGPU on every platform. All three libraries now build for iOS and Android and ship xcframeworks on every release.
 
@@ -155,9 +149,9 @@ Quake 2 gave you a `game.dll` and a copy of the source. Quake 3 gave you three o
 
 Gameplay rules are composed from **chainable hooks** rather than by editing the default game. There are now hooks for damage (which can veto an attack outright), item drops, entity spawning, trace clipping, entity presentation, chat, the client lifecycle, client commands, and gameplay resolution, with the client lifecycle hooks in matching `Will`/`Did` pairs. Shared code lives in `src/game/common` and `src/cgame/common` and is compiled into each module, so every mod owns its own struct layouts and nothing breaks when the default game changes shape.
 
-**Three modules now ship beside the default game**, each proving a different point. **CTF** was extracted out of the default game, so the framework has to support what was previously privileged. **Lithium** (deathmatch plus grappling hook and techs) was written from scratch against the hooks alone. And **Race** replaces the entire premise — no frags, its own scoring, the racing movement, its own HUD, its own entity classes, its own on-disk record and replay formats — without touching a line of the default game. If a racing mod fits, most things fit.
+**Three modules now ship beside the default game**, each proving a different point. **CTF** was extracted out of the default game, so the framework has to support what was previously privileged. **Lithium** (deathmatch plus grappling hook and techs) was written from scratch against the hooks alone. And **Race** replaces the entire premise — no frags, its own scoring, the racing movement, its own HUD, its own entity classes, its own on-disk record and replay formats — without touching a line of the default game. It is in preview, with no maps or servers of its own yet, but if a racing mod fits, most things fit.
 
-{{< placeholder type="image" id="A18" caption="Create Server menu showing the game module selector with default / ctf / lithium / race, and the movement selector open beside it." >}}
+{{< placeholder type="image" id="A17" caption="Create Server menu showing the game module selector with default / ctf / lithium / race, and the movement selector open beside it." >}}
 
 Two things that fell out of the mod work are worth calling out on their own:
 
@@ -178,23 +172,23 @@ Quetoo's [TrenchBroom](https://trenchbroom.github.io/) integration got a lot of 
 - **Entity definitions audited against the source.** The FGD and `entities.def` were compared line by line with the game code, fixing swapped `func_door_rotating` spawnflags, missing `target` keys, a wrongly-classed `trigger_exec`, missing Quake items, and more. Target link lines draw correctly in the editor again.
 - **New entities:** `func_bob`, `ballistics_*` and `turret_*` per-weapon trap and turret classes, `trigger_push` with `start_off` and `toggle`, `trigger_multiple` that fires for as long as it's touched, `trigger_void`, the `hazard_respawn` item spawnflag, and custom `func_button` sounds.
 - **func_train:** origin brushes, per-`path_corner` speed with smooth acceleration, heading inferred from the route, and the previously undocumented `teleport` and `silent` corner flags are now documented.
-- **Race courses:** the `trigger_race_*` and `func_race_*` classes are documented in the race module's own source, but they are not in the shipped FGD or `entities.def` yet, so for now you'll be adding them to your editor by hand.
+- **Race courses:** the race mod's course-building classes are documented in its own source, but are not in the shipped editor definitions yet.
 - **Materials:** the new `emissive` stage property replaces `bloom`, and material stages support flat lighting.
 - **Textures:** the new `ceil2_*` set (a remake of `ceil1_*` in extra colors), an expanded `evil` set, new lava materials, and refreshed Atlantis and Quake 2 sets. Every set ships with its Krita source.
 
-{{< placeholder type="image" id="A19" caption="TrenchBroom showing the Quetoo entity browser with the turret_* / ballistics_* groups, or func_train path_corner links drawn." >}}
+{{< placeholder type="image" id="A18" caption="TrenchBroom showing the Quetoo entity browser with the turret_* / ballistics_* groups, or func_train path_corner links drawn." >}}
 
-{{< placeholder type="image" id="A20" caption="Texture sheet: the ceil2_* set laid out in a grid, or in-game on a ceiling." >}}
+{{< placeholder type="image" id="A19" caption="Texture sheet: the ceil2_* set laid out in a grid, or in-game on a ceiling." >}}
 
 We're also leaning hard into TrenchBroom's **patch** support. `quemap` tessellates curved patch geometry into the BSP, and the engine renders and collides against it natively, so arches, pipes, and domes are available to you today. We'd love to see what you do with them.
 
-{{< placeholder type="image" id="A21" caption="Curved geometry: a patch-built arch or pipe in TrenchBroom next to the same view in-game." >}}
+{{< placeholder type="image" id="A20" caption="Curved geometry: a patch-built arch or pipe in TrenchBroom next to the same view in-game." >}}
 
 ### The in-game editor
 
 The [in-game editor](/docs/mapping/) now **simulates movers**. Doors, plats, trains, buttons, bobs, rotators, and conveyors run on the real game code inside the editor, and `U` fires whatever you have selected. Mouse-wheel cycles through stacked entities under the cursor. And the editor got a serious performance and memory pass, with static lights caching their shadow tiles indefinitely and several VRAM leaks plugged.
 
-{{< placeholder type="video" id="A22" caption="Clip: in the editor, select a door and press U to open it; scroll the wheel to cycle through stacked entities." >}}
+{{< placeholder type="video" id="A21" caption="Clip: in the editor, select a door and press U to open it; scroll the wheel to cycle through stacked entities." >}}
 
 ## For server admins
 
