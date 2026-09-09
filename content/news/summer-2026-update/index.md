@@ -26,11 +26,21 @@ Grab the latest from [Downloads](/downloads/) — everything below is live right
 
 Skies912's long-awaited cavern mine map, **Miner Difficulty**, is in the rotation. Winding tunnels, rail tracks, and the largest BSP in the game by a wide margin. It also drove a pile of engine work, more on that below.
 
-{{< placeholder type="image" id="A2" caption="Miner Difficulty: wide establishing shot of the main cavern with rail tracks visible." >}}
+![Screenshot of 'Miner Difficulty in C#`](/images/summer-2026-update/miner01.jpg)
 
-Two more Skies912 remakes are in progress in the data repo: **Another Place of Two Deaths** (a full rebuild of 2deaths) and **Campgrounds**, our take on Q3DM6. Neither ships yet, but the sources are public if you want a preview.
+### Campgrounds
 
-{{< placeholder type="image" id="A3" caption="Campgrounds WIP: side-by-side or single shot of the remade central atrium. Label as work in progress." >}}
+Skies912's remake of Q3DM6 based on the Quake Live version. Effects for the jump pads, some wall effects etc are included. Also drove some engine work (new entity).
+
+![Screenshot of 'Campgrounds`](/images/summer-2026-update/campgrounds01.jpg)
+
+### More from Skies912:
+Two more remakes are in progress in the data repo: 
+
+- **Another Place of Two Deaths** -- full rebuild of 2deaths with MOAR detail<br>
+- **Introduction to Shub** -- A re-imagining of Quake's START map made for DM. 
+
+Neither ships yet, but the sources are public if you want a preview.
 
 ### Five ways to move
 
@@ -73,11 +83,9 @@ The heads-up display used to be drawn by hand, in C, one call at a time — whic
 Which means the HUD is now **yours**. The `cg_hud` cvar names a directory, `ui/hud/<variant>`, holding `hud.json`, `hud.css`, `scoreboard.json`, and `scoreboard.css`. Anything your variant doesn't ship falls back to the default, so a variant that only changes colors is four lines long. Two ship with the game:
 
 - **default** — the classic arrangement, now set in Barlow Condensed with M PLUS U numerals.
+![Screenshot showing the Default HUD](/images/summer-2026-update/A08.jpg)
 - **chrome** — edge-anchored: four corner clusters sitting flush to the screen edges on angled cards cut from a gradient, the weapon bar running up the right edge, and a tabular scoreboard.
-
-{{< placeholder type="image" id="A8" caption="The default HUD variant in a firefight: vitals, weapon bar, stat column all visible." >}}
-
-{{< placeholder type="image" id="A9" caption="The chrome HUD variant in the same scene as A10 if possible, showing the angled corner cards and the vertical weapon bar." >}}
+![Screenshot showing the Default HUD](/images/summer-2026-update/A09.jpg)
 
 Because the HUD draws through the UI renderer, its icons and glyphs come from a shared atlas and its numbers are baked fonts, so all of it lands in a handful of draw calls. Pics can be SVG now, rasterized at your display's actual pixel density, and the crosshair is rasterized at the size it's drawn rather than scaled up from a small bitmap. Your own scoreboard row is highlighted. The frame rate counter has your ping under it, and the diagnostics overlay is a real table.
 
@@ -95,7 +103,10 @@ Lighting was unified across the world, models, and effects, and every map has be
   title="A10 — ambient occlusion and liquid lighting (same camera position, before/after)"
 >}}
 
-{{< placeholder type="image" id="A11" caption="Alpha-tested shadows: a grate or fence casting a patterned shadow on the floor." >}}
+*Light Fixtures on Campgrounds*
+![Screenshot of alpha-tested lights on Campgrounds](/images/summer-2026-update/A11a.jpg)
+*Grates in the floor on Rage*
+![Screenshot of alpha-tested grates on Rage](/images/summer-2026-update/A11b.jpg)
 
 {{< placeholder type="image" id="A12" caption="Emissive materials: a wall of glowing computer screens or lit panels blooming in a dark room." >}}
 
@@ -111,7 +122,10 @@ Bots now flee from Quad and Invulnerability carriers, can't spot invisible playe
 
 Items that fall into lava or slime can now **respawn immediately at their origin** when the mapper flags them, so no more waiting out a 30 second timer because someone knocked the rocket launcher into the drink.
 
-A long-standing bug where high frame rates shortened your jumps is fixed. Clients can also **vote** on the map, the bot count, the frag and time limits, and on forcing each other to spectate.
+A long-standing bug where high frame rates shortened your jumps is fixed. 
+
+### Map Voting
+Clients can also **vote** on the map, the bot count, the frag and time limits, and on forcing each other to spectate.
 
 ### Finding a game
 
@@ -119,9 +133,8 @@ The server browser was rewritten on top of a new status protocol and then rebuil
 
 The Home menu shows the **global leaderboard** from [Stats](/stats/). And Discord join announcements now include a `quetoo://` link, so one click puts you in the server your friends are on.
 
-{{< placeholder type="image" id="A13" caption="New two-pane Join Server browser: server table on the left, details pane with mapshot on the right." >}}
-
-{{< placeholder type="image" id="A14" caption="Home menu showing the global leaderboard table." >}}
+![New two-pane Join Server browser: server table on the left, details pane with mapshot on the right](/images/summer-2026-update/A13.jpg)
+![Home menu showing the global leaderboard table](/images/summer-2026-update/A14.jpg)
 
 ### Race, in preview
 
@@ -151,7 +164,7 @@ Gameplay rules are composed from **chainable hooks** rather than by editing the 
 
 **Three modules now ship beside the default game**, each proving a different point. **CTF** was extracted out of the default game, so the framework has to support what was previously privileged. **Lithium** (deathmatch plus grappling hook and techs) was written from scratch against the hooks alone. And **Race** replaces the entire premise — no frags, its own scoring, the racing movement, its own HUD, its own entity classes, its own on-disk record and replay formats — without touching a line of the default game. It is in preview, with no maps or servers of its own yet, but if a racing mod fits, most things fit.
 
-{{< placeholder type="image" id="A17" caption="Create Server menu showing the game module selector with default / ctf / lithium / race, and the movement selector open beside it." >}}
+![Create Server menu showing the game module selector with default / ctf / lithium / race, and the movement selector open beside it](/images/summer-2026-update/A17.jpg)
 
 Two things that fell out of the mod work are worth calling out on their own:
 
@@ -177,9 +190,16 @@ Quetoo's [TrenchBroom](https://trenchbroom.github.io/) integration got a lot of 
 - **Textures:** the new `ceil2_*` set (a remake of `ceil1_*` in extra colors), an expanded `evil` set, new lava materials, and refreshed Atlantis and Quake 2 sets. Every set ships with its Krita source.
 
 {{< placeholder type="image" id="A18" caption="TrenchBroom showing the Quetoo entity browser with the turret_* / ballistics_* groups, or func_train path_corner links drawn." >}}
+*Tilesheet mockup of ceil2 set*
+![Ceil2_* Tilesheet mockup](/images/summer-2026-update/ceil2_atlas.png)
+*In-game full set*
+![Ceil2_* In-game Overall](/images/summer-2026-update/A19a.jpg)
+*Focus on Parallax details*
+![Ceil2_* In-game Focus on Parallax](/images/summer-2026-update/A19b.jpg)
+*Atlantis Set: Testing map*
+![Screenshot of some of the Atlantis set](/images/summer-2026-update/atlantis.jpg)
 
-{{< placeholder type="image" id="A19" caption="Texture sheet: the ceil2_* set laid out in a grid, or in-game on a ceiling." >}}
-
+### Q3 Bezier Style Patches
 We're also leaning hard into TrenchBroom's **patch** support. `quemap` tessellates curved patch geometry into the BSP, and the engine renders and collides against it natively, so arches, pipes, and domes are available to you today. We'd love to see what you do with them.
 
 {{< placeholder type="image" id="A20" caption="Curved geometry: a patch-built arch or pipe in TrenchBroom next to the same view in-game." >}}
