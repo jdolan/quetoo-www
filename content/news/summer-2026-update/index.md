@@ -3,7 +3,7 @@ title: "The Summer Update"
 description: "Eighty-eight releases in four months: a new renderer, real mod support, a racing mod, five ways to move, a HUD you can build yourself, a new map, turrets, mine carts, and a whole lot more."
 date: 2026-09-09
 featured_image: "/images/screenshots/quetoo039.jpg"
-_build:
+build:
   list: never
   render: always
 ---
