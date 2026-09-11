@@ -2,7 +2,7 @@
 title: "We Need a Community & Marketing Lead"
 description: "Quetoo is looking for a volunteer Community and Marketing Lead to own our blog, our socials, and our voice in the Quake and arena FPS communities."
 date: 2026-09-11
-draft: true
+draft: false
 featured_image: "/images/screenshots/quetoo039.jpg"
 aliases:
   - /community-lead/
