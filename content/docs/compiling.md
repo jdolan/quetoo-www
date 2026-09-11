@@ -174,3 +174,14 @@ After building, run `Quetoo.vs15\COPY_DEPENDENCIES.bat` to copy required DLLs in
 ```bat
 COPY_DEPENDENCIES.bat quetoo x64 Release
 ```
+
+---
+
+## Disabling Updates
+
+A build from source has updates disabled already, since `configure` leaves the
+version unset. To pin a release build instead, pass `+set version -1`:
+
+```
+quetoo +set version -1
+```

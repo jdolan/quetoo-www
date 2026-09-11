@@ -142,20 +142,6 @@ Within that directory:
 
 ---
 
-## Auto-Updates
-
-Quetoo uses a two-tier update model:
-
-**Game content** (maps, textures, and assets) is updated automatically. On every launch, the built-in updater compares your local content against the latest curated release and downloads any new or changed files in the background. You'll always be on the current map pool without any manual steps.
-
-**Engine binaries** (the executable and game libraries) are *not* self-updating. To get a new engine release, re-download from the [Downloads](/downloads/) page — we announce releases on the [News](/news/) page. For most players, checking back every few months is sufficient.
-
-To disable update checks entirely — for example when running a custom build or testing — add `+set version -1` to the command line:
-
-```
-quetoo +set version -1
-```
-
 ## Getting Help
 
 Join the [Discord](https://discord.gg/unb9U4b) to find games, ask questions, and connect with the community.

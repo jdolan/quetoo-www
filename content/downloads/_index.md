@@ -7,7 +7,7 @@ description: "Download Quetoo for Linux, macOS, and Windows. Free to download, p
   <div class="download-card">
     <div class="platform-icon"><img src="/icons/apple.svg" class="brand-icon" alt="macOS"></div>
     <h3>macOS</h3>
-    <p>Universal <tt>.app</tt> for macOS Sequoia or later.</p>
+    <p>Apple Silicon <tt>.app</tt> for macOS Sequoia or later.</p>
     <a href="https://github.com/jdolan/quetoo/releases/latest#macos" class="btn btn-primary">Download for macOS</a>
   </div>
   <div class="download-card">
@@ -44,19 +44,24 @@ description: "Download Quetoo for Linux, macOS, and Windows. Free to download, p
 
 <div style="text-align: center;">{{< download-counter >}}</div>
 
-## Release Model
+## Updates
 
-Quetoo has a two-tier update model. On each launch, Quetoo checks for and automatically downloads the latest curated game content — maps, textures, and assets — so you're always playing with the current map pool without any manual steps. **Engine binaries** (the executable and game libraries) are not self-updating; re-download from this page periodically to pick up new engine releases. The game will tell you when a new version is available.
+Quetoo updates itself. Game content is downloaded on first launch and kept current from there; new releases are offered when you launch and installed when you quit.
+
+Two exceptions, where something else is already in charge of updating:
+
+- **Dedicated servers** update through `quetoo-update`; use `apt` or `dnf` to install the Linux packages below.
+- **itch.io installs** made through the itch app are updated by the itch app.
 
 ## Platform Notes
 
 ### macOS — `.app` Bundle
 
-The macOS release is a self-contained `.app` bundle. Drag it to your `Applications` folder and launch it to play.
+Drag `Quetoo.app` to a folder you can write to — for example `~/Applications` — and launch it to play.
 
 ### Windows — `.zip` Bundle
 
-The Windows release is a `.zip` archive containing everything you need to run the game. Extract it anywhere and run `quetoo.exe`. Windows _SmartScreen_ may warn on first launch. Click **More info**, then **Run anyway** to proceed.
+Extract the archive somewhere you can write to, rather than `Program Files`, and run `quetoo.exe`. Windows _SmartScreen_ may warn on first launch. Click **More info**, then **Run anyway** to proceed.
 
 ### Linux Client — `.tgz` Bundle
 
