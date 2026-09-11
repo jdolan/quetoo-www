@@ -59,7 +59,7 @@ You will own our blog and all of our socials. You'll be the voice of Quetoo.
 - **Champion Quetoo** talk with content creators, map jammers, modders, and tournament organizers.
 
 <div class="gallery-grid full pr-gallery">
-  <a href="/images/community-lead/deathmatch01.jpg" class="gallery-item" data-full="/images/community-lead/deathmatch01.jpg"><img src="/images/community-lead/deathmatch01.jpg" alt="A close-quarters firefight in a Quetoo deathmatch arena" loading="lazy"></a>
+  <a href="/images/community-lead/campgrounds-lights.jpg" class="gallery-item" data-full="/images/community-lead/campgrounds-lights.jpg"><img src="/images/community-lead/campgrounds-lights.jpg" alt="Alpha-tested light shadows falling across the stairs on Campgrounds" loading="lazy"></a>
   <a href="/images/community-lead/deathmatch02.jpg" class="gallery-item" data-full="/images/community-lead/deathmatch02.jpg"><img src="/images/community-lead/deathmatch02.jpg" alt="Hyperblaster fire lighting up a Quetoo corridor" loading="lazy"></a>
 </div>
 
