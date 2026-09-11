@@ -44,23 +44,32 @@ description: "Download Quetoo for Linux, macOS, and Windows. Free to download, p
 
 <div style="text-align: center;">{{< download-counter >}}</div>
 
-## Release Model
+## Updates
 
-Quetoo has a two-tier update model. On each launch, Quetoo checks for and automatically downloads the latest curated game content — maps, textures, and assets — so you're always playing with the current map pool without any manual steps. **Engine binaries** (the executable and game libraries) are not self-updating; re-download from this page periodically to pick up new engine releases. The game will tell you when a new version is available.
+**Quetoo keeps itself up to date.** Download it once; you should not need to come back to this page.
+
+**Game content** — maps, textures, sounds — is fetched on first launch, then kept current automatically. The first run downloads about 900&nbsp;MB in one go; after that only what actually changed is downloaded, so later updates are small.
+
+**Quetoo itself** updates in place. When a new release is available the game asks whether you want it, downloads it in the background while you play, and installs it when you quit. The next time you launch, you are on the new version. Decline and it simply asks again next time.
+
+Two exceptions, where something else is already in charge of updating:
+
+- **Linux packages** update through `apt` or `dnf` as usual.
+- **itch.io installs** made through the itch app are updated by the itch app.
 
 ## Platform Notes
 
 ### macOS — `.app` Bundle
 
-The macOS release is a self-contained `.app` bundle. Drag it to your `Applications` folder and launch it to play.
+Drag `Quetoo.app` to your `Applications` folder and launch it. Game content downloads on first launch, so keep the app where you put it — that is where updates are installed.
 
 ### Windows — `.zip` Bundle
 
-The Windows release is a `.zip` archive containing everything you need to run the game. Extract it anywhere and run `quetoo.exe`. Windows _SmartScreen_ may warn on first launch. Click **More info**, then **Run anyway** to proceed.
+Extract the archive anywhere you can write to — your user folder rather than `Program Files`, so updates can be installed without prompting for administrator rights — and run `quetoo.exe`. Game content downloads on first launch. Windows _SmartScreen_ may warn the first time; click **More info**, then **Run anyway**.
 
 ### Linux Client — `.tgz` Bundle
 
-The Linux client is distributed as a tarball. Extract it to a location of your liking and run `./bin/quetoo`.
+The Linux client is distributed as a tarball. Extract it somewhere you own — updates are installed in place — and run `./bin/quetoo`. Game content downloads on first launch.
 
 ### Linux Server — `.deb` / `.rpm` Packages
 
