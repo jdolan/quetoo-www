@@ -7,7 +7,7 @@ description: "Download Quetoo for Linux, macOS, and Windows. Free to download, p
   <div class="download-card">
     <div class="platform-icon"><img src="/icons/apple.svg" class="brand-icon" alt="macOS"></div>
     <h3>macOS</h3>
-    <p>Universal <tt>.app</tt> for macOS Sequoia or later.</p>
+    <p>Apple Silicon <tt>.app</tt> for macOS Sequoia or later.</p>
     <a href="https://github.com/jdolan/quetoo/releases/latest#macos" class="btn btn-primary">Download for macOS</a>
   </div>
   <div class="download-card">
