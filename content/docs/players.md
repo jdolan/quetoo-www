@@ -142,24 +142,6 @@ Within that directory:
 
 ---
 
-## Auto-Updates
-
-Quetoo keeps both halves of itself current, so a one-time download is all you need.
-
-**Game content** (maps, textures, and assets) is fetched on first launch as a single archive, then kept up to date automatically. On every later launch the updater compares your content against the latest curated release and downloads only what changed, in the background. You are always on the current map pool without any manual steps.
-
-**Quetoo itself** updates in place. When a new release is available you are asked whether to install it; accept and it downloads while you play, then installs when you quit, so your next launch is the new version. Decline and nothing is downloaded — you are asked again next time, and you can always grab a build by hand from the [Downloads](/downloads/) page. Releases are announced on the [News](/news/) page.
-
-Content lives in your user directory and Quetoo itself lives wherever you installed it, so keep the installation somewhere you can write to. If it is not writable, Quetoo still tells you when a release is available, but cannot install it for you.
-
-Where something else already manages the installation, Quetoo leaves it alone: Linux packages update through `apt` or `dnf`, dedicated servers through `quetoo-update`, and itch.io installs through the itch app.
-
-To disable update checks entirely — for example when running a custom build or testing — add `+set version -1` to the command line:
-
-```
-quetoo +set version -1
-```
-
 ## Getting Help
 
 Join the [Discord](https://discord.gg/unb9U4b) to find games, ask questions, and connect with the community.
