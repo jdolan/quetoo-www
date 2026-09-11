@@ -54,7 +54,7 @@ description: "Download Quetoo for Linux, macOS, and Windows. Free to download, p
 
 Two exceptions, where something else is already in charge of updating:
 
-- **Linux packages** update through `apt` or `dnf` as usual.
+- **Dedicated servers** update through `quetoo-update`; use `apt` or `dnf` to install the Linux packages below.
 - **itch.io installs** made through the itch app are updated by the itch app.
 
 ## Platform Notes
