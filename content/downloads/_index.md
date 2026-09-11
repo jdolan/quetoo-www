@@ -46,11 +46,7 @@ description: "Download Quetoo for Linux, macOS, and Windows. Free to download, p
 
 ## Updates
 
-**Quetoo keeps itself up to date.** Download it once; you should not need to come back to this page.
-
-**Game content** — maps, textures, sounds — is fetched on first launch, then kept current automatically. The first run downloads about 900&nbsp;MB in one go; after that only what actually changed is downloaded, so later updates are small.
-
-**Quetoo itself** updates in place. When a new release is available the game asks whether you want it, downloads it in the background while you play, and installs it when you quit. The next time you launch, you are on the new version. Decline and it simply asks again next time.
+Quetoo updates itself. Game content is downloaded on first launch and kept current from there; new releases are offered when you launch and installed when you quit.
 
 Two exceptions, where something else is already in charge of updating:
 
@@ -61,15 +57,15 @@ Two exceptions, where something else is already in charge of updating:
 
 ### macOS — `.app` Bundle
 
-Drag `Quetoo.app` to a folder you can write to — for example `~/Applications` — and launch it. Game content downloads on first launch, so keep the app where you put it — that is where updates are installed.
+Drag `Quetoo.app` to a folder you can write to — for example `~/Applications` — and launch it to play.
 
 ### Windows — `.zip` Bundle
 
-Extract the archive anywhere you can write to — your user folder rather than `Program Files`, so updates can be installed without prompting for administrator rights — and run `quetoo.exe`. Game content downloads on first launch. Windows _SmartScreen_ may warn the first time; click **More info**, then **Run anyway**.
+Extract the archive somewhere you can write to, rather than `Program Files`, and run `quetoo.exe`. Windows _SmartScreen_ may warn on first launch. Click **More info**, then **Run anyway** to proceed.
 
 ### Linux Client — `.tgz` Bundle
 
-The Linux client is distributed as a tarball. Extract it somewhere you own — updates are installed in place — and run `./bin/quetoo`. Game content downloads on first launch.
+The Linux client is distributed as a tarball. Extract it to a location of your liking and run `./bin/quetoo`.
 
 ### Linux Server — `.deb` / `.rpm` Packages
 
