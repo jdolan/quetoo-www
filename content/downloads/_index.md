@@ -61,7 +61,7 @@ Two exceptions, where something else is already in charge of updating:
 
 ### macOS — `.app` Bundle
 
-Drag `Quetoo.app` to your `Applications` folder and launch it. Game content downloads on first launch, so keep the app where you put it — that is where updates are installed.
+Drag `Quetoo.app` to a folder you can write to — for example `~/Applications` — and launch it. Game content downloads on first launch, so keep the app where you put it — that is where updates are installed.
 
 ### Windows — `.zip` Bundle
 
