@@ -695,6 +695,34 @@ h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
 
 .lightbox-close:hover { opacity: 1; }
 
+/* -- Audio -- */
+
+.audio-list {
+  font-family: system-ui, -apple-system, sans-serif;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.audio-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background-color: #f6f8fa;
+  border: 1px solid #d0d7de;
+  border-radius: 6px;
+}
+.audio-item span {
+  font-weight: 600;
+  font-size: 14px;
+  color: #24292f;
+}
+audio {
+  height: 32px;
+  max-width: 200px;
+}
+
 /* ── Footer ── */
 
 .site-footer {
