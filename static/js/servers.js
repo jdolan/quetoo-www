@@ -21,6 +21,7 @@ function stripColors(str) {
 
 const SORT_COLS = [
   { label: 'Server',   key: 'hostname',    align: 'left',  defaultDir: 'asc'  },
+  { label: 'Game',     key: 'game',        align: 'left',  defaultDir: 'asc'  },
   { label: 'Map',      key: 'map',         align: 'left',  defaultDir: 'asc'  },
   { label: 'Gameplay', key: 'gameplay',    align: 'left',  defaultDir: 'asc'  },
   { label: 'Players',  key: 'num_clients', align: 'right', defaultDir: 'desc' },
@@ -100,6 +101,7 @@ function renderServers(servers) {
           <span class="servers-dot ${dotClass}"></span>
           <span class="servers-hostname">${stripColors(s.hostname)}</span>
         </td>
+        <td class="servers-game">${s.game || '—'}</td>
         <td class="servers-map">${s.map || '—'}</td>
         <td class="servers-gameplay">${s.gameplay || '—'}</td>
         <td class="servers-cell-num">${visible}/${s.max_clients}</td>
@@ -110,7 +112,7 @@ function renderServers(servers) {
         </td>
       </tr>
       <tr class="servers-players hidden" id="players-${idx}">
-        <td colspan="5" class="servers-players-td">
+        <td colspan="6" class="servers-players-td">
           <table class="servers-players-table">
             <thead><tr>
               <th>Player</th>

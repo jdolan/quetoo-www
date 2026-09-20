@@ -336,6 +336,7 @@
 }
 
 .servers-map,
+.servers-game,
 .servers-gameplay {
   color: var(--text-muted);
   font-size: 0.9rem;
@@ -415,6 +416,7 @@
 
 @media (max-width: 640px) {
   .servers-gameplay { display: none; }
+  .servers-game { display: none; }
 }
 
 /* Filter controls */
