@@ -64,7 +64,7 @@ To run multiple server instances, create a `.cfg` file per instance and enable e
 ```sh
 # Create a CTF instance on port 1999
 sudo cp /etc/quetoo-dedicated/default.cfg /etc/quetoo-dedicated/ctf.cfg
-# Edit /etc/quetoo-dedicated/ctf.cfg: set net_port 1999, g_ctf 1, etc.
+# Edit /etc/quetoo-dedicated/ctf.cfg: set net_port 1999, game ctf, etc.
 sudo systemctl enable --now quetoo-dedicated@ctf
 ```
 
@@ -155,6 +155,18 @@ quetoo-dedicated \
 | `rcon_password` | *(empty)* | Password for remote console access (`rcon`). Set this to allow trusted admins to run server commands remotely. |
 | `g_adminPassword` | *(empty)* | In-game admin password (set with `admin <password>`) |
 
+### Game Modules
+
+Some modes are a separate game module rather than a cvar. A module is selected with a `game`
+line in the instance `.cfg`, which the wrapper passes as `+game <name>`:
+
+```
+game ctf
+```
+
+Quetoo ships `default`, `ctf`, `lithium` and `race`. A module brings its own maps, rules and
+cvars, so `g_captureLimit` below only applies under `ctf`.
+
 ### Game Rules
 
 | Cvar | Default | Description |
@@ -162,14 +174,12 @@ quetoo-dedicated \
 | `g_fragLimit` | `30` | Frags needed to win the level |
 | `g_timeLimit` | `20` | Minutes per level |
 | `g_captureLimit` | `8` | Flag captures to win (CTF) |
-| `g_teams` | `0` | Set to `1` to enable Team Deathmatch |
-| `g_ctf` | `0` | Set to `1` to enable Capture the Flag |
-| `g_gameplay` | `default` | Game variant: `default`, `instagib`, or `arena` |
+| `g_gameplay` | `default` | Game variant: `default`, `deathmatch`, `instagib` or `arena`. Prefix with `team_` for team play, e.g. `team_deathmatch`. `default` defers to whatever the level asks for |
 | `g_numTeams` | `default` | Number of teams (auto-detected by default) |
-| `g_autoJoin` | `0` | Automatically assign players to teams |
+| `g_autoJoin` | `1` | Automatically assign players to teams |
 | `g_weaponStay` | `0` | Weapons stay after pickup instead of respawning |
 | `g_respawnProtection` | `0` | Spawn protection duration in seconds |
-| `g_spawnFarthest` | `0` | Spawn players as far as possible from enemies |
+| `g_spawnFarthest` | `1` | Spawn players as far as possible from enemies |
 | `g_ammoRespawnTime` | `20.0` | Ammo respawn interval in seconds |
 | `g_weaponRespawnTime` | `5` | Weapon respawn interval in seconds |
 

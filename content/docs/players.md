@@ -50,19 +50,19 @@ Every player for themselves. Frag as many opponents as you can before the frag l
 
 ### Team Deathmatch (TDM)
 
-Two (or more) teams compete for the highest combined frag total. Enabled by setting `g_teams 1` on the server. Team assignment is automatic unless players choose a side manually.
+Two (or more) teams compete for the highest combined frag total. Enabled by setting `g_gameplay team_deathmatch` on the server. `g_numTeams` sets how many teams there are; left at `default` it picks the valid number for the map, or 2. Team assignment is automatic while `g_autoJoin` is set, unless players choose a side manually.
 
 ### Capture the Flag (CTF)
 
-Two teams — Red and Blue — each defend their own flag while attempting to capture the enemy's flag and return it to their base. Enabled by setting `g_ctf 1` on the server. The `g_captureLimit` cvar controls how many captures are needed to win (default: 8).
+Two teams — Red and Blue — each defend their own flag while attempting to capture the enemy's flag and return it to their base. CTF is a separate game module, so the server starts with `+game ctf` on its command line. The `g_captureLimit` cvar controls how many captures are needed to win (default: 8).
 
 ### Instagib
 
-A variant of Deathmatch or CTF where every player has a one-shot railgun. Enabled by setting `g_gameplay instagib` on the server.
+Every player has a one-shot railgun. Enabled by setting `g_gameplay instagib` on the server, or `g_gameplay team_instagib` for team play.
 
 ### Arena
 
-Players or teams spawn with a full loadout of weapons, ammo and armor. Self-damage is disabled, so you can rocket jump and plasma climb to your heart's content. Last player or team standing wins. Enabled by setting `g_gameplay arena` on the server.
+Players or teams spawn with a full loadout of weapons, ammo and armor. Self-damage is disabled, so you can rocket jump and plasma climb to your heart's content. Last player or team standing wins. Enabled by setting `g_gameplay arena` on the server, or `g_gameplay team_arena` for team play.
 
 ---
 
