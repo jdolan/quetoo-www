@@ -46,7 +46,7 @@ Controls can be rebound in-game from the **Controls** settings menu.
 
 ### Deathmatch (DM)
 
-Every player for themselves. Frag as many opponents as you can before the frag limit or time limit is reached. The server cvar `g_frag_limit` sets the winning score (default: 30) and `g_time_limit` sets the time limit in minutes (default: 20).
+Every player for themselves. Frag as many opponents as you can before the frag limit or time limit is reached. The server cvar `g_fragLimit` sets the winning score (default: 30) and `g_timeLimit` sets the time limit in minutes (default: 20).
 
 ### Team Deathmatch (TDM)
 
@@ -54,7 +54,7 @@ Two (or more) teams compete for the highest combined frag total. Enabled by sett
 
 ### Capture the Flag (CTF)
 
-Two teams — Red and Blue — each defend their own flag while attempting to capture the enemy's flag and return it to their base. Enabled by setting `g_ctf 1` on the server. The `g_capture_limit` cvar controls how many captures are needed to win (default: 8).
+Two teams — Red and Blue — each defend their own flag while attempting to capture the enemy's flag and return it to their base. Enabled by setting `g_ctf 1` on the server. The `g_captureLimit` cvar controls how many captures are needed to win (default: 8).
 
 ### Instagib
 

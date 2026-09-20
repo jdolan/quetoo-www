@@ -120,7 +120,7 @@ static struct {
   ResetDroppedItem ResetDroppedItem;
 } previous;
 
-static void G_ResetDroppedItem_MyMod(g_entity_t *ent) {
+static void G_ResetDroppedItem_MyMod(GameEntity *ent) {
 
   if (ent->item->def.type == ITEM_TYPE_MINE) {
     G_DefuseMine(ent);

@@ -403,7 +403,7 @@ All key/value pairs for the selected entity are shown as editable fields. Click 
 
 **Saving**
 
-Click **Save** (or run `save_editor_map` from the console) to write the modified entity data back to the `.map` file on disk. Material changes are saved at the same time via `r_save_materials`.
+Click **Save** (or run `saveEditorMap` from the console) to write the modified entity data back to the `.map` file on disk. Material changes are saved at the same time via `r_saveMaterials`.
 
 ---
 

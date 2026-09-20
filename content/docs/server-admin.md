@@ -38,8 +38,8 @@ set net_port 1998
 set sv_hostname "My Quetoo Server"
 set sv_public 1
 set rcon_password "secret"
-set g_frag_limit 30
-set g_time_limit 20
+set g_fragLimit 30
+set g_timeLimit 20
 ```
 
 Enable and start the default instance:
@@ -120,10 +120,10 @@ You can pass any cvar as a `+set key value` argument at startup, and any command
 ```bash
 quetoo-dedicated \
   +set sv_hostname "Fragfest" \
-  +set sv_max_clients 16 \
+  +set sv_maxClients 16 \
   +set sv_public 1 \
-  +set g_frag_limit 30 \
-  +set g_time_limit 20 \
+  +set g_fragLimit 30 \
+  +set g_timeLimit 20 \
   +map edge
 ```
 
@@ -143,9 +143,9 @@ quetoo-dedicated \
 
 | Cvar | Default | Description |
 |------|---------|-------------|
-| `sv_max_clients` | `64` | Maximum simultaneous players |
-| `sv_min_clients` | `0` | Minimum total clients (human + bot); see [Bots](#bots) |
-| `sv_max_entities` | `1024` | Maximum entities; rarely needs changing |
+| `sv_maxClients` | `64` | Maximum simultaneous players |
+| `sv_minClients` | `0` | Minimum total clients (human + bot); see [Bots](#bots) |
+| `sv_maxEntities` | `1024` | Maximum entities; rarely needs changing |
 | `sv_timeout` | `20` | Client connection timeout in seconds |
 
 ### Security
@@ -153,25 +153,25 @@ quetoo-dedicated \
 | Cvar | Default | Description |
 |------|---------|-------------|
 | `rcon_password` | *(empty)* | Password for remote console access (`rcon`). Set this to allow trusted admins to run server commands remotely. |
-| `g_admin_password` | *(empty)* | In-game admin password (set with `admin <password>`) |
+| `g_adminPassword` | *(empty)* | In-game admin password (set with `admin <password>`) |
 
 ### Game Rules
 
 | Cvar | Default | Description |
 |------|---------|-------------|
-| `g_frag_limit` | `30` | Frags needed to win the level |
-| `g_time_limit` | `20` | Minutes per level |
-| `g_capture_limit` | `8` | Flag captures to win (CTF) |
+| `g_fragLimit` | `30` | Frags needed to win the level |
+| `g_timeLimit` | `20` | Minutes per level |
+| `g_captureLimit` | `8` | Flag captures to win (CTF) |
 | `g_teams` | `0` | Set to `1` to enable Team Deathmatch |
 | `g_ctf` | `0` | Set to `1` to enable Capture the Flag |
 | `g_gameplay` | `default` | Game variant: `default`, `instagib`, or `arena` |
-| `g_num_teams` | `default` | Number of teams (auto-detected by default) |
-| `g_auto_join` | `0` | Automatically assign players to teams |
-| `g_weapon_stay` | `0` | Weapons stay after pickup instead of respawning |
-| `g_respawn_protection` | `0` | Spawn protection duration in seconds |
-| `g_spawn_farthest` | `0` | Spawn players as far as possible from enemies |
-| `g_ammo_respawn_time` | `20.0` | Ammo respawn interval in seconds |
-| `g_weapon_respawn_time` | `5` | Weapon respawn interval in seconds |
+| `g_numTeams` | `default` | Number of teams (auto-detected by default) |
+| `g_autoJoin` | `0` | Automatically assign players to teams |
+| `g_weaponStay` | `0` | Weapons stay after pickup instead of respawning |
+| `g_respawnProtection` | `0` | Spawn protection duration in seconds |
+| `g_spawnFarthest` | `0` | Spawn players as far as possible from enemies |
+| `g_ammoRespawnTime` | `20.0` | Ammo respawn interval in seconds |
+| `g_weaponRespawnTime` | `5` | Weapon respawn interval in seconds |
 
 ---
 
@@ -179,16 +179,16 @@ quetoo-dedicated \
 
 Quetoo has a built-in bot system that provides real opposition when human players aren't around. Bots are especially useful for **server seeding** — an empty server rarely attracts players, but a server with a few active bots is much more likely to draw people in.
 
-### sv_min_clients
+### sv_minClients
 
-`sv_min_clients` sets the minimum total number of clients (human + bot) the server will maintain. The game automatically adds bots to meet this floor, and removes them one-by-one as real players join, keeping the total at `sv_min_clients` until all bots are gone.
+`sv_minClients` sets the minimum total number of clients (human + bot) the server will maintain. The game automatically adds bots to meet this floor, and removes them one-by-one as real players join, keeping the total at `sv_minClients` until all bots are gone.
 
 ```
 // Keep at least 4 clients in the game at all times
-set sv_min_clients 4
+set sv_minClients 4
 ```
 
-When the last human disconnects, bots fill back up to `sv_min_clients` within a few seconds. `sv_min_clients` is capped by `sv_max_clients`, so you never need to worry about them conflicting.
+When the last human disconnects, bots fill back up to `sv_minClients` within a few seconds. `sv_minClients` is capped by `sv_maxClients`, so you never need to worry about them conflicting.
 
 A typical seeding configuration for a public server:
 
@@ -196,10 +196,10 @@ A typical seeding configuration for a public server:
 // /etc/quetoo-dedicated/default.cfg
 set sv_hostname "My Quetoo Server"
 set sv_public 1
-set sv_max_clients 16
-set sv_min_clients 4   // always 4 players in the game
-set g_frag_limit 30
-set g_time_limit 20
+set sv_maxClients 16
+set sv_minClients 4   // always 4 players in the game
+set g_fragLimit 30
+set g_timeLimit 20
 ```
 
 ---
@@ -231,7 +231,7 @@ The user data directory takes precedence over the installed data, so your copy w
 In `/etc/quetoo-dedicated/default.cfg`, add:
 
 ```
-set g_map_list my-rotation.lst
+set sv_mapList my-rotation.lst
 ```
 
 The filename is resolved from the `default/` game directory — no path prefix needed.
