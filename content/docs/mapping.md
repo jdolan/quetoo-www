@@ -153,6 +153,8 @@ Multiple flags can be combined in a single quoted string: `contents "lava detail
 | `alpha_test` | Enable alpha testing for cutout transparency (foliage, grates, etc). |
 | `no_draw` | Suppress visible faces. Used by caulk. |
 | `material` | Suppress visible faces, but still support material stages. |
+| `portal` | Show the view from a point elsewhere in the map. See [Portals and Reflections](#portals-and-reflections). |
+| `reflect` | Mirror the view about the face's own plane. See [Portals and Reflections](#portals-and-reflections). |
 ---
 
 ### Stage Blocks
@@ -162,6 +164,8 @@ A material can have any number of stage blocks. Each stage is an additional rend
 ```
 {
     texture <path>                // texture for this stage (omit for flare/envmap)
+    portal                        // draw the portal this face shows, instead of a texture
+    reflection                    // draw the reflection this face shows, instead of a texture
     blend <src> <dest>            // OpenGL blend equation
     color <r> <g> <b> [<a>]      // constant tint (0.0–1.0 per channel)
     lighting [<intensity>]        // receive dynamic lighting
@@ -339,6 +343,114 @@ Cobweb that is visible but does not block movement or projectiles:
     surface "blend_100"             // render at full transparency (collision-only visual)
 }
 ```
+
+---
+
+## Portals and Reflections
+
+A portal and a reflection are the same trick: the world is drawn a second time, from somewhere other than the player's eye, and that image is pasted onto the face that asked for it. A portal's second camera sits wherever you point it. A reflection's sits at the player's eye, mirrored about the face's own plane.
+
+Both are opt-in, per material, through a `surface` flag. A map MUST be recompiled with a current `quemap` for either to work.
+
+### Reflective water
+
+Add `reflect` to the material. Nothing else is needed — no entity, no key, no target.
+
+```
+// textures/mymap/water.mat
+{
+    diffusemap mymap/water
+    contents "water"
+    surface "blend_33 material reflect liquid"
+
+    // the reflection itself, at a third strength
+    {
+        reflection
+        color 1 1 1 .33
+        blend one one
+        warp 0.66 0.50
+    }
+
+    // the water's own look, over the top
+    {
+        texture effects/waterfx
+        blend src_alpha one_minus_src_alpha
+        warp 0.30 0.30
+    }
+}
+```
+
+The `reflection` keyword replaces `texture` in a stage and names no asset. `material` suppresses the base pass so the stages own the surface, and `blend_33` makes the water translucent.
+
+**Give a reflective liquid a `blend_*` flag.** Without one it takes the opaque path, writes depth, and hides everything under the water — players, items, the pool floor.
+
+A `warp` on the reflection stage ripples the reflected image. A `warp` on the stage above it ripples the water over a still reflection. Both read well, and which one you want is an art call to make in front of the map.
+
+### Mirrors
+
+A material with `reflect` and no stages at all draws the reflection straight onto the face:
+
+```
+// textures/mymap/mirror.mat
+{
+    diffusemap mymap/mirror
+    surface "reflect"
+}
+```
+
+### Portals
+
+Add `portal` to the material, then tell the brush entity carrying that face where to look from, with a `portal` key naming a `targetname`:
+
+```
+// textures/mymap/portal.mat
+{
+    diffusemap mymap/portal
+    surface "material portal"
+
+    // the view through the portal, rippling
+    {
+        portal
+        warp 0.33 0.125
+    }
+
+    // a sheen over it
+    {
+        texture mymap/teleport_fx
+        blend src_alpha one_minus_src_alpha
+        color 1 1 1 .33
+    }
+}
+```
+
+The key is `portal` and not `target`, because the entity carrying the face may already owe `target` to its own class — a `func_train` reads it as the first `path_corner` of its route.
+
+Two kinds of entity can be named:
+
+| Target | Viewpoint |
+|---|---|
+| `info_null` | Its `origin` and `angle`. Place it wherever you want the portal to look from. |
+| `misc_teleporter_dest` | Its `origin` and `angle`, raised 30 units to eye height. |
+
+The second is a shortcut for the common case. A teleporter already has a destination entity at the right place and facing the right way, so a portal on the teleporter brush can name it directly instead of needing a hand-placed `info_null` beside it.
+
+The `common/portal` texture sets the flag on its own, without a material.
+
+### What to watch for
+
+**An editor flag beats the material.** `quemap` applies a material's `surface` flags only if the brush side carries none of its own from the editor. It does not merge them. A water brush whose side has any surface flag set in TrenchBroom silently ignores `reflect`. Check this first when a surface will not reflect.
+
+**The budget is eight, and it is shared.** Portals and reflections draw from one pool of eight extra views per frame. The nearest win, so a busy room can leave a distant portal unfilled.
+
+**One reflection per plane.** Every reflective face at the same height in the same model shares one view, however many brushes it is cut into. Two pools at different heights cost two.
+
+**Reflections do not nest.** A reflective surface seen inside a portal or another reflection falls back to its plain material.
+
+**A reflection is one sided.** Look up at the underside of a water surface and there is nothing to see — the face is culled from below.
+
+**A curved patch cannot reflect.** A patch has no single plane to mirror about.
+
+The `r_portals` and `r_reflections` cvars turn each off, which is the quickest way to tell whether an artifact is coming from one.
 
 ---
 
@@ -531,7 +643,8 @@ All changes are reflected immediately in the renderer. The material is marked di
 | `func_plat` | Rising platform |
 | `func_rotating` | Continuously rotating brush |
 | `misc_teleporter` | Point-entity teleporter (model-less). Warps touching players to a targeted `misc_teleporter_dest`. |
-| `misc_teleporter_dest` | Teleport destination for `misc_teleporter`. |
+| `misc_teleporter_dest` | Teleport destination for `misc_teleporter`. Also usable as a portal viewpoint. |
+| `info_null` | Placeholder point entity. Its `origin` and `angle` give a portal its viewpoint. |
 | `trigger_teleport` | Brush-entity teleporter trigger volume |
 
 Items use standard Quake II classnames: `item_health`, `weapon_railgun`, `ammo_slugs`, `item_armor_body`, etc.
