@@ -182,7 +182,7 @@ A material can have any number of stage blocks. Each stage is an additional rend
 }
 ```
 
-Valid `blend` source/destination constants: `GL_ONE`, `GL_ZERO`, `GL_SRC_ALPHA`, `GL_ONE_MINUS_SRC_ALPHA`, `GL_SRC_COLOR`, `GL_DST_COLOR`, `GL_ONE_MINUS_SRC_COLOR`.
+Valid `blend` source/destination constants: `one`, `zero`, `src_alpha`, `one_minus_src_alpha`, `src_color`, `dst_color`, `one_minus_src_color`.
 
 ---
 
@@ -222,7 +222,7 @@ Override the auto-detected maps explicitly, and add a glow-layer overlay:
     // additive glow overlay
     {
         texture mymap/ceil1_aquafx
-        blend GL_SRC_ALPHA GL_ONE
+        blend src_alpha one
     }
 
     // colored lens flare at the light source
@@ -266,7 +266,7 @@ Override the auto-detected maps explicitly, and add a glow-layer overlay:
     // first warp pass scrolling horizontally
     {
         texture mymap/brlava1
-        blend GL_SRC_ALPHA GL_ONE
+        blend src_alpha one
         scroll.s 0.020
         warp 0.12 0.25
     }
@@ -274,7 +274,7 @@ Override the auto-detected maps explicitly, and add a glow-layer overlay:
     // second warp pass scrolling vertically (doubles up the turbulence)
     {
         texture mymap/brlava1
-        blend GL_ONE GL_ONE
+        blend one one
         scroll.t 0.020
         warp 0.12 0.25
     }
@@ -296,7 +296,7 @@ Cycles through `btactmach0fx1`, `btactmach0fx2` at 2 fps:
 
     {
         texture mymap/btactmach0fx1   // base frame; engine appends 1, 2, ...
-        blend GL_SRC_ALPHA GL_ONE
+        blend src_alpha one
         anim 2 0.00                   // 2 frames, 0 fps = manual/trigger-driven
     }
 }
@@ -318,7 +318,7 @@ A diffuse overlay stage scrolls along the T axis at 0.78 units/sec:
 
     {
         texture mymap/conveyor_belt
-        blend GL_SRC_ALPHA GL_ONE_MINUS_SRC_ALPHA
+        blend src_alpha one_minus_src_alpha
         scroll.t 0.780              // belt moves along T axis
         scale.s 1.000
         scale.t 1.000
