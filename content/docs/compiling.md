@@ -3,13 +3,13 @@ title: "Compiling"
 weight: 50
 ---
 
-Compiling Quetoo from source is only recommended for developers modders. The engine builds on macOS, Linux, BSD, and Windows.
+Compiling Quetoo from source is only recommended for developers, modders, or people porting Quetoo to other platforms. The engine currently builds on macOS, Linux, BSD, and Windows. Support for iOS and Android is in the works.
 
 ---
 
 ## Noteworthy Dependencies
 
-Quetoo has a few dependencies you will likely not find in Homebrew or in your package manager:
+Quetoo has a few dependencies you must not install from your package manager. They are sibling projects of Quetoo, updated frequently, and compile readily on all of our supported platforms:
 
 | Library | Notes |
 |---------|-------|
@@ -39,10 +39,11 @@ sudo apt-get install -y \
 
 ### Clone repositories
 
-Clone Objectively, ObjectivelyMVC, quetoo, and quetoo-data as siblings:
+Clone Objectively, ObjectivelyGPU, ObjectivelyMVC, quetoo, and quetoo-data as siblings:
 
 ```bash
 git clone https://github.com/jdolan/Objectively.git
+git clone https://github.com/jdolan/ObjectivelyGPU.git
 git clone https://github.com/jdolan/ObjectivelyMVC.git
 git clone https://github.com/jdolan/quetoo.git
 git clone https://github.com/jdolan/quetoo-data.git
@@ -51,7 +52,7 @@ git clone https://github.com/jdolan/quetoo-data.git
 ### Build and install
 
 ```bash
-for repo in Objectively ObjectivelyMVC quetoo; do
+for repo in Objectively ObjectivelyGPU ObjectivelyMVC quetoo; do
   pushd $repo
   autoreconf -i
   ./configure
@@ -77,19 +78,20 @@ brew install autoconf automake check libtool pkg-config \
   libsndfile ncurses openal-soft physfs sdl3_image sdl3_ttf
 ```
 
-Clone Objectively, ObjectivelyMVC, quetoo, and quetoo-data as siblings:
+Clone Objectively, ObjectivelyGPU, ObjectivelyMVC, quetoo, and quetoo-data as siblings:
 
 ```bash
 git clone https://github.com/jdolan/Objectively.git
+git clone https://github.com/jdolan/ObjectivelyGPU.git
 git clone https://github.com/jdolan/ObjectivelyMVC.git
 git clone https://github.com/jdolan/quetoo.git
 git clone https://github.com/jdolan/quetoo-data.git
 ```
 
-Build and install Objectively, ObjectivelyMVC, and quetoo:
+Build and install Objectively, ObjectivelyGPU, ObjectivelyMVC, and quetoo:
 
 ```bash
-for repo in Objectively ObjectivelyMVC quetoo; do
+for repo in Objectively ObjectivelyGPU ObjectivelyMVC quetoo; do
   pushd $repo
   autoreconf -i
   ./configure
@@ -115,10 +117,11 @@ brew install autoconf automake check libtool pkg-config \
   libsndfile ncurses openal-soft physfs sdl3_image sdl3_ttf
 ```
 
-Clone Objectively, ObjectivelyMVC, quetoo, and quetoo-data as siblings (the workspace requires this layout):
+Clone Objectively, ObjectivelyGPU, ObjectivelyMVC, quetoo, and quetoo-data as siblings (the workspace requires this layout):
 
 ```bash
 git clone https://github.com/jdolan/Objectively.git
+git clone https://github.com/jdolan/ObjectivelyGPU.git
 git clone https://github.com/jdolan/ObjectivelyMVC.git
 git clone https://github.com/jdolan/quetoo.git
 git clone https://github.com/jdolan/quetoo-data.git
@@ -130,7 +133,14 @@ Link the game data into your installation:
 sudo ln -s $(pwd)/quetoo-data/target /usr/local/share/quetoo
 ```
 
-Open `quetoo/Quetoo.xcworkspace` — this workspace includes all three projects and manages their dependencies automatically. Select the **Quetoo** scheme and press **⌘B** to build.
+In Xcode's `Settings → Locations -> Custom Paths`, set `WORKSPACE_PREFIX` to the parent directory containing all of the repos you just cloned. Set `HOMEBREW_PREFIX` to your Homebrew prefix.
+
+```
+WORKSPACE_PREFIX=/Users/dingus/Coding
+HOMEBREW_PREFIX=/opt/homebrew
+```
+
+Open `quetoo/Quetoo.xcworkspace` — this workspace includes all three projects and manages their dependencies automatically. Select the **quetoo-all** scheme and build.
 
 ---
 
@@ -144,6 +154,7 @@ Clone Objectively, ObjectivelyMVC, quetoo, and quetoo-data as siblings:
 
 ```powershell
 git clone https://github.com/jdolan/Objectively.git
+git clone https://github.com/jdolan/ObjectivelyGPU.git
 git clone https://github.com/jdolan/ObjectivelyMVC.git
 git clone https://github.com/jdolan/quetoo.git
 git clone https://github.com/jdolan/quetoo-data.git
