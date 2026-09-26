@@ -4,7 +4,7 @@ description: "A gallery of Quetoo's player models — from battle-worn marines t
 date: 2026-09-13
 ---
 
-<p class="ab-section-intro">Eighteen player models, each with unique skins and animations. Pick your favorite in the in-game player setup menu, or let the server assign one at random.</p>
+<p class="ab-section-intro">Eighteen community-made player models, from the legendary Quake3 PPM community, remastered with ❤️</p>
 
 <div class="gallery-grid full media-gallery">
   <a href="/images/player-models/bloodseeker.jpg" class="gallery-item" data-full="/images/player-models/bloodseeker.jpg"><img src="/images/player-models/bloodseeker.jpg" alt="Bloodseeker player model" loading="lazy"></a>
@@ -23,6 +23,6 @@ date: 2026-09-13
   <a href="/images/player-models/mantis.jpg" class="gallery-item" data-full="/images/player-models/mantis.jpg"><img src="/images/player-models/mantis.jpg" alt="Mantis player model" loading="lazy"></a>
   <a href="/images/player-models/merc.jpg" class="gallery-item" data-full="/images/player-models/merc.jpg"><img src="/images/player-models/merc.jpg" alt="Merc player model" loading="lazy"></a>
   <a href="/images/player-models/nitro.jpg" class="gallery-item" data-full="/images/player-models/nitro.jpg"><img src="/images/player-models/nitro.jpg" alt="Nitro player model" loading="lazy"></a>
-  <a href="/images/player-models/sarge.jpg" class="gallery-item" data-full="/images/player-models/sarge.jpg"><img src="/images/player-models/sarge.jpg" alt="Sarge player model" loading="lazy"></a>
+  <a href="/images/player-models/captain.jpg" class="gallery-item" data-full="/images/player-models/captain.jpg"><img src="/images/player-models/sarge.jpg" alt="Captain player model" loading="lazy"></a>
   <a href="/images/player-models/violator.jpg" class="gallery-item" data-full="/images/player-models/violator.jpg"><img src="/images/player-models/violator.jpg" alt="Violator player model" loading="lazy"></a>
 </div>
