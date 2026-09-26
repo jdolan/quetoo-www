@@ -23,6 +23,6 @@ date: 2026-09-13
   <a href="/images/player-models/mantis.jpg" class="gallery-item" data-full="/images/player-models/mantis.jpg"><img src="/images/player-models/mantis.jpg" alt="Mantis player model" loading="lazy"></a>
   <a href="/images/player-models/merc.jpg" class="gallery-item" data-full="/images/player-models/merc.jpg"><img src="/images/player-models/merc.jpg" alt="Merc player model" loading="lazy"></a>
   <a href="/images/player-models/nitro.jpg" class="gallery-item" data-full="/images/player-models/nitro.jpg"><img src="/images/player-models/nitro.jpg" alt="Nitro player model" loading="lazy"></a>
-  <a href="/images/player-models/captain.jpg" class="gallery-item" data-full="/images/player-models/captain.jpg"><img src="/images/player-models/sarge.jpg" alt="Captain player model" loading="lazy"></a>
+  <a href="/images/player-models/captain.jpg" class="gallery-item" data-full="/images/player-models/captain.jpg"><img src="/images/player-models/captain.jpg" alt="Captain player model" loading="lazy"></a>
   <a href="/images/player-models/violator.jpg" class="gallery-item" data-full="/images/player-models/violator.jpg"><img src="/images/player-models/violator.jpg" alt="Violator player model" loading="lazy"></a>
 </div>
