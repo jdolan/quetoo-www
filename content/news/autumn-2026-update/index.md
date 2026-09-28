@@ -14,7 +14,12 @@ build:
 
 # 🍁 The <span style="color: #c4785f">Autumn</span> Update
 
-We released Quetoo after almost 20 years in development back in May. Since then we've pushed **116 engine releases**, **42 game data releases**, and well over two thousand commits across Quetoo and its supporting libraries. If you've been saying yes to the updater, you already have all of this. If you haven't played since launch, here's what you missed.
+We released Quetoo, after almost 20 years in development, back in May. Since then, we've kept the pedal absolutely pinned to the floor with **116 engine releases** and **42 game data releases** spanning well over two thousand commits across Quetoo and its supporting repositories. Our goals are crystal clear:
+
+<ol>
+<li>Make Quetoo deathmatch the best open source boomer shooter out there</li>
+<li></li>
+</ol>
 
 Grab the latest from [Downloads](/downloads/). Everything below is live right now.
 
