@@ -305,6 +305,18 @@ h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
   border-radius: 8px;
 }
 
+.post-video {
+  max-width: 960px;
+  margin: 0 auto 2.5rem;
+}
+
+.post-video video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
 /* ── Gallery ── */
 
 .gallery-preview { padding: 0 0 6rem; }
