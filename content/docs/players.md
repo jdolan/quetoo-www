@@ -1,9 +1,10 @@
 ---
 title: "Playing Quetoo"
+description: "Default controls, voice chat setup, game modes, and core mechanics for Quetoo."
 weight: 10
 ---
 
-Quetoo is a fast-paced, arena-style first-person shooter. This page covers the default controls, available game modes, and core mechanics.
+Quetoo is a fast-paced, arena-style first-person shooter. This page covers the default controls, voice chat setup, available game modes, and core mechanics.
 
 ## Default Controls
 
@@ -36,9 +37,48 @@ Controls can be rebound in-game from the **Controls** settings menu.
 |-----|--------|
 | `T` | Chat (all players) |
 | `Y` | Team chat |
+| `V` (hold) | Voice chat (all players) |
+| `Shift` + `V` (hold) | Team voice chat |
 | `Tab` | Show scoreboard |
 | `` ` `` (backtick) | Open console |
 | `Escape` | Main menu |
+
+---
+
+## Voice Chat
+
+Open **Settings > Sound** to enable **Voice chat**, select your **Capture device**, and choose a **Voice mode**:
+
+- **Push to talk** is the default. Hold `V` to transmit, or change the **Push to talk** binding on the Sound page.
+- **Voice activated** transmits automatically when your microphone level crosses the **Activation level** threshold. No talk binding is required. Automatic voice is public in the included game modules.
+
+Automatic transmission only runs while connected to a live game, not during demo playback. Disconnecting, disabling voice chat, or switching back to push-to-talk stops automatic transmission.
+
+### Microphone Setup
+
+The **Microphone level** meter shows raw **Input**, with a line marking the activation threshold, and gain-adjusted **Output**, which turns red near clipping. Both use a logarithmic dBFS scale so quiet microphones are visible.
+
+1. Check that **Input** moves when you speak. If it stays flat, check your selected device, operating system microphone permissions, and any hardware mute switch.
+2. For voice activation, set **Activation level** above room noise but below normal speech. Lower values are more sensitive.
+3. Adjust **Microphone gain** so **Output** is healthy without turning red. **Auto-level** can boost a quiet microphone. Neither gain nor auto-level changes the raw-input activation threshold.
+
+Menus keep the microphone active for calibration even when you are disconnected. Disconnected calibration never transmits to a server; disabling **Voice chat** stops microphone capture.
+
+Voice activation is a loudness gate, not speech recognition: keyboard clicks, music, and loud background noise can trigger it. It uses a lower closing threshold, about 250 ms of trailing silence, and 60 ms of pre-roll to avoid cutting off the beginnings of words.
+
+### Team Voice
+
+Push-to-talk still forces transmission in voice-activated mode. Hold `Shift` alongside the talk key, or bind `+voiceTeam` to a dedicated team talk key, to override automatic public voice with team-only voice. Automatic detection resumes on fresh audio when you release the key; captured team speech is never replayed publicly.
+
+If `Shift` itself is your talk key, it does not also select team voice. Use the other `Shift` key as the modifier, or use a dedicated team talk binding.
+
+### Console Settings
+
+| Setting | Effect |
+|---------|--------|
+| `s_voiceMode 0` | Push-to-talk |
+| `s_voiceMode 1` | Voice activation |
+| `s_voiceThreshold` | Raw microphone RMS threshold; default `0.05`, effective range `0.001` to `0.1` |
 
 ---
 
@@ -147,4 +187,3 @@ Within that directory:
 Join the [Discord](https://discord.gg/unb9U4b) to find games, ask questions, and connect with the community.
 
 ---
-
