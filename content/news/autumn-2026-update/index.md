@@ -14,13 +14,11 @@ build:
 
 # 🍁 The <span style="color: #c4785f">Autumn</span> Update
 
-We released Quetoo after almost 20 years in development back in May. Since then we've pushed **116 engine releases**, **42 game data releases**, and well over two thousand commits across Quetoo and its supporting libraries. If you've been saying yes to the updater, you already have all of this. If you haven't played since launch, here's what you missed.
-
-Grab the latest from [Downloads](/downloads/). Everything below is live right now.
+We released Quetoo after nearly 20 years in development back in May. Since then, we've pushed **over 100 engine releases**, **50 game data releases**, and well over two thousand commits across Quetoo and its supporting libraries. Progress has been steady and significant. If you haven't seen Quetoo in a minute, here's what's new.
 
 <div class="trailer-embed">
   <iframe src="https://www.youtube.com/embed/0b_6YGUfhn0"
-    title="Quetoo Autumn 2026 Update"
+    title="Quetoo: The Autumn 2026 Update"
     frameborder="0"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
     allowfullscreen></iframe>
@@ -28,11 +26,29 @@ Grab the latest from [Downloads](/downloads/). Everything below is live right no
 
 ## For players
 
+### Voice chat
+
+Quetoo now has **voice chat**, enabled by default on all servers. Choose between push-to-talk or voice activation. Your sound device selection and settings are saved and applied to future sessions. The HUD shows who is currently talking. If someone acts up, you can mute them for yourself, or call a vote to globally mute a repeat offender.
+
+![Screenshot showing the chrome HUD](/images/autumn-2026-update/B10.jpg)
+
+### Two new customizable HUDs
+
+Speaking of the HUD, it's been rebuilt from scratch with [ObjectivelyMVC](https://github.com/jdolan/ObjectivelyMVC). It uses JSON and CSS for layout and presentation, meaning the HUD is now user-customizable without touching code. We've included two variants out of the box for you to choose from:
+
+- **default**: The classic layout, with rounded cards and large, crisp fonts. Works well on all screen sizes.
+
+![Screenshot showing the default HUD](/images/autumn-2026-update/A08.jpg)
+
+- **chrome**: Angled cards, anchored along the perimeter, maximizes screen real estate for 16:9 displays.
+
+![Screenshot showing the chrome HUD](/images/autumn-2026-update/A09.jpg)
+
+Both HUDs scale and look sharp at any resolution, as all content is vectorized. If neither variant is quite right for you, you can tweak them or even build your own. See [For developers and modders](#for-developers-and-modders).
+
 ### Portals and reflections
 
-Quetoo can now draw the world a second time, from somewhere other than your eyes, and paste the result onto a surface. Point that second camera somewhere else in the map and you have a **portal**: walk up to a teleporter and you can see where it goes, live, before you commit. Mirror it about the surface instead and you have a **reflection**: water reflects the room above it, glass reflects you, and yes, you can see yourself in both.
-
-Maps have been rebaked to show it off, so you don't have to wait for anyone to build something new.
+Quetoo can now draw other parts of the world off-screen, and apply those rendered scenes on surfaces in game. To show it off, we've added **portals**, teleporters that you can see through, and **reflections** on water and glass.
 
 <div class="post-video">
   <video src="/images/autumn-2026-update/B2.mp4" poster="/images/autumn-2026-update/B2.jpg"
@@ -52,103 +68,65 @@ Maps have been rebaked to show it off, so you don't have to wait for anyone to b
     aria-label="Wall torches reflected in a pool of water as the player walks along it"></video>
 </div>
 
-### Demos for content creators
+But there are so many other possibilities with this feature: security cameras, mirrors, sky boxes from seemingly other worlds. What will you build with this feature?
 
-Demos were rebuilt for people who make videos. The format was reworked around self-contained frames, so a demo is now **seekable**: jump anywhere, instantly, instead of fast-forwarding through a whole match to find the one rail you want.
+### Demos tools for content creation
 
-- **A Demos browser** under Home lists your recordings newest first. Give them a title of your own, filter by title or map, mark favorites, and delete the rest. Demos that your build can't play are left out of the list instead of failing when you try them.
-- **Transport controls** show up when you pause: rewind, fast forward, a scrubber, a speed slider, and single-frame step in both directions. The world holds still while you're paused, but the camera doesn't, so you can line up the shot.
-- **Camera modes** work in demos and when spectating live. Cycle through first person, third person, and a **follow** camera that you aim yourself (the mouse swings it around the player, forward and back change the distance). The hook button cycles the camera, attack drops the player you're watching for free flight, and a second press picks one back up.
+The entire demo system has been rebuilt for ease of use, and new tools added to make content creation with Quetoo easy, right within the game.
 
-{{< placeholder type="image" id="B5" caption="The Demos browser under Home: a list of demos with titles, favorites, and the map filter in use." >}}
+- **Demo browser** lists your recordings newest first. Give them a title of your own, filter by title or map, mark favorites, and delete the rest.
+- **Seekable playback** the demo format was reworked to allow you to seek through it like you would a video file. Scrub forward or backward to find the segment you're looking for.
+- **Playback controls** show up when you pause: rewind, fast forward, the scrubber, a playback speed slider, and single-frame step in both directions. The world holds still while you're paused, but the camera doesn't, so you can line up the shot.
+- **Camera modes** If you ever wanted to change your POV while watching your demos, now you can. First person, third person, orbit and free-flight mode give you everything you could want to find the perfect angle.
 
-{{< placeholder type="video" id="B6" caption="Clip: demo playback paused, the transport bar appears; scrub the timeline, frame-step a rocket in flight, then resume at half speed." >}}
-
-{{< placeholder type="video" id="B7" caption="Clip: during a demo, cycle first person, third person, and follow, swinging the follow camera around the player; then drop into free flight." >}}
+![Screenshot showing the demo browser](/images/autumn-2026-update/B5.jpg)
 
 ### New player models
 
-[Twelve new player models](/news/new-player-models/) landed this month, taken from the ioQuake3 and DeFrag communities and overhauled for Quetoo. Bloodseeker, Gladiator, Mantis, Violator and friends are all in the game now, and you can see all seventeen up close in the [gallery](/media/player-models/).
+[Twelve new player models](/news/new-player-models/), complete with player-tintable skins, landed this month. These have been resurrected with love from the ioQuake3 and DeFrag communities and overhauled for Quetoo. Bloodseeker, Gladiator, Mantis, Violator and friends are all in the game now, and you can see 'em all up close in the [player model gallery](/media/player-models/).
 
-They've gotten better since that post, too: every model's default skin is now **tintable**. Pick your shirt, pants, and helmet colors in Player Setup and they're painted onto whichever model you're wearing. Team games tint you into your team's colors the same way, so red and blue work on every model, with no separate team skins needed.
+![Screenshot showing the Gladiator model](/images/autumn-2026-update/B8.jpg)
 
-And we finally have a **female player sound set**, voiced by my extremely talented wife. Turns out I married a voice actor. Go get fragged by her.
+And we finally have a **female player sound set**, voiced by my talented wife 👰🏻. Turns out I married a voice actor. Who knew!
 
-{{< placeholder type="image" id="B8" caption="Player Setup with a model wearing custom shirt, pants, and helmet tints, the color pickers visible." >}}
+<div class="audio-list">
 
-{{< placeholder type="image" id="B9" caption="A CTF match with several different models, all tinted red and blue by team." >}}
+  <div class="audio-item">
+    <span>death_3.wav</span>
+    <audio controls preload="none">
+      <source src="https://raw.githubusercontent.com/jdolan/quetoo-data/main/target/default/players/common/female/death_3.wav" type="audio/wav">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
 
-### Voice chat
-
-Quetoo has **voice chat**. Hold `V` to talk to everyone, or `Shift+V` to talk to your team (the binds are `+voice` and `+voiceTeam`). It's encoded with Opus, so it sounds good and costs very little bandwidth. The HUD shows you who is talking.
-
-Muting someone mutes their chat and their voice together, and if one player is ruining it for everyone, the server can **vote to mute** them.
-
-{{< placeholder type="image" id="B10" caption="The HUD voice indicator showing a player's name while they talk, mid-match." >}}
-
-### A new HUD
-
-The HUD has looked the same for a decade. It's been rebuilt from scratch on the same toolkit as the menus, and there are now two to choose from in the menus:
-
-- **default**: the classic arrangement, reset in Barlow Condensed with M PLUS U numerals.
-
-![Screenshot showing the default HUD](/images/autumn-2026-update/A08.jpg)
-
-- **chrome**: four corner clusters sitting flush to the screen edges on angled cards, the weapon bar running up the right edge, and a tabular scoreboard.
-
-![Screenshot showing the chrome HUD](/images/autumn-2026-update/A09.jpg)
-
-Both are sharp at any resolution, your own row in the scoreboard is highlighted, and your ping sits under the frame rate counter. And if neither is quite right, you can build your own. See [For developers and modders](#for-developers-and-modders).
-
-{{< placeholder type="image" id="B11" caption="Optional: the HUD selector in the menus, with default and chrome listed." >}}
+  <div class="audio-item">
+    <span>gurp_1.wav</span>
+    <audio controls preload="none">
+      <source src="https://raw.githubusercontent.com/jdolan/quetoo-data/main/target/default/players/common/female/gurp_1.wav" type="audio/wav">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+</div>
 
 ### New maps
 
-Skies912's long-awaited cavern mine map, **Miner Difficulty**, is in the rotation. Winding tunnels, rail tracks, mine carts that bank and pitch along them, and the largest BSP in the game by a wide margin.
+**Miner Difficulty** is Skies912's long-awaited cavern mine map. Winding tunnels, rail tracks, mine carts that bank, pitch and accelerate along them, and the coolest original theme in the game by a wide margin.
 
 ![Screenshot of Miner Difficulty](/images/autumn-2026-update/miner01.jpg)
 
-**Campgrounds** is Skies912's remake of Q3DM6, based on the Quake Live version, jump pad effects and all.
+**Campgrounds** is Skies912's remake of Q3DM6, based on the Quake Live version, but with Quetoo flourishes. See if you can spot them.
 
 ![Screenshot of Campgrounds](/images/autumn-2026-update/campgrounds01.jpg)
 
-More are in progress in the data repo: **Another Place of Two Deaths**, a full rebuild of 2deaths with MOAR detail, and **Introduction to Shub**, a re-imagining of Quake's START map for deathmatch. Neither ships yet, but the sources are public if you want a preview.
+**Another Place of Two Deaths** is a faithful but complete rebuild of `dm1` with over double the brush count of the Quake classic that started it all.
 
-### Voting on what's next
+![Screenshot of Another Place of Two Deaths](/images/autumn-2026-update/2deaths.jpg)
 
-When a level ends, the intermission now counts down and shows what's coming next, and players can **vote on the next map** right there. You can also vote on the bot count, the frag and time limits, forcing someone to spectate, and muting them.
+### Next Map Voting
 
-{{< placeholder type="image" id="B12" caption="The intermission screen with the countdown and the next-map vote open." >}}
+When a level ends, the intermission now counts down and shows what's coming next. Players can **vote on the next map** by pressing 1-4. You can also vote on the bot count, the frag and time limits, forcing someone to spectate, and muting them.
 
-### It looks and sounds better
-
-Lighting was unified across the world, models, and effects, and every map has been rebaked with **voxel ambient occlusion** and light penetration through liquids. Grates, foliage, and light fixtures now **cast correct shadows**. Glowing screens and panels actually feed the bloom pass instead of faking it. And shadow acne is gone. Yes, for real this time.
-
-{{< ab-compare
-  before="/images/autumn-2026-update/TODO-ao-before.jpg"
-  after="/images/autumn-2026-update/TODO-ao-after.jpg"
-  before-label="1.0"
-  after-label="Now"
-  title="B13: ambient occlusion and liquid lighting (same camera position, before/after)"
->}}
-
-*Light fixtures on Campgrounds*
-![Screenshot of alpha-tested lights on Campgrounds](/images/autumn-2026-update/A11a.jpg)
-*Grates in the floor on Rage*
-![Screenshot of alpha-tested grates on Rage](/images/autumn-2026-update/A11b.jpg)
-
-{{< placeholder type="image" id="B14" caption="Emissive materials: a wall of glowing computer screens or lit panels blooming in a dark room." >}}
-
-The sound system was, to quote the commit, unfucked. **HRTF** is available from the Audio menu, reverb is derived from the map itself so rooms sound like their size, and every music track was resampled to kill a persistent aliasing buzz.
-
-### Finding a game
-
-The server browser was rebuilt as a **two-pane browser**: the servers on the left, and everything about the one you've selected on the right, including the map, its mapshot, the game, the movement, and who's playing. **Hide Empty** and **Hide Bots** filters, live scores, and a fresh list every time you open it.
-
-The Home menu shows the **global leaderboard** from [Stats](/stats/), and Discord join announcements include a `quetoo://` link, so one click puts you in the server your friends are on.
-
-![New two-pane Join Server browser: server table on the left, details pane with mapshot on the right](/images/autumn-2026-update/A13.jpg)
-![Home menu showing the global leaderboard table](/images/autumn-2026-update/A14.jpg)
+![Screenshot of Next Map voting](/images/autumn-2026-update/B12.jpg)
 
 ### Quick hits
 
@@ -167,6 +145,17 @@ The Home menu shows the **global leaderboard** from [Stats](/stats/), and Discor
 Reflective water is a single `reflect` flag on its material, with no entity and no key. A portal is a `portal` flag on a brush entity's material plus a `portal` key naming where to look from, and on a teleporter that can simply be its destination. The details, including the budget of eight extra views per frame and the cases that won't reflect, are in the [mapping docs](/docs/mapping/#portals-and-reflections).
 
 {{< placeholder type="image" id="B15" caption="TrenchBroom showing a misc_portal brush and the teleporter destination it names, beside the same portal in-game." >}}
+
+### Alpha-test Shadows
+
+Quetoo's lighting now honors alpha-test for shadows. This means that sunlight through foliage, or a floodlight behind a chain link fence now cast realistic soft shadows. 
+
+*Light fixtures on Campgrounds*
+![Screenshot of alpha-tested lights on Campgrounds](/images/autumn-2026-update/A11a.jpg)
+*Grates in the floor on Rage*
+![Screenshot of alpha-tested grates on Rage](/images/autumn-2026-update/A11b.jpg)
+
+{{< placeholder type="image" id="B14" caption="Emissive materials: a wall of glowing computer screens or lit panels blooming in a dark room." >}}
 
 ### Material lights and the material editor
 
