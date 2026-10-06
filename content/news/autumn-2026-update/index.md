@@ -1,6 +1,6 @@
 ---
 title: "🍁 The Autumn Update"
-description: "116 releases since 1.0: portals and reflections, demo tools for content creators, a slew of new player models, voice chat, a new HUD, new maps, and a whole lot more."
+description: "Over 100 engine updates: voice chat, portals and reflections, demo tools for content creators, a slew of new player models, a new HUD, new maps, and more."
 date: 2026-10-05
 featured_image: "/images/autumn-2026-update/campgrounds01.jpg"
 ---
