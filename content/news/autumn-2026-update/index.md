@@ -1,16 +1,13 @@
 ---
-title: "The Autumn Update"
+title: "🍁 The Autumn Update"
 description: "116 releases since 1.0: portals and reflections, demo tools for content creators, a slew of new player models, voice chat, a new HUD, new maps, and a whole lot more."
-date: 2026-09-27
-featured_image: "/images/screenshots/quetoo039.jpg"
-build:
-  list: never
-  render: always
+date: 2026-10-05
+featured_image: "/images/autumn-2026-update/campgrounds01.jpg"
 ---
 
 <div class="press-release">
 
-<p class="pr-meta">September 27, 2026</p>
+<p class="pr-meta">October 5, 2026</p>
 
 # 🍁 The <span style="color: #c4785f">Autumn</span> Update
 

@@ -5,6 +5,14 @@ date: 2026-05-21
 ---
 
 <div class="trailer-embed">
+  <iframe src="https://www.youtube.com/embed/0b_6YGUfhn0"
+    title="Quetoo Autumn 2026 Update"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen></iframe>
+</div>
+
+<div class="trailer-embed">
   <iframe src="https://www.youtube.com/embed/GY2vPCj81bs"
     title="Quetoo Release Trailer"
     frameborder="0"
