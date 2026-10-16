@@ -38,8 +38,6 @@ set net_port 1998
 set sv_hostname "My Quetoo Server"
 set sv_public 1
 set rcon_password "secret"
-set g_fragLimit 30
-set g_timeLimit 20
 ```
 
 Enable and start the default instance:
@@ -122,8 +120,6 @@ quetoo-dedicated \
   +set sv_hostname "Fragfest" \
   +set sv_maxClients 16 \
   +set sv_public 1 \
-  +set g_fragLimit 30 \
-  +set g_timeLimit 20 \
   +map edge
 ```
 
@@ -144,7 +140,7 @@ quetoo-dedicated \
 | Cvar | Default | Description |
 |------|---------|-------------|
 | `sv_maxClients` | `64` | Maximum simultaneous players |
-| `sv_minClients` | `0` | Minimum total clients (human + bot); see [Bots](#bots) |
+| `sv_minClients` | `default` | Number of clients (human + bot) the game fills to; see [Bots](#bots) |
 | `sv_maxEntities` | `1024` | Maximum entities; rarely needs changing |
 | `sv_timeout` | `20` | Client connection timeout in seconds |
 
@@ -171,9 +167,10 @@ cvars, so `g_captureLimit` below only applies under `ctf`.
 
 | Cvar | Default | Description |
 |------|---------|-------------|
-| `g_fragLimit` | `30` | Frags needed to win the level |
-| `g_timeLimit` | `20` | Minutes per level |
-| `g_captureLimit` | `8` | Flag captures to win (CTF) |
+| `g_fragLimit` | `default` | Frags needed to win the level |
+| `g_timeLimit` | `default` | Minutes per level |
+| `g_captureLimit` | `default` | Flag captures to win (CTF) |
+| `g_gravity` | `default` | World gravity |
 | `g_gameplay` | `default` | Game variant: `default`, `deathmatch`, `instagib` or `arena`. Prefix with `team_` for team play, e.g. `team_deathmatch`. `default` defers to whatever the level asks for |
 | `g_numTeams` | `default` | Number of teams (auto-detected by default) |
 | `g_autoJoin` | `1` | Automatically assign players to teams |
@@ -183,6 +180,21 @@ cvars, so `g_captureLimit` below only applies under `ctf`.
 | `g_ammoRespawnTime` | `20.0` | Ammo respawn interval in seconds |
 | `g_weaponRespawnTime` | `5` | Weapon respawn interval in seconds |
 
+### Level Settings
+
+`sv_minClients`, `g_fragLimit`, `g_timeLimit`, `g_captureLimit`, `g_gravity`, `g_gameplay` and
+`g_movement` are level settings. Each level resolves them in this order:
+
+1. The cvar, if it is set to anything but `default`. This applies to every map.
+2. The map's entry in the [map rotation](#mapslst-format).
+3. The map's own worldspawn keys, which the mapper sets.
+4. Quetoo's built-in value: 0 clients, 30 frags, 20 minutes, 8 captures, and the movement's
+   gravity.
+
+Leave a cvar at `default` to let each map decide. Set it only to force one value on every map.
+The server log shows each value in effect and where it came from when a level starts, for example
+`frag_limit: 30 (worldspawn)`.
+
 ---
 
 ## Bots
@@ -191,14 +203,16 @@ Quetoo has a built-in bot system that provides real opposition when human player
 
 ### sv_minClients
 
-`sv_minClients` sets the minimum total number of clients (human + bot) the server will maintain. The game automatically adds bots to meet this floor, and removes them one-by-one as real players join, keeping the total at `sv_minClients` until all bots are gone.
+`sv_minClients` sets the total number of clients (human + bot) the game fills to. The game adds bots to reach it, and removes them one by one as real players join, until all bots are gone.
 
 ```
-// Keep at least 4 clients in the game at all times
+// Keep 4 clients in the game at all times, on every map
 set sv_minClients 4
 ```
 
-When the last human disconnects, bots fill back up to `sv_minClients` within a few seconds. `sv_minClients` is capped by `sv_maxClients`, so you never need to worry about them conflicting.
+At `default`, each map decides with its `min_clients` key, from the map rotation or from the map itself. A small duel map can ask for 2 clients and a large map for 8. A map that sets nothing gets no bots.
+
+When the last human disconnects, bots fill back up within a few seconds. The count is capped by `sv_maxClients`, so you never need to worry about them conflicting.
 
 A typical seeding configuration for a public server:
 
@@ -208,8 +222,6 @@ set sv_hostname "My Quetoo Server"
 set sv_public 1
 set sv_maxClients 16
 set sv_minClients 4   // always 4 players in the game
-set g_fragLimit 30
-set g_timeLimit 20
 ```
 
 ---
@@ -248,7 +260,9 @@ The filename is resolved from the `default/` game directory — no path prefix n
 
 ### maps.lst Format
 
-Each map is an entry enclosed in `{ }`. Only `name` is required; all other fields are optional and override the corresponding server cvar for that map only.
+Each map is an entry enclosed in `{ }`. Only `name` is required. The other fields are optional,
+and set that [level setting](#level-settings) for that map only. A cvar that is set to anything
+but `default` still wins over them.
 
 ```
 {
@@ -261,13 +275,11 @@ Each map is an entry enclosed in `{ }`. Only `name` is required; all other field
 {
     name lavatomb
     min_clients 4
+    frag_limit 20
 }
 {
     name pits
-    teams 1
-    num_teams 2
-    hook 0
-    gravity 600.0
+    gravity 600
     music quetoo/the_pits
 }
 ```
@@ -277,33 +289,14 @@ Each map is an entry enclosed in `{ }`. Only `name` is required; all other field
 | Field | Type | Description |
 |-------|------|-------------|
 | `name` | string | Map filename (required) |
-| `gameplay` | string | `default`, `instagib`, or `arena` |
-| `teams` | int | `1` to enable Team Deathmatch |
-| `num_teams` | int | Number of teams (overrides auto-detect) |
-| `ctf` | int | `1` to enable Capture the Flag |
-| `hook` | int | `1` to enable grappling hook, `0` to disable |
-| `gravity` | float | World gravity (default `800.0`) |
-| `min_clients` | int | Skip this map unless at least this many clients are connected |
+| `gameplay` | string | The gameplay mode, as for `g_gameplay`, e.g. `instagib` |
+| `movement` | string | The player movement: `quetoo`, `race`, `quake`, `quake2` or `quake3` |
+| `min_clients` | int | The number of clients (human + bot) the game fills to |
+| `frag_limit` | int | Frags needed to win |
+| `time_limit` | float | Minutes per level |
+| `capture_limit` | int | Flag captures to win (CTF) |
+| `gravity` | float | World gravity |
 | `music` | string | Music track to play on this map |
-
-### Using min_clients to Skip Maps
-
-The `min_clients` field lets you exclude large or team-oriented maps when the server is lightly populated. For example, a server seeded with bots might want to skip big CTF maps until real players show up:
-
-```
-{
-    name warehouse
-    min_clients 6
-}
-{
-    name chthon
-    teams 1
-    ctf 1
-    min_clients 8
-}
-```
-
-When the rotation reaches a map whose `min_clients` threshold isn't met, the server automatically advances to the next eligible map.
 
 ### Advancing the Map Manually
 

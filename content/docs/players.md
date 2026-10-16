@@ -86,7 +86,7 @@ If `Shift` itself is your talk key, it does not also select team voice. Use the 
 
 ### Deathmatch (DM)
 
-Every player for themselves. Frag as many opponents as you can before the frag limit or time limit is reached. The server cvar `g_fragLimit` sets the winning score (default: 30) and `g_timeLimit` sets the time limit in minutes (default: 20).
+Every player for themselves. Frag as many opponents as you can before the frag limit or time limit is reached. Each map sets its own frag limit and time limit (30 frags and 20 minutes if it sets none), and a server can override them with `g_fragLimit` and `g_timeLimit`.
 
 ### Team Deathmatch (TDM)
 
