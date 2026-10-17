@@ -216,7 +216,7 @@ When the last human disconnects, bots fill back up within a few seconds. The cou
 
 ### Choosing the Bots
 
-A map can name the bots that join first with its `ai` key, from the map rotation or from the map itself. The names are separated by spaces. Once every named bot is in the game, the rest are picked at random. When players join, unnamed bots leave before named ones.
+A map can name the bots that join first with its `ai` key, from the map rotation or from the map itself. The names are separated by spaces. The named bots always join, even beyond `min_clients`. If `min_clients` asks for more, the rest are picked at random. When players join, unnamed bots leave before named ones.
 
 ```
 {
