@@ -214,6 +214,22 @@ At `default`, each map decides with its `min_clients` key, from the map rotation
 
 When the last human disconnects, bots fill back up within a few seconds. The count is capped by `sv_maxClients`, so you never need to worry about them conflicting.
 
+### Choosing the Bots
+
+A map can name the bots that join first with its `ai` key, from the map rotation or from the map itself. The names are separated by spaces. Once every named bot is in the game, the rest are picked at random. When players join, unnamed bots leave before named ones.
+
+```
+{
+    name aerowalk
+    min_clients 2
+    ai Bastard
+}
+```
+
+The bots themselves are defined in `ai.lst`, in the `default/` game directory, in the same format as the map rotation. Each entry has a `name`, a `skin` and a `guid`, three traits from 0 to 1 (`skill`, `aggression` and `awareness`), and optional `color`, `helmet`, `shirt` and `pants` values. The file's header comment describes each key. To change the roster, copy `ai.lst` to the server's user data directory, as for the map rotation, and edit the copy.
+
+Players can vote on the number of bots with `vote ai <count>`. The vote applies to the current map only.
+
 A typical seeding configuration for a public server:
 
 ```
@@ -292,6 +308,7 @@ but `default` still wins over them.
 | `gameplay` | string | The gameplay mode, as for `g_gameplay`, e.g. `instagib` |
 | `movement` | string | The player movement: `quetoo`, `race`, `quake`, `quake2` or `quake3` |
 | `min_clients` | int | The number of clients (human + bot) the game fills to |
+| `ai` | string | The bots that join first, by name, separated by spaces |
 | `frag_limit` | int | Frags needed to win |
 | `time_limit` | float | Minutes per level |
 | `capture_limit` | int | Flag captures to win (CTF) |
