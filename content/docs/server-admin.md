@@ -140,7 +140,7 @@ quetoo-dedicated \
 | Cvar | Default | Description |
 |------|---------|-------------|
 | `sv_maxClients` | `64` | Maximum simultaneous players |
-| `sv_minClients` | `default` | Number of clients (human + bot) the game fills to; see [Bots](#bots) |
+| `sv_minClients` | `0` | Number of clients (human + bot) the game fills to; `default` lets each map decide; see [Bots](#bots) |
 | `sv_maxEntities` | `1024` | Maximum entities; rarely needs changing |
 | `sv_timeout` | `20` | Client connection timeout in seconds |
 
@@ -192,6 +192,8 @@ cvars, so `g_captureLimit` below only applies under `ctf`.
    gravity.
 
 Leave a cvar at `default` to let each map decide. Set it only to force one value on every map.
+Every level setting defaults to `default` except `sv_minClients`, which defaults to `0`. Set it to
+`default` to let each map's `min_clients` decide.
 The server log shows each value in effect and where it came from when a level starts, for example
 `frag_limit: 30 (worldspawn)`.
 
@@ -210,7 +212,7 @@ Quetoo has a built-in bot system that provides real opposition when human player
 set sv_minClients 4
 ```
 
-At `default`, each map decides with its `min_clients` key, from the map rotation or from the map itself. A small duel map can ask for 2 clients and a large map for 8. A map that sets nothing gets no bots.
+`sv_minClients` defaults to `0`. Set it to `default`, and each map decides with its `min_clients` key, from the map rotation or from the map itself. A small duel map can ask for 2 clients and a large map for 8. A map that sets nothing gets no bots.
 
 When the last human disconnects, bots fill back up within a few seconds. The count is capped by `sv_maxClients`, so you never need to worry about them conflicting.
 
