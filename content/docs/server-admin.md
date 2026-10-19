@@ -175,7 +175,7 @@ cvars, so `g_captureLimit` below only applies under `ctf`.
 | `g_numTeams` | `default` | Number of teams (auto-detected by default) |
 | `g_autoJoin` | `1` | Automatically assign players to teams |
 | `g_weaponStay` | `0` | Weapons stay after pickup instead of respawning |
-| `g_respawnProtection` | `0` | Spawn protection duration in seconds |
+| `g_spawnProtection` | `0` | Spawn protection duration in seconds; it ends when the player fires |
 | `g_spawnFarthest` | `1` | Spawn players as far as possible from enemies |
 | `g_ammoRespawnTime` | `20.0` | Ammo respawn interval in seconds |
 | `g_weaponRespawnTime` | `5` | Weapon respawn interval in seconds |
