@@ -1194,6 +1194,10 @@ audio {
   .news-card-img-link { flex: 0 0 200px; }
 }
 
+/* Homepage news preview */
+.news-preview { padding: 0 0 6rem; }
+.news-preview .news-list { margin-top: 0; }
+
 .asset-placeholder {
   margin: 1.5rem 0;
   padding: 2rem 1.5rem;

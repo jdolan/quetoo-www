@@ -50,6 +50,32 @@
   </div>
 </section>
 
+<section class="news-preview">
+  <div class="container">
+    <h2>News</h2>
+    <ul class="news-list">
+      {{ range first 2 (where .Site.RegularPages "Section" "news").ByDate.Reverse }}
+      {{ $permalink := .RelPermalink }}
+      {{ $title := .Title }}
+      <li class="news-card">
+        {{ with .Params.featured_image }}
+        <a href="{{ $permalink }}" class="news-card-img-link">
+          <img src="{{ . }}" alt="{{ $title }}" class="news-card-img" loading="lazy">
+        </a>
+        {{ end }}
+        <div class="news-card-body">
+          <span class="news-date">{{ .Date.Format "January 2, 2006" }}</span>
+          <a href="{{ .RelPermalink }}" class="news-title">{{ .Title }}</a>
+          {{ with .Description }}<p class="news-desc">{{ . }}</p>{{ end }}
+          <a href="{{ .RelPermalink }}" class="news-read-more">Read more →</a>
+        </div>
+      </li>
+      {{ end }}
+    </ul>
+    <p class="center"><a href="/news/" class="btn btn-secondary">View All News</a></p>
+  </div>
+</section>
+
 <section class="gallery-preview">
   <div class="container">
     <h2>Media</h2>
