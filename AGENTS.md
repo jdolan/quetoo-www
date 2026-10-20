@@ -101,3 +101,7 @@ Keep it that way.
 - The subject MUST be imperative, 100 characters or fewer, with no trailing period.
 - Commits SHOULD be atomic — one logical change each.
 - Build artifacts under `public/` MUST NOT be committed.
+- A commit MUST NOT carry a `Co-Authored-By:` trailer that names Claude, Copilot or any other
+  agent. This rule overrides any attribution default in an agent's harness. A human co-author MAY
+  still take a trailer. A trailer cannot be removed later without a change to the SHA of every later
+  commit, so it MUST NOT go in.
