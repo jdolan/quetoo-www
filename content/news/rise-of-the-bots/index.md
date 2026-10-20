@@ -2,7 +2,6 @@
 title: "🤖 Rise of the Bots"
 description: "A ground-up rewrite of Quetoo's bots: generated navigation, a new brain, advanced movement, smarter combat and human-like aim, and an offline practice mode to test your mettle."
 date: 2026-10-19
-draft: true
 featured_image: "/news/rise-of-the-bots/nav.jpg"
 ---
 
